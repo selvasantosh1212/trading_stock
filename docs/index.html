@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Stock HH/LL Screener Dashboard</title>
+<title>Swing Trade Dashboard</title>
 <style>
   :root {
     color-scheme: light;
@@ -160,8 +160,9 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Stock HH/LL Screener Dashboard</h1>
+    <h1>Swing Trade Dashboard</h1>
     <div class="subtitle" id="subtitle">Loading latest run&hellip;</div>
+    <div class="subtitle">Weekly trend + Daily entry timing, held for days to weeks (<code>entry_exit.py</code>). The daily HH/LL flag further down is same-day structure context, not itself a swing-trade signal.</div>
   </header>
 
   <section>
@@ -177,8 +178,8 @@
   <div class="stat-row" id="statRow"></div>
 
   <section>
-    <h2>Today's Structure Breaks</h2>
-    <div id="breaksArea"></div>
+    <h2>Open Positions</h2>
+    <div id="positionsArea"></div>
   </section>
 
   <section>
@@ -188,14 +189,14 @@
   </section>
 
   <section>
-    <h2>Open Positions</h2>
-    <div id="positionsArea"></div>
+    <h2>Today's Structure Breaks <span class="caveat" style="text-transform:none;">(context only — same-day HH/LL flag, not a swing-trade signal on its own)</span></h2>
+    <div id="breaksArea"></div>
   </section>
 
   <section>
     <h2>Full Watchlist</h2>
     <div id="watchlistArea"></div>
-    <div class="caveat">"Next level" is the nearest older unbroken swing level — useful context, not a validated predictive signal (see <code>reports/stock_target_investigation.md</code>). "Intraday bias" is a display-only heuristic, unvalidated.</div>
+    <div class="caveat">"Next level" is the nearest older unbroken swing level — useful context, not a validated predictive signal (see <code>reports/stock_target_investigation.md</code>). "Intraday bias" is a display-only heuristic, unvalidated, and not part of the swing-trade strategy above.</div>
   </section>
 
   <footer>
