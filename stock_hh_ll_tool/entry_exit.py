@@ -62,7 +62,14 @@ def evaluate_position_transition(weekly_df: pd.DataFrame, daily_df: pd.DataFrame
     if state == "LONG":
         stop_price = position["stop_price"]
         if stop_price is not None and today_low <= stop_price:
-            event = {"type": "exit_stop", "exit_price": stop_price, "entry_price": position["entry_price"]}
+            # A real stop order can't fill better than the first price the
+            # stock actually trades at. On an ordinary intraday breach the
+            # stop level itself is tradeable, but Indian equities gap
+            # overnight often enough (results, circuit filters, news) that
+            # today's open can already be below the stop — in that case the
+            # realistic fill is the (worse) open, not the stop level itself.
+            exit_price = today_open if today_open < stop_price else stop_price
+            event = {"type": "exit_stop", "exit_price": exit_price, "entry_price": position["entry_price"]}
             return {"new_position": dict(FLAT_POSITION), "event": event}
         if today_htf_bias == "bearish":
             event = {"type": "exit_trend", "exit_price": today_close, "entry_price": position["entry_price"]}

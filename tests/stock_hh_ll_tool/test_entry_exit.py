@@ -99,18 +99,38 @@ def test_pending_entry_fills_at_todays_open_not_signal_close():
     assert result["new_position"]["stop_price"] == 0.90  # carried over unchanged
 
 
-def test_long_exits_on_stop_breach():
+def test_long_exits_on_stop_breach_at_stop_price_when_no_gap():
     weekly = _bullish_weekly_df()
     daily = _bearish_then_bullish_choch_df(8)
+    # last bar (idx7): open=0.94, low=0.935 — today's open is already BELOW
+    # a 0.97 stop, so that scenario belongs to the gap-through test below.
+    # Use a stop (0.938) that sits between open and low — only the low
+    # breaches it, an ordinary intraday stop-loss with no overnight gap.
+    position = {"state": "LONG", "entry_price": 1.00, "entry_date": "2026-01-01", "stop_price": 0.938}
+    assert daily["open"].iloc[-1] > 0.938 > daily["low"].iloc[-1]
+
+    result = evaluate_position_transition(weekly, daily, CFG, position)
+
+    assert result["new_position"]["state"] == "FLAT"
+    assert result["event"]["type"] == "exit_stop"
+    assert result["event"]["exit_price"] == 0.938
+
+
+def test_long_exits_at_the_gapped_down_open_when_worse_than_stop():
+    weekly = _bullish_weekly_df()
+    daily = _bearish_then_bullish_choch_df(8)
+    # last bar's open in the fixture (idx7) is 2.0-1.06=0.94, already below
+    # a 0.97 stop — a real stop order can't fill better than the first
+    # tradeable price, so the exit should be the (worse) open, not 0.97.
     position = {"state": "LONG", "entry_price": 1.00, "entry_date": "2026-01-01", "stop_price": 0.97}
-    # last bar's low in the fixture (idx7) is 2.0-1.065=0.935, below the 0.97 stop
+    assert daily["open"].iloc[-1] < 0.97
     assert daily["low"].iloc[-1] < 0.97
 
     result = evaluate_position_transition(weekly, daily, CFG, position)
 
     assert result["new_position"]["state"] == "FLAT"
     assert result["event"]["type"] == "exit_stop"
-    assert result["event"]["exit_price"] == 0.97
+    assert result["event"]["exit_price"] == daily["open"].iloc[-1]
 
 
 def test_long_exits_on_htf_trend_reversal():
