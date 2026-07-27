@@ -124,14 +124,3 @@ entry_exit_strategy:
   # the tool doesn't know your account size). Position size = (account
   # risk budget) / (entry_price - stop_price).
   risk_per_trade_pct: 1.0
-
-# Telegram Bot API credentials are read from environment variables, never
-# hardcoded here. Get a bot token from @BotFather and your chat ID from
-# @userinfobot on Telegram, then:
-#   export STOCK_TOOL_TELEGRAM_BOT_TOKEN="..."
-#   export STOCK_TOOL_TELEGRAM_CHAT_ID="..."
-# Without these set, the screener still runs and prints results to the
-# console/report — it just won't send a Telegram message.
-telegram:
-  bot_token_env: "STOCK_TOOL_TELEGRAM_BOT_TOKEN"
-  chat_id_env: "STOCK_TOOL_TELEGRAM_CHAT_ID"

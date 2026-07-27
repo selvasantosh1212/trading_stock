@@ -26,9 +26,6 @@ jobs:
         run: pip install -e .
 
       - name: Run screener
-        env:
-          STOCK_TOOL_TELEGRAM_BOT_TOKEN: ${{ secrets.STOCK_TOOL_TELEGRAM_BOT_TOKEN }}
-          STOCK_TOOL_TELEGRAM_CHAT_ID: ${{ secrets.STOCK_TOOL_TELEGRAM_CHAT_ID }}
         run: python -m scripts.run_stock_screener
 
       # stock_hh_ll_tool/state/positions.json tracks the Weekly/Daily
@@ -36,11 +33,14 @@ jobs:
       # runners are ephemeral (fresh checkout every run), so without
       # committing this file back, position tracking would reset to FLAT
       # every single day instead of persisting across weeks like it does
-      # when run locally.
-      - name: Commit updated position state
+      # when run locally. docs/data.json is the dashboard's data source
+      # (docs/index.html, served over GitHub Pages) and needs committing
+      # every run so the page reflects the latest screen, even on days
+      # nothing changed in positions.json.
+      - name: Commit updated state and dashboard data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add stock_hh_ll_tool/state/positions.json
-          git diff --cached --quiet || git commit -m "Daily screener run: update position state [skip ci]"
+          git add stock_hh_ll_tool/state/positions.json docs/data.json
+          git diff --cached --quiet || git commit -m "Daily screener run: update dashboard data [skip ci]"
           git push

@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stock HH/LL Screener Dashboard</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --grid:           #e1e0d9;
+    --border:         rgba(11,11,11,0.10);
+    --good:           #0ca30c;
+    --critical:       #d03b3b;
+    --warning:        #fab219;
+    --card-hover:     #f2f1ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --grid:           #2c2c2a;
+      --border:         rgba(255,255,255,0.10);
+      --good:           #0ca30c;
+      --critical:       #e66767;
+      --warning:        #fab219;
+      --card-hover:     #232322;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.4;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+
+  header { margin-bottom: 24px; }
+  h1 { font-size: 1.4rem; margin: 0 0 4px; }
+  .subtitle { color: var(--text-secondary); font-size: 0.9rem; }
+  .subtitle a { color: inherit; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .stat-tile {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .stat-tile .value {
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-variant-numeric: normal;
+  }
+  .stat-tile .label {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  section { margin-bottom: 32px; }
+  h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 0.88rem; white-space: nowrap; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--grid); }
+  th { color: var(--text-secondary); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.02em; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--card-hover); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .tag { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; font-size: 0.82rem; }
+  .tag.good { color: var(--good); }
+  .tag.critical { color: var(--critical); }
+  .tag.warning { color: var(--warning); }
+  .tag.muted { color: var(--text-muted); font-weight: 400; }
+
+  .empty-state {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    padding: 16px;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .event-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .event-list li {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+
+  .caveat {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  .caveat.error { color: var(--critical); }
+  .caveat.success { color: var(--good); }
+
+  .add-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .add-row input {
+    flex: 1 1 220px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-1);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+  }
+  .add-row button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-1);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .add-row button:hover { background: var(--card-hover); }
+  .add-row button.link-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    text-decoration: underline;
+    font-size: 0.8rem;
+  }
+
+  footer { color: var(--text-muted); font-size: 0.8rem; margin-top: 40px; border-top: 1px solid var(--grid); padding-top: 16px; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Stock HH/LL Screener Dashboard</h1>
+    <div class="subtitle" id="subtitle">Loading latest run&hellip;</div>
+  </header>
+
+  <section>
+    <h2>Add a Stock to the Watchlist</h2>
+    <div class="add-row">
+      <input type="text" id="addSymbolInput" placeholder="e.g. TATAPOWER or TATAPOWER.NS" autocapitalize="characters" />
+      <button id="addSymbolBtn">Add</button>
+      <button id="resetTokenBtn" class="link-btn">Reset token</button>
+    </div>
+    <div id="addStatus" class="caveat"></div>
+  </section>
+
+  <div class="stat-row" id="statRow"></div>
+
+  <section>
+    <h2>Today's Structure Breaks</h2>
+    <div id="breaksArea"></div>
+  </section>
+
+  <section>
+    <h2>Entry/Exit Events (Weekly/Daily strategy)</h2>
+    <div id="eventsArea"></div>
+    <div class="caveat">Structure-based stop, next-day-open fill. See <code>reports/stock_entry_exit_strategy_investigation.md</code> in the repo: real edge, but its proven strength is capital protection, not reliably beating buy-and-hold.</div>
+  </section>
+
+  <section>
+    <h2>Open Positions</h2>
+    <div id="positionsArea"></div>
+  </section>
+
+  <section>
+    <h2>Full Watchlist</h2>
+    <div id="watchlistArea"></div>
+    <div class="caveat">"Next level" is the nearest older unbroken swing level — useful context, not a validated predictive signal (see <code>reports/stock_target_investigation.md</code>). "Intraday bias" is a display-only heuristic, unvalidated.</div>
+  </section>
+
+  <footer>
+    Data regenerated daily by <a href="https://github.com/selvasantosh1212/trading_stock/actions/workflows/stock_screener.yml" target="_blank" rel="noopener">GitHub Actions</a> shortly after NSE close.
+    Source: <a href="https://github.com/selvasantosh1212/trading_stock" target="_blank" rel="noopener">selvasantosh1212/trading_stock</a>.
+  </footer>
+</div>
+
+<script>
+async function load() {
+  const subtitle = document.getElementById('subtitle');
+  try {
+    const res = await fetch('./data.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('data.json not found yet — waiting on the first workflow run');
+    const data = await res.json();
+    render(data);
+  } catch (e) {
+    subtitle.textContent = 'No data yet: ' + e.message;
+  }
+}
+
+function fmtNum(n, digits) {
+  if (n === null || n === undefined) return '—';
+  return Number(n).toLocaleString('en-IN', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+}
+
+function trendTag(trend) {
+  if (trend === 'bullish') return '<span class="tag good">▲ Bullish</span>';
+  if (trend === 'bearish') return '<span class="tag critical">▼ Bearish</span>';
+  return '<span class="tag muted">— None</span>';
+}
+
+function flagTag(r) {
+  if (r.hh_broken_today) return '<span class="tag good">▲ HH</span>';
+  if (r.ll_broken_today) return '<span class="tag critical">▼ LL</span>';
+  return '<span class="tag muted">—</span>';
+}
+
+function nextLevelText(r) {
+  const t = r.next_target;
+  if (!t) return '—';
+  if (t.next_target === null) return t.note || '—';
+  return `${fmtNum(t.next_target, 2)} (${t.next_target_pct >= 0 ? '+' : ''}${fmtNum(t.next_target_pct, 1)}%)`;
+}
+
+function render(data) {
+  const generated = new Date(data.generated_at);
+  document.getElementById('subtitle').textContent =
+    'Last run: ' + generated.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) + ' (IST)';
+
+  const stocks = data.stocks || [];
+  const errors = stocks.filter(r => r.error);
+  const openPositions = Object.entries(data.positions || {}).filter(([, p]) => p.state && p.state !== 'FLAT');
+
+  // stat tiles
+  const stats = [
+    { label: 'Tracked', value: stocks.length },
+    { label: 'Flagged today', value: data.flagged_count || 0 },
+    { label: 'Open positions', value: openPositions.length },
+    { label: 'Fetch errors', value: errors.length },
+  ];
+  document.getElementById('statRow').innerHTML = stats.map(s =>
+    `<div class="stat-tile"><div class="value">${s.value}</div><div class="label">${s.label}</div></div>`
+  ).join('');
+
+  // today's breaks
+  const flagged = stocks.filter(r => r.hh_broken_today || r.ll_broken_today);
+  const breaksArea = document.getElementById('breaksArea');
+  if (flagged.length === 0) {
+    breaksArea.innerHTML = '<div class="empty-state">No HH/LL structure breaks today across the watchlist.</div>';
+  } else {
+    breaksArea.innerHTML = tableHtml(
+      ['Symbol', 'Break', 'Close', 'Gap %', 'Next level', 'Intraday bias'],
+      flagged.map(r => [
+        r.symbol,
+        flagTag(r),
+        fmtNum(r.close, 2),
+        r.gap_pct !== null ? (r.gap_pct >= 0 ? '+' : '') + fmtNum(r.gap_pct, 2) + '%' : '—',
+        nextLevelText(r),
+        r.intraday_bias ? (r.intraday_bias.bias_timeframes_agree ? '<span class="tag good">✓ Agrees</span>' : '<span class="tag warning">Not aligned</span>') : '—',
+      ]),
+      [2, 3]
+    );
+  }
+
+  // entry/exit events
+  const events = data.entry_exit_events || [];
+  const eventsArea = document.getElementById('eventsArea');
+  if (events.length === 0) {
+    eventsArea.innerHTML = '<div class="empty-state">No entry/exit events today.</div>';
+  } else {
+    eventsArea.innerHTML = '<ul class="event-list">' +
+      events.map(e => `<li>${e.message}</li>`).join('') + '</ul>';
+  }
+
+  // open positions
+  const positionsArea = document.getElementById('positionsArea');
+  if (openPositions.length === 0) {
+    positionsArea.innerHTML = '<div class="empty-state">No open positions.</div>';
+  } else {
+    positionsArea.innerHTML = tableHtml(
+      ['Symbol', 'State', 'Entry price', 'Entry date', 'Stop price'],
+      openPositions.map(([symbol, p]) => [
+        symbol,
+        p.state === 'LONG' ? '<span class="tag good">LONG</span>' : '<span class="tag warning">PENDING</span>',
+        fmtNum(p.entry_price, 2),
+        p.entry_date || '—',
+        fmtNum(p.stop_price, 2),
+      ]),
+      [2, 4]
+    );
+  }
+
+  // full watchlist
+  const watchlistArea = document.getElementById('watchlistArea');
+  watchlistArea.innerHTML = tableHtml(
+    ['Symbol', 'Trend', 'Close', 'Gap %', 'Flag', 'Next level'],
+    stocks.map(r => r.error ? [
+      r.symbol, `<span class="tag critical">ERROR</span>`, '—', '—', '—', r.error
+    ] : [
+      r.symbol,
+      trendTag(r.daily_trend),
+      fmtNum(r.close, 2),
+      r.gap_pct !== null ? (r.gap_pct >= 0 ? '+' : '') + fmtNum(r.gap_pct, 2) + '%' : '—',
+      flagTag(r),
+      nextLevelText(r),
+    ]),
+    [2, 3]
+  );
+}
+
+function tableHtml(headers, rows, numericCols = []) {
+  const thead = '<tr>' + headers.map((h, i) => `<th class="${numericCols.includes(i) ? 'num' : ''}">${h}</th>`).join('') + '</tr>';
+  const tbody = rows.map(row =>
+    '<tr>' + row.map((cell, i) => `<td class="${numericCols.includes(i) ? 'num' : ''}">${cell}</td>`).join('') + '</tr>'
+  ).join('');
+  return `<div class="table-scroll"><table><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`;
+}
+
+load();
+
+// ---- Add-a-stock: this page is static (GitHub Pages has no backend), so
+// the only way to actually change the watchlist is for the browser itself
+// to call GitHub's API directly, using a personal access token pasted in
+// once and kept only in this browser's localStorage — it is never embedded
+// in this page's source, so nobody else can use it just by visiting the
+// (public) dashboard URL. Use a fine-grained token scoped to ONLY this repo
+// with Contents: Read/write and Actions: Read/write.
+const GH_OWNER = 'selvasantosh1212';
+const GH_REPO = 'trading_stock';
+const CONFIG_PATH = 'stock_hh_ll_tool/config.yaml';
+// The watchlist block always ends right before this comment in config.yaml
+// (see stock_hh_ll_tool/config.yaml) — insertion relies on that staying put.
+const INSERT_MARKER = '\n\n# Swing-trade signal:';
+
+function b64encodeUtf8(str) { return btoa(unescape(encodeURIComponent(str))); }
+function b64decodeUtf8(str) { return decodeURIComponent(escape(atob(str))); }
+
+function getToken() {
+  let token = localStorage.getItem('gh_pat');
+  if (!token) {
+    token = prompt(
+      'Paste a GitHub fine-grained personal access token scoped to ONLY the ' +
+      GH_OWNER + '/' + GH_REPO + ' repo, with Contents: Read/write and Actions: Read/write.\n\n' +
+      'Stored only in this browser (localStorage) — never sent anywhere but api.github.com.'
+    );
+    if (token) localStorage.setItem('gh_pat', token.trim());
+  }
+  return token ? token.trim() : null;
+}
+
+function setAddStatus(msg, kind) {
+  const el = document.getElementById('addStatus');
+  el.textContent = msg;
+  el.className = 'caveat' + (kind ? ' ' + kind : '');
+}
+
+function existingWatchlistSymbols(yamlText) {
+  const re = /^\s*-\s*"?([^"\n]+?\.NS)"?\s*$/gm;
+  const syms = [];
+  let m;
+  while ((m = re.exec(yamlText))) syms.push(m[1].toUpperCase());
+  return syms;
+}
+
+async function addSymbol(raw) {
+  let symbol = (raw || '').trim().toUpperCase();
+  if (!symbol) return;
+  if (!symbol.endsWith('.NS')) symbol += '.NS';
+
+  const token = getToken();
+  if (!token) { setAddStatus('No token provided — cancelled.', 'error'); return; }
+
+  const api = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${CONFIG_PATH}`;
+  const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' };
+
+  try {
+    setAddStatus('Fetching current config.yaml…');
+    const getRes = await fetch(api, { headers });
+    if (!getRes.ok) throw new Error(`GET config.yaml failed (${getRes.status}) — check your token's Contents permission`);
+    const getData = await getRes.json();
+    const content = b64decodeUtf8(getData.content.replace(/\n/g, ''));
+
+    if (existingWatchlistSymbols(content).includes(symbol)) {
+      setAddStatus(symbol + ' is already in the watchlist.');
+      return;
+    }
+    if (!content.includes(INSERT_MARKER)) {
+      setAddStatus('Could not find the insertion point in config.yaml — add it manually instead.', 'error');
+      return;
+    }
+
+    const newContent = content.replace(INSERT_MARKER, `\n  - "${symbol}"${INSERT_MARKER}`);
+
+    setAddStatus('Committing ' + symbol + ' to the watchlist…');
+    const putRes = await fetch(api, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        message: `Add ${symbol} to watchlist (via dashboard)`,
+        content: b64encodeUtf8(newContent),
+        sha: getData.sha,
+      }),
+    });
+    if (!putRes.ok) throw new Error(`Commit failed (${putRes.status}) — check your token's Contents:write permission`);
+
+    setAddStatus(symbol + ' added. Triggering a screener run…');
+    const dispatchRes = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/stock_screener.yml/dispatches`,
+      { method: 'POST', headers, body: JSON.stringify({ ref: 'main' }) }
+    );
+    if (dispatchRes.ok) {
+      setAddStatus(symbol + ' added — a screener run was triggered, refresh this page in a minute or two.', 'success');
+    } else {
+      setAddStatus(symbol + ' added to the watchlist. Trigger a run from the Actions tab (or wait for the daily schedule) to see it here.', 'success');
+    }
+    document.getElementById('addSymbolInput').value = '';
+  } catch (e) {
+    setAddStatus(e.message, 'error');
+  }
+}
+
+document.getElementById('addSymbolBtn').addEventListener('click', () => {
+  addSymbol(document.getElementById('addSymbolInput').value);
+});
+document.getElementById('addSymbolInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') addSymbol(e.target.value);
+});
+document.getElementById('resetTokenBtn').addEventListener('click', () => {
+  localStorage.removeItem('gh_pat');
+  setAddStatus('Token cleared — you\'ll be asked to paste it again next time you add a stock.');
+});
+</script>
+</body>
+</html>

@@ -1,8 +1,14 @@
 """Daily entry point for stock_hh_ll_tool. Meant to run once a day, after
 NSE market close (~3:30pm IST / ~10:00 UTC), against a watchlist configured
-in stock_hh_ll_tool/config.yaml.
+in stock_hh_ll_tool/config.yaml. Writes results to docs/data.json, read by
+the static dashboard (docs/index.html) served over GitHub Pages — replaces
+the Telegram notification path, which the user dropped due to unrelated
+Telegram spam making alerts hard to notice.
 """
 
+import json
+import math
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -13,9 +19,26 @@ from stock_hh_ll_tool.data import fetch_ohlc
 from stock_hh_ll_tool.entry_exit import FLAT_POSITION, evaluate_position_transition
 from stock_hh_ll_tool.position_state import load_positions, save_positions
 from stock_hh_ll_tool.screener import screen_symbol
-from stock_hh_ll_tool.telegram_notify import send_telegram_message
 
 REPORT_PATH = Path(__file__).resolve().parent.parent / "reports" / "stock_screener_latest.md"
+DASHBOARD_DATA_PATH = Path(__file__).resolve().parent.parent / "docs" / "data.json"
+
+
+def _json_safe(obj):
+    """Recursively replaces float('nan') with None. Needed because pandas'
+    (3.0+) string-dtype columns surface missing cells as a float nan scalar
+    via .iloc rather than None — harmless for the existing `== "CHoCH"`-style
+    comparisons elsewhere (NaN just compares False), but json.dumps emits a
+    bare `NaN` token for it, which isn't valid JSON and breaks the
+    dashboard's JSON.parse.
+    """
+    if isinstance(obj, float) and math.isnan(obj):
+        return None
+    if isinstance(obj, dict):
+        return {k: _json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_json_safe(v) for v in obj]
+    return obj
 
 
 def _target_note(r: dict) -> str:
@@ -32,17 +55,17 @@ def _format_exit_message(symbol: str, emoji: str, verb: str, event: dict) -> str
     return f"{emoji} *{symbol}*: {verb} at {event['exit_price']:.2f} (entry was {event['entry_price']:.2f}, {pnl_pct:+.1f}%)."
 
 
-def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.DataFrame) -> tuple[dict, str | None]:
-    """Returns (updated position, a message line if something happened or
-    errored, else None). Never raises — a bad ticker here shouldn't stop
-    the rest of the watchlist any more than it does for the daily check.
-    Takes the already-fetched `daily` bars (shared with the plain HH/LL
-    check in main()) rather than re-fetching them.
+def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.DataFrame) -> tuple[dict, dict | None]:
+    """Returns (updated position, an event dict {"type", "message"} if
+    something happened or errored, else None). Never raises — a bad ticker
+    here shouldn't stop the rest of the watchlist any more than it does for
+    the daily check. Takes the already-fetched `daily` bars (shared with the
+    plain HH/LL check in main()) rather than re-fetching them.
     """
     try:
         weekly = resample_ohlc(daily, "W")
     except Exception as e:
-        return positions.get(symbol, dict(FLAT_POSITION)), f"  entry/exit check ERROR for {symbol}: {e}"
+        return positions.get(symbol, dict(FLAT_POSITION)), {"type": "error", "message": f"entry/exit check ERROR for {symbol}: {e}"}
 
     current = positions.get(symbol, dict(FLAT_POSITION))
     result = evaluate_position_transition(weekly, daily, cfg, current)
@@ -56,12 +79,12 @@ def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.Dat
     if event["type"] == "signal_entry":
         risk_per_share = event["signal_price"] - event["stop_price"]
         msg = (
-            f"📥 *{symbol}*: entry signal — retracement resolved, will enter at TOMORROW's open. "
+            f"📥 {symbol}: entry signal — retracement resolved, will enter at TOMORROW's open. "
             f"Signal price {event['signal_price']:.2f}, stop {event['stop_price']:.2f} "
             f"(risk/share {risk_per_share:.2f}). Size = ({ecfg['risk_per_trade_pct']}% of capital) / {risk_per_share:.2f}."
         )
     elif event["type"] == "entered":
-        msg = f"✅ *{symbol}*: entered at {event['entry_price']:.2f} (today's open). Stop at {event['stop_price']:.2f}."
+        msg = f"✅ {symbol}: entered at {event['entry_price']:.2f} (today's open). Stop at {event['stop_price']:.2f}."
     elif event["type"] == "exit_stop":
         msg = _format_exit_message(symbol, "🛑", "stopped out", event)
     elif event["type"] == "exit_trend":
@@ -69,7 +92,7 @@ def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.Dat
     else:
         msg = f"{symbol}: unrecognized event {event}"
 
-    return result["new_position"], msg
+    return result["new_position"], {"type": event["type"], "message": msg}
 
 
 def main() -> None:
@@ -113,24 +136,7 @@ def main() -> None:
     flagged = [r for r in results if r.get("hh_broken_today") or r.get("ll_broken_today")]
     lines.append("")
 
-    message_sections = []
-
     if flagged:
-        hh_ll_lines = ["*Stock HH/LL Screener — Structure Break Confirmed Today*", ""]
-        for r in flagged:
-            bias_note = ""
-            if r["intraday_bias"]:
-                agree = r["intraday_bias"]["bias_timeframes_agree"]
-                bias_note = " — ✅ intraday agrees" if agree else " — ⚠️ intraday not aligned yet"
-            if r["hh_broken_today"]:
-                gap_note = f" (gapped up {r['gap_pct']:+.1f}%)" if r["gapped_up_today"] else ""
-            else:
-                gap_note = f" (gapped down {r['gap_pct']:+.1f}%)" if r["gapped_down_today"] else ""
-            hh_ll_lines.append(
-                f"• *{r['symbol']}*: {r['structure_event']} ({r['structure_event_direction']}) confirmed"
-                f"{gap_note}{bias_note}{_target_note(r)}"
-            )
-        message_sections.append("\n".join(hh_ll_lines))
         print(f"\n{len(flagged)} stock(s) flagged on the daily HH/LL check.")
         lines.append(f"{len(flagged)} stock(s) flagged on the daily HH/LL check.")
     else:
@@ -139,38 +145,38 @@ def main() -> None:
 
     # entry/exit strategy check (validated via reports/stock_entry_exit_strategy_investigation.md)
     # — separate, stateful, spans multiple days per position
+    entry_exit_events = []
+    positions: dict = {}
     if entry_exit_enabled:
         positions = load_positions()
-        entry_exit_messages = []
         lines.append("")
         lines.append("## Entry/Exit Strategy (Weekly/Daily)")
         for symbol in cfg["watchlist"]:
             daily = daily_by_symbol[symbol]
             if daily is None:
                 continue  # already reported as a fetch error above
-            _, msg = _run_entry_exit_check(symbol, cfg, positions, daily)
-            if msg:
-                print(msg)
-                lines.append(f"- {msg}")
-                entry_exit_messages.append(msg)
+            _, event = _run_entry_exit_check(symbol, cfg, positions, daily)
+            if event:
+                print(event["message"])
+                lines.append(f"- {event['message']}")
+                entry_exit_events.append({"symbol": symbol, **event})
         save_positions(positions)
-        if entry_exit_messages:
-            message_sections.append("*Entry/Exit Strategy Updates*\n\n" + "\n".join(entry_exit_messages))
-        else:
+        if not entry_exit_events:
             lines.append("No entry/exit events today.")
-
-    if message_sections:
-        message = "\n\n".join(message_sections)
-        sent = send_telegram_message(message, cfg)
-        status = "Telegram message sent." if sent else (
-            "Telegram NOT sent — set STOCK_TOOL_TELEGRAM_BOT_TOKEN and "
-            "STOCK_TOOL_TELEGRAM_CHAT_ID (see stock_hh_ll_tool/config.yaml)."
-        )
-        print(f"\n{status}")
-        lines.append(f"\n{status}")
 
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text("\n".join(lines))
+
+    dashboard = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "stocks": results,
+        "flagged_count": len(flagged),
+        "entry_exit_events": entry_exit_events,
+        "positions": positions,
+    }
+    DASHBOARD_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DASHBOARD_DATA_PATH.write_text(json.dumps(_json_safe(dashboard), indent=2))
+    print(f"\nDashboard data written to {DASHBOARD_DATA_PATH}")
 
 
 if __name__ == "__main__":
