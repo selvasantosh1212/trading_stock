@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T13:45:50Z",
+  "generated_at": "2026-07-27T13:52:03Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -754,6 +754,21 @@
       "gap_pct": 2.4908065795898438,
       "next_target": null,
       "intraday_bias": null
+    },
+    {
+      "symbol": "TMCV.NS",
+      "date": "2026-07-27",
+      "close": 411.1000061035156,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": true,
+      "gapped_down_today": false,
+      "gap_pct": 1.440356073231068,
+      "next_target": null,
+      "intraday_bias": null
     }
   ],
   "flagged_count": 0,
@@ -1054,6 +1069,12 @@
       "stop_price": null
     },
     "TMPV.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null
+    },
+    "TMCV.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
