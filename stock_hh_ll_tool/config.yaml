@@ -1,0 +1,137 @@
+# Nifty 50 constituents (Yahoo Finance NSE symbols: ticker + ".NS"), filled
+# in 2026-07-27 from the assistant's own knowledge, NOT fetched live from
+# NSE/NSE Indices at run time — the index rebalances every six months, so
+# this list can drift out of date. Worth a one-time sanity check against
+# NSE's official Nifty 50 list before relying on it, and revisiting after
+# each rebalance (typically end of March/September).
+watchlist:
+  - RELIANCE.NS
+  - TCS.NS
+  - HDFCBANK.NS
+  - ICICIBANK.NS
+  - INFY.NS
+  - BHARTIARTL.NS
+  - ITC.NS
+  - LT.NS
+  - KOTAKBANK.NS
+  - AXISBANK.NS
+  - SBIN.NS
+  - HINDUNILVR.NS
+  - BAJFINANCE.NS
+  - ASIANPAINT.NS
+  - MARUTI.NS
+  - HCLTECH.NS
+  - SUNPHARMA.NS
+  - TITAN.NS
+  - ULTRACEMCO.NS
+  - WIPRO.NS
+  - NESTLEIND.NS
+  - BAJAJFINSV.NS
+  - POWERGRID.NS
+  - NTPC.NS
+  - TECHM.NS
+  # Tata Motors demerged into two listings as of today (2026-07-27, per a
+  # live Yahoo Finance lookup while testing this watchlist): the old
+  # TATAMOTORS.NS symbol was renamed to TMPV.NS (Tata Motors Passenger
+  # Vehicles Ltd — Yahoo shows it as the direct continuation, prevName
+  # "Tata Motors Limited"), while the commercial-vehicle business was
+  # spun off as a fresh listing, TMCV.NS. Using TMPV.NS here since it's the
+  # renamed continuation of what was in the index; worth double-checking
+  # NSE's official Nifty 50 list once the post-demerger index reconstitution
+  # settles, since which (if either/both) of these two ends up index
+  # constituents isn't yet knowable from a same-day lookup.
+  - TMPV.NS
+  - TATASTEEL.NS
+  - INDUSINDBK.NS
+  - JSWSTEEL.NS
+  - ADANIENT.NS
+  - ADANIPORTS.NS
+  - GRASIM.NS
+  - COALINDIA.NS
+  - CIPLA.NS
+  - DRREDDY.NS
+  - EICHERMOT.NS
+  - BRITANNIA.NS
+  - HEROMOTOCO.NS
+  - DIVISLAB.NS
+  - APOLLOHOSP.NS
+  - HINDALCO.NS
+  - SBILIFE.NS
+  - HDFCLIFE.NS
+  - "BAJAJ-AUTO.NS"
+  - SHRIRAMFIN.NS
+  - LTIM.NS
+  - TRENT.NS
+  - BEL.NS
+  - "M&M.NS"
+  - ONGC.NS
+  - TATACONSUM.NS
+
+# Swing-trade signal: did TODAY's daily candle produce a bullish Break of
+# Structure or Change of Character (a confirmed Higher High)? Same
+# close-only, external-structure logic validated in the forex project
+# (smc_validator/structure/), just run on daily stock bars instead.
+daily_structure:
+  external:
+    left_bars: 5
+    right_bars: 5
+  close_only_break: true
+
+# Overnight gap = today's open vs yesterday's close. min_gap_pct filters
+# noise (percent of yesterday's close) — no source to derive this from since
+# this is a new tool, not from the video; treat as a starting default to
+# adjust once you see real results.
+gap:
+  min_gap_pct: 0.5
+
+# Once a stock's daily HH is confirmed, drill into these intraday timeframes
+# for a secondary bias-agreement check (same fractal per-timeframe structure
+# logic as the daily check, just at finer granularity). UNVALIDATED — this
+# predates the properly investigated Weekly/Daily entry_exit_strategy below
+# (see reports/stock_entry_exit_strategy_investigation.md); treat it as a
+# display-only heuristic, not a confirmed signal. entry_timeframes is kept
+# for reference/future use but isn't currently fetched or consumed —
+# only bias_timeframes drives evaluate_intraday_bias.
+intraday_confirmation:
+  bias_timeframes: ["4h", "1h"]
+  entry_timeframes: ["30m", "15m", "5m"]
+  external:
+    left_bars: 3
+    right_bars: 3
+
+# Entry/exit swing-trade strategy (validated via 3-agent investigation —
+# see reports/stock_entry_exit_strategy_investigation.md before changing
+# these): Weekly HTF confirms the trend, Daily LTF times the retracement
+# entry. This is a DIFFERENT, additional signal from the plain daily
+# HH/LL alert above — it tracks actual positions across days, since entry
+# and exit can be weeks apart (needs stock_hh_ll_tool/state/positions.json,
+# not stateless like the daily check).
+entry_exit_strategy:
+  enabled: true
+  htf_structure:
+    left_bars: 5
+    right_bars: 5
+  ltf_structure:
+    left_bars: 3
+    right_bars: 3
+  # Stop-loss = the LTF swing low active at entry, minus a small ATR
+  # buffer (avoids getting stopped out by a bare wick at the exact level —
+  # same reasoning as the forex project's structure-based stop). The
+  # investigation found this beats both "no stop" (worst trade -34.9%) and
+  # a fixed % stop on both tail-risk AND total return.
+  stop_atr_buffer_fraction: 0.1
+  # For the risk-sizing guidance shown in each entry alert (not enforced —
+  # the tool doesn't know your account size). Position size = (account
+  # risk budget) / (entry_price - stop_price).
+  risk_per_trade_pct: 1.0
+
+# Telegram Bot API credentials are read from environment variables, never
+# hardcoded here. Get a bot token from @BotFather and your chat ID from
+# @userinfobot on Telegram, then:
+#   export STOCK_TOOL_TELEGRAM_BOT_TOKEN="..."
+#   export STOCK_TOOL_TELEGRAM_CHAT_ID="..."
+# Without these set, the screener still runs and prints results to the
+# console/report — it just won't send a Telegram message.
+telegram:
+  bot_token_env: "STOCK_TOOL_TELEGRAM_BOT_TOKEN"
+  chat_id_env: "STOCK_TOOL_TELEGRAM_CHAT_ID"

@@ -1,0 +1,86 @@
+/Users/selvaganapathypari/Documents/trading_tool/investigations/forex_pattern_analysis/analyze_winners.py:71: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.
+  trades["month"] = trades["signal_time"].dt.to_period("M").astype(str)
+/Users/selvaganapathypari/Documents/trading_tool/investigations/forex_pattern_analysis/analyze_winners.py:72: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.
+  trades["quarter"] = trades["signal_time"].dt.to_period("Q").astype(str)
+Building signals (full pipeline)...
+Using Dukascopy 5m data: 73987 bars, 2025-07-28 01:05:00+00:00 to 2026-07-24 21:00:00+00:00
+75 candidate signals from 73987 5m bars.
+75 simulated trades.
+Win rate: 80.000% (60/75)
+Saved enriched trades to /Users/selvaganapathypari/Documents/trading_tool/investigations/forex_pattern_analysis/trades_enriched.csv
+
+=== WINNERS: 60 / 75 (80.0%) ===
+
+--- Session distribution (winners) ---
+  Asia                        :  12 winners (20.0% of all winners) | win rate within session: 60.0% (12/20)
+  Asia/London overlap         :   3 winners ( 5.0% of all winners) | win rate within session: 100.0% (3/3)
+  London                      :  14 winners (23.3% of all winners) | win rate within session: 77.8% (14/18)
+  London/NY overlap           :  17 winners (28.3% of all winners) | win rate within session: 89.5% (17/19)
+  New York                    :  12 winners (20.0% of all winners) | win rate within session: 100.0% (12/12)
+  Off-session (22:00-00:00 UTC gap):   2 winners ( 3.3% of all winners) | win rate within session: 66.7% (2/3)
+
+--- Day of week distribution (winners) ---
+  Monday    :   9 winners (15.0% of winners) | win rate: 75.0% (9/12)
+  Tuesday   :  19 winners (31.7% of winners) | win rate: 79.2% (19/24)
+  Wednesday :  11 winners (18.3% of winners) | win rate: 78.6% (11/14)
+  Thursday  :   7 winners (11.7% of winners) | win rate: 87.5% (7/8)
+  Friday    :  13 winners (21.7% of winners) | win rate: 81.2% (13/16)
+  Saturday: 0
+  Sunday    :   1 winners ( 1.7% of winners) | win rate: 100.0% (1/1)
+
+--- Hour of day (UTC) distribution (winners) ---
+  00:00 UTC:   2 winners ( 3.3% of winners) | win rate: 100.0% (2/2)
+  03:00 UTC:   1 winners ( 1.7% of winners) | win rate: 100.0% (1/1)
+  04:00 UTC:   2 winners ( 3.3% of winners) | win rate: 40.0% (2/5)
+  05:00 UTC:   2 winners ( 3.3% of winners) | win rate: 66.7% (2/3)
+  06:00 UTC:   1 winners ( 1.7% of winners) | win rate: 33.3% (1/3)
+  07:00 UTC:   4 winners ( 6.7% of winners) | win rate: 100.0% (4/4)
+  08:00 UTC:   3 winners ( 5.0% of winners) | win rate: 100.0% (3/3)
+  09:00 UTC:   3 winners ( 5.0% of winners) | win rate: 100.0% (3/3)
+  10:00 UTC:   3 winners ( 5.0% of winners) | win rate: 60.0% (3/5)
+  11:00 UTC:   4 winners ( 6.7% of winners) | win rate: 80.0% (4/5)
+  12:00 UTC:   4 winners ( 6.7% of winners) | win rate: 80.0% (4/5)
+  13:00 UTC:   1 winners ( 1.7% of winners) | win rate: 100.0% (1/1)
+  14:00 UTC:   3 winners ( 5.0% of winners) | win rate: 60.0% (3/5)
+  15:00 UTC:   3 winners ( 5.0% of winners) | win rate: 100.0% (3/3)
+  16:00 UTC:  10 winners (16.7% of winners) | win rate: 100.0% (10/10)
+  17:00 UTC:   3 winners ( 5.0% of winners) | win rate: 100.0% (3/3)
+  18:00 UTC:   1 winners ( 1.7% of winners) | win rate: 100.0% (1/1)
+  19:00 UTC:   2 winners ( 3.3% of winners) | win rate: 100.0% (2/2)
+  20:00 UTC:   6 winners (10.0% of winners) | win rate: 100.0% (6/6)
+  23:00 UTC:   2 winners ( 3.3% of winners) | win rate: 66.7% (2/3)
+
+--- Month distribution (winners) ---
+  2025-07:   2 winners ( 3.3% of winners) | win rate: 66.7% (2/3)
+  2025-08:   3 winners ( 5.0% of winners) | win rate: 75.0% (3/4)
+  2025-09:   4 winners ( 6.7% of winners) | win rate: 66.7% (4/6)
+  2025-10:   7 winners (11.7% of winners) | win rate: 63.6% (7/11)
+  2025-11:   4 winners ( 6.7% of winners) | win rate: 100.0% (4/4)
+  2025-12:   5 winners ( 8.3% of winners) | win rate: 100.0% (5/5)
+  2026-01:   8 winners (13.3% of winners) | win rate: 88.9% (8/9)
+  2026-02:   4 winners ( 6.7% of winners) | win rate: 100.0% (4/4)
+  2026-03:   8 winners (13.3% of winners) | win rate: 88.9% (8/9)
+  2026-04:   2 winners ( 3.3% of winners) | win rate: 100.0% (2/2)
+  2026-05:   6 winners (10.0% of winners) | win rate: 75.0% (6/8)
+  2026-06:   5 winners ( 8.3% of winners) | win rate: 100.0% (5/5)
+  2026-07:   2 winners ( 3.3% of winners) | win rate: 40.0% (2/5)
+
+--- Quarter distribution (winners) ---
+  2025Q3:   9 winners (15.0% of winners) | win rate: 69.2% (9/13)
+  2025Q4:  16 winners (26.7% of winners) | win rate: 80.0% (16/20)
+  2026Q1:  20 winners (33.3% of winners) | win rate: 90.9% (20/22)
+  2026Q2:  13 winners (21.7% of winners) | win rate: 86.7% (13/15)
+  2026Q3:   2 winners ( 3.3% of winners) | win rate: 40.0% (2/5)
+
+--- Volatility regime (trailing 60-day ATR tercile) distribution (winners) ---
+  low                   :   9 winners (15.0% of winners) | win rate: 64.3% (9/14)
+  medium                :  21 winners (35.0% of winners) | win rate: 77.8% (21/27)
+  high                  :  30 winners (50.0% of winners) | win rate: 88.2% (30/34)
+  insufficient_history: 0
+
+--- ATR15 raw stats (absolute price units) ---
+  Winners  mean ATR15: 0.000820, median: 0.000717
+  Losers   mean ATR15: 0.000569, median: 0.000506
+  All      mean ATR15: 0.000770, median: 0.000685
+
+Done.

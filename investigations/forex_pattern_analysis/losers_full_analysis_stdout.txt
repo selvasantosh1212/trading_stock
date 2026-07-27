@@ -1,0 +1,151 @@
+/Users/selvaganapathypari/Documents/trading_tool/investigations/forex_pattern_analysis/losers_full_analysis.py:91: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.
+  trades["month"] = trades["signal_time"].dt.to_period("M").astype(str)
+/Users/selvaganapathypari/Documents/trading_tool/investigations/forex_pattern_analysis/losers_full_analysis.py:92: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.
+  trades["quarter"] = trades["signal_time"].dt.to_period("Q").astype(str)
+Building signals (full pipeline)...
+Using Dukascopy 5m data: 73987 bars, 2025-07-28 01:05:00+00:00 to 2026-07-24 21:00:00+00:00
+75 candidate signals from 73987 5m bars.
+75 simulated trades.
+Win rate: 80.000% (60/75); losers: 15
+
+=== LOSERS: 15 / 75 (20.0%) ===
+
+
+########## A) TIMING / SESSION / VOLATILITY (losers) ##########
+
+--- Session ---
+  Asia                        :   8 losers (53.3% of losers) | loss rate within session: 40.0% (8/20)
+  Asia/London overlap         :   0 losers ( 0.0% of losers) | loss rate within session: 0.0% (0/3)
+  London                      :   4 losers (26.7% of losers) | loss rate within session: 22.2% (4/18)
+  London/NY overlap           :   2 losers (13.3% of losers) | loss rate within session: 10.5% (2/19)
+  New York                    :   0 losers ( 0.0% of losers) | loss rate within session: 0.0% (0/12)
+  Off-session (22:00-00:00 UTC gap):   1 losers ( 6.7% of losers) | loss rate within session: 33.3% (1/3)
+
+--- Day of week ---
+  Monday    :   3 losers (20.0% of losers) | loss rate: 25.0% (3/12)
+  Tuesday   :   5 losers (33.3% of losers) | loss rate: 20.8% (5/24)
+  Wednesday :   3 losers (20.0% of losers) | loss rate: 21.4% (3/14)
+  Thursday  :   1 losers ( 6.7% of losers) | loss rate: 12.5% (1/8)
+  Friday    :   3 losers (20.0% of losers) | loss rate: 18.8% (3/16)
+  Sunday    :   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/1)
+
+--- Hour of day (UTC) ---
+  00:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/2)
+  01:00 UTC:   2 losers (13.3% of losers) | loss rate: 100.0% (2/2)
+  03:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/1)
+  04:00 UTC:   3 losers (20.0% of losers) | loss rate: 60.0% (3/5)
+  05:00 UTC:   1 losers ( 6.7% of losers) | loss rate: 33.3% (1/3)
+  06:00 UTC:   2 losers (13.3% of losers) | loss rate: 66.7% (2/3)
+  07:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/4)
+  08:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/3)
+  09:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/3)
+  10:00 UTC:   2 losers (13.3% of losers) | loss rate: 40.0% (2/5)
+  11:00 UTC:   1 losers ( 6.7% of losers) | loss rate: 20.0% (1/5)
+  12:00 UTC:   1 losers ( 6.7% of losers) | loss rate: 20.0% (1/5)
+  13:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/1)
+  14:00 UTC:   2 losers (13.3% of losers) | loss rate: 40.0% (2/5)
+  15:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/3)
+  16:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/10)
+  17:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/3)
+  18:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/1)
+  19:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/2)
+  20:00 UTC:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/6)
+  23:00 UTC:   1 losers ( 6.7% of losers) | loss rate: 33.3% (1/3)
+
+--- Month ---
+  2025-07:   1 losers ( 6.7% of losers) | loss rate: 33.3% (1/3)
+  2025-08:   1 losers ( 6.7% of losers) | loss rate: 25.0% (1/4)
+  2025-09:   2 losers (13.3% of losers) | loss rate: 33.3% (2/6)
+  2025-10:   4 losers (26.7% of losers) | loss rate: 36.4% (4/11)
+  2025-11:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/4)
+  2025-12:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/5)
+  2026-01:   1 losers ( 6.7% of losers) | loss rate: 11.1% (1/9)
+  2026-02:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/4)
+  2026-03:   1 losers ( 6.7% of losers) | loss rate: 11.1% (1/9)
+  2026-04:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/2)
+  2026-05:   2 losers (13.3% of losers) | loss rate: 25.0% (2/8)
+  2026-06:   0 losers ( 0.0% of losers) | loss rate: 0.0% (0/5)
+  2026-07:   3 losers (20.0% of losers) | loss rate: 60.0% (3/5)
+
+--- Quarter ---
+  2025Q3:   4 losers (26.7% of losers) | loss rate: 30.8% (4/13)
+  2025Q4:   4 losers (26.7% of losers) | loss rate: 20.0% (4/20)
+  2026Q1:   2 losers (13.3% of losers) | loss rate: 9.1% (2/22)
+  2026Q2:   2 losers (13.3% of losers) | loss rate: 13.3% (2/15)
+  2026Q3:   3 losers (20.0% of losers) | loss rate: 60.0% (3/5)
+
+--- Volatility regime (trailing 60d ATR tercile) ---
+  low                   :   5 losers (33.3% of losers) | loss rate: 35.7% (5/14)
+  medium                :   6 losers (40.0% of losers) | loss rate: 22.2% (6/27)
+  high                  :   4 losers (26.7% of losers) | loss rate: 11.8% (4/34)
+
+  ATR15 (raw, price units) — losers mean 0.000569 median 0.000506
+  ATR15 (raw, price units) — winners mean 0.000820 median 0.000717
+  ATR15 (raw, price units) — all mean 0.000770 median 0.000685
+
+
+########## B) SETUP QUALITY AT ENTRY (losers) ##########
+
+--- target1_R (RR to target1) ---
+  losers  : mean=4.89 median=0.59 Q1=0.32 Q3=2.11 n=15
+  winners : mean=0.62 median=0.51 Q1=0.14 Q3=0.85 n=60
+  all     : mean=1.47 median=0.54 Q1=0.17 Q3=0.86 n=75
+
+--- target2_R (RR to target2) ---
+  losers  : mean=5.14 median=1.07 Q1=0.41 Q3=2.35 n=15
+  winners : mean=0.87 median=0.66 Q1=0.28 Q3=1.05 n=60
+  all     : mean=1.72 median=0.76 Q1=0.29 Q3=1.21 n=75
+
+--- FVG size / ATR15 at anchor OB bar ---
+  losers  : mean=1.041 median=0.798 Q1=0.511 Q3=1.252 n=8
+  winners : mean=1.340 median=0.771 Q1=0.500 Q3=1.819 n=46
+  all     : mean=1.296 median=0.779 Q1=0.500 Q3=1.576 n=54
+
+--- OB candle body / ATR15 at anchor OB bar ---
+  losers  : mean=0.228 median=0.189 Q1=0.138 Q3=0.308 n=8
+  winners : mean=0.234 median=0.229 Q1=0.100 Q3=0.340 n=46
+  all     : mean=0.233 median=0.216 Q1=0.129 Q3=0.340 n=54
+
+--- Bars (5m) elapsed: zone becoming active -> LTF confirmation firing ---
+  losers  : mean=36.9 median=43.5 Q1=39.2 Q3=44.2 n=8
+  winners : mean=36.1 median=24.0 Q1=6.0 Q3=38.2 n=46
+  all     : mean=36.2 median=27.0 Q1=9.8 Q3=42.0 n=54
+
+
+########## C) EXIT / MANAGEMENT CHARACTERISTICS (losers) ##########
+
+--- exit_reason distribution ---
+  losers:
+    stop_before_target1     :  10 (66.7%)
+    stop_after_partial      :   5 (33.3%)
+  winners:
+    both_targets            :  60 (100.0%)
+  all:
+    both_targets            :  60 (80.0%)
+    stop_before_target1     :  10 (13.3%)
+    stop_after_partial      :   5 ( 6.7%)
+
+--- stop_after_partial losers: 5/15 (33.3%) ---
+  mean leg1 R contribution (0.5*leg1_r): 0.160
+  mean leg2 R contribution (0.5*leg2_r): -0.500  (fixed at -0.5 by construction)
+  mean total_r for this subset: -0.340
+  median leg1_r (raw, before 0.5 split): 0.401
+
+--- stop_before_target1 losers: 10/15 (66.7%) — total_r fixed at -1.0 ---
+
+--- Holding duration (5m bars) until final resolution ---
+  losers  : mean=23.7 bars (2.0h) median=13.0 bars (1.1h) Q1=5.5 Q3=33.5 n=15
+  winners : mean=61.3 bars (5.1h) median=2.0 bars (0.2h) Q1=2.0 Q3=8.2 n=60
+  all     : mean=53.8 bars (4.5h) median=2.0 bars (0.2h) Q1=2.0 Q3=22.0 n=75
+
+--- Bars (5m) to target1 (where reached, incl. stop_after_partial and both_targets) ---
+  losers  : mean=6.8 median=1.0 n=5
+  winners : mean=5.7 median=1.0 n=60
+  all     : mean=5.8 median=1.0 n=65
+
+--- Direction split ---
+  losers  : bearish=11 (73.3%), bullish=4 (26.7%)
+  winners : bearish=41 (68.3%), bullish=19 (31.7%)
+  all     : bearish=52 (69.3%), bullish=23 (30.7%)
+
+Done.

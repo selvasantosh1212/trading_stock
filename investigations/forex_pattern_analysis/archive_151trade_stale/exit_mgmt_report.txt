@@ -1,0 +1,54 @@
+======================================================================
+EXIT/MANAGEMENT CHARACTERISTICS OF WINNING TRADES
+======================================================================
+Total simulated trades: 151
+Winning trades (total_r > 0): 107  (70.9% win rate)
+
+----------------------------------------------------------------------
+1. EXIT REASON DISTRIBUTION (winners only)
+----------------------------------------------------------------------
+  both_targets                :  104 trades (97.2% of winners)
+  stop_after_partial          :    3 trades (2.8% of winners)
+
+  'Clean' full-target wins (both_targets): 104 (97.2% of winners)
+  'Partial-credit' wins (stop_after_partial, still net positive): 3 (2.8% of winners)
+    -> avg total_r for stop_after_partial winners: 0.948R  vs both_targets winners: 1.082R
+
+----------------------------------------------------------------------
+2. LEG1 vs LEG2 CONTRIBUTION (winners only)
+----------------------------------------------------------------------
+  leg1_r  (winners): mean=0.628R  median=0.250R
+  leg2_r  (winners, where applicable, n=107): mean=1.529R  median=0.345R
+    (leg2_r is negative for stop_after_partial winners -- it's the losing leg that still nets positive)
+
+  Aggregate winning R: 115.40R total across 107 winners
+    leg1 contribution: 33.58R (29.1% of total winning R)
+    leg2 contribution: 81.82R (70.9% of total winning R)
+  -> leg1 (the nearer, staged target1) is the dominant, more reliable driver of winning R; leg2 (holding for target2) is a smaller net add because it's dragged down by the stop_after_partial subset.
+
+  Leg contribution restricted to both_targets winners only (both legs positive):
+    leg1: 29.24R (26.0%)   leg2: 83.32R (74.0%)
+
+----------------------------------------------------------------------
+3. HOLDING DURATION (winners only, signal_time -> exit_time)
+----------------------------------------------------------------------
+  In 5-minute BAR COUNTS (exit_bars = bars walked forward, includes any partial-fill bar):
+    mean=37.8 bars  median=2 bars  max=842 bars  min=2 bars
+  In ELAPSED CALENDAR TIME (includes overnight/weekend gaps where market was closed):
+    mean=3.6h  median=0.2h  max=118.2h (4.9 days)  min=0.2h
+
+  By exit reason:
+    both_targets         n=104  mean_bars=38.3  median_bars=2  mean_hours=3.7h
+    stop_after_partial   n=  3  mean_bars=19.7  median_bars=20  mean_hours=1.6h
+
+  Time to reach target1 alone (n=107): mean=2.9 bars, median=1 bars
+
+----------------------------------------------------------------------
+4. DIRECTION SPLIT: winners vs overall
+----------------------------------------------------------------------
+  bullish : overall  60/151 (39.7%)  |  winners  44/107 (41.1%)  |  win rate WITHIN bullish: 73.3%
+  bearish : overall  91/151 (60.3%)  |  winners  63/107 (58.9%)  |  win rate WITHIN bearish: 69.2%
+
+  Representation shift: bullish share of winners is +1.4 percentage points vs its share of all candidate trades.
+
+======================================================================

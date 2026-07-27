@@ -1,0 +1,89 @@
+Using Dukascopy 5m data: 73987 bars, 2025-07-28 01:05:00+00:00 to 2026-07-24 21:00:00+00:00
+Signals: 75  Trades: 75
+Wins: 60  Win rate: 80.0%
+Enriched rows: 75  Winners matched: 60  Losers matched: 15
+Winners missing zone_start_time: 14
+Winners missing fvg_size_over_atr: 14
+                                 n       mean     median        std        q25        q75       min        max
+winners_target1_R             60.0   0.617535   0.508001   0.610749   0.141501   0.850804  0.002867   3.356485
+winners_target2_R             60.0   0.865187   0.657402   1.111160   0.284333   1.045854  0.033237   8.043242
+losers_target1_R              15.0   4.887979   0.591331  13.758223   0.322190   2.107355  0.023827  54.172494
+losers_target2_R              15.0   5.138282   1.066045  14.163135   0.414081   2.354504  0.005606  55.967366
+winners_fvg_size_over_atr     46.0   1.340282   0.770945   1.516273   0.499828   1.818925  0.117071   7.735110
+losers_fvg_size_over_atr       8.0   1.041267   0.797961   0.878033   0.510740   1.251623  0.159772   2.905138
+winners_ob_body_over_atr      46.0   0.234270   0.228939   0.149306   0.099648   0.340496  0.005149   0.490425
+losers_ob_body_over_atr        8.0   0.228195   0.188938   0.120679   0.137983   0.308066  0.094223   0.402224
+winners_confirmation_bars_5m  46.0  23.282609  24.000000  15.532994   6.000000  36.000000  0.000000  45.000000
+losers_confirmation_bars_5m    8.0  36.875000  43.500000  15.633640  39.250000  44.250000  1.000000  47.000000
+
+--- target1_R threshold sweep (win rate among trades with target1_R > x) ---
+target1_R > 1.0: n=16, win_rate=68.8%
+target1_R > 1.5: n=8, win_rate=50.0%
+target1_R > 2.0: n=6, win_rate=33.3%
+target1_R > 2.5: n=5, win_rate=20.0%
+target1_R > 3.0: n=4, win_rate=25.0%
+target1_R > 4.0: n=3, win_rate=0.0%
+
+--- fvg_size_over_atr threshold sweep ---
+fvg_size_over_atr > 0.1: n=54, win_rate=85.2%
+fvg_size_over_atr > 0.2: n=50, win_rate=86.0%
+fvg_size_over_atr > 0.3: n=47, win_rate=85.1%
+fvg_size_over_atr > 0.5: n=40, win_rate=85.0%
+fvg_size_over_atr > 0.75: n=29, win_rate=82.8%
+fvg_size_over_atr > 1.0: n=21, win_rate=85.7%
+
+--- ob_body_over_atr threshold sweep ---
+ob_body_over_atr <= 0.1: n=13, win_rate=92.3%
+ob_body_over_atr <= 0.2: n=25, win_rate=84.0%
+ob_body_over_atr <= 0.3: n=39, win_rate=84.6%
+ob_body_over_atr <= 0.4: n=43, win_rate=86.0%
+
+--- confirmation_bars_5m threshold sweep ---
+confirmation_bars_5m <= 3: n=9, win_rate=88.9%
+confirmation_bars_5m <= 6: n=13, win_rate=92.3%
+confirmation_bars_5m <= 9: n=14, win_rate=92.9%
+confirmation_bars_5m <= 15: n=17, win_rate=94.1%
+confirmation_bars_5m <= 30: n=32, win_rate=93.8%
+confirmation_bars_5m <= 45: n=53, win_rate=86.8%
+
+--- target1_R <= threshold sweep (opposite direction) ---
+target1_R <= 0.15: n=18, win_rate=88.9%
+target1_R <= 0.25: n=23, win_rate=82.6%
+target1_R <= 0.4: n=29, win_rate=86.2%
+target1_R <= 0.5: n=35, win_rate=85.7%
+target1_R <= 0.75: n=48, win_rate=81.2%
+target1_R <= 1.0: n=59, win_rate=83.1%
+
+--- quartile-bucket win rates across all 151 trades ---
+
+target1_R:
+                                    mean  count
+target1_R                                      
+(0.0018700000000000001, 0.173]  0.894737     19
+(0.173, 0.542]                  0.736842     19
+(0.542, 0.855]                  0.833333     18
+(0.855, 54.172]                 0.736842     19
+
+fvg_size_over_atr:
+                       mean  count
+fvg_size_over_atr                 
+(0.116, 0.5]       0.857143     14
+(0.5, 0.779]       0.846154     13
+(0.779, 1.576]     0.846154     13
+(1.576, 7.735]     0.857143     14
+
+ob_body_over_atr:
+                      mean  count
+ob_body_over_atr                 
+(0.00415, 0.129]  0.928571     14
+(0.129, 0.216]    0.692308     13
+(0.216, 0.34]     0.923077     13
+(0.34, 0.49]      0.857143     14
+
+confirmation_bars_5m:
+                          mean  count
+confirmation_bars_5m                 
+(-0.001, 9.75]        0.928571     14
+(9.75, 27.0]          1.000000     15
+(27.0, 42.0]          0.928571     14
+(42.0, 47.0]          0.454545     11

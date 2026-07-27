@@ -1,0 +1,11 @@
+data/raw/
+data/processed/
+reports/*.md
+!reports/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+.claude/

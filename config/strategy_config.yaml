@@ -1,0 +1,100 @@
+# Every tunable rule parameter lives here — nothing should be hardcoded in the
+# detection/backtest modules. Values marked "UNSPECIFIED IN SOURCE" were not given
+# a number in the video; they are reasonable starting defaults and MUST be
+# sensitivity-tested across a small range rather than tuned to maximize backtest P&L
+# (see Phase 1 plan, "avoiding backtest overfitting").
+
+instrument: "EURUSD"
+
+data:
+  base_timeframe: "1min"
+  higher_timeframes: ["5min", "15min", "1H", "4H", "1D", "1W"]
+  intraday_history_years: 2          # 1-minute data window
+  daily_history_years: 15            # longer, separate daily-bar history for the
+                                      # prev-day-low claim (needs statistical power
+                                      # far more than 1-minute granularity)
+
+timeframe_roles:
+  # User-confirmed hierarchy: 4H and 1H establish the directional bias (same
+  # per-timeframe swing/BOS/CHoCH logic from `structure/`, just run on higher-
+  # timeframe bars). 15min and 5min are where entries/exits are actually taken —
+  # wait for THIS pair's structure to shift (BOS then CHoCH) in the direction of
+  # the 4H/1H bias before entering. Both bias timeframes must agree; if they
+  # conflict, no trade (matches the video's "15min bearish, 4H bearish" example).
+  bias_timeframes: ["4H", "1H"]
+  entry_timeframes: ["15min", "5min"]
+
+timezone:
+  storage: "UTC"
+  sessions:
+    asia: "Asia/Tokyo"
+    london: "Europe/London"
+    new_york: "America/New_York"
+  # Forex trading-day rollover, NOT UTC midnight.
+  forex_day_boundary_ny_time: "17:00"
+
+sessions:
+  # Local session hours in each region's own IANA timezone (zoneinfo handles DST).
+  asia:     { start: "09:00", end: "18:00" }
+  london:   { start: "08:00", end: "16:30" }
+  new_york: { start: "08:00", end: "17:00" }
+
+structure:
+  # Two-tier pivot system: external/swing = real trend bias, internal = noise to ignore.
+  external:
+    left_bars: 5     # UNSPECIFIED IN SOURCE — sensitivity-test 3-10
+    right_bars: 5     # UNSPECIFIED IN SOURCE — sensitivity-test 3-10
+  internal:
+    left_bars: 2      # UNSPECIFIED IN SOURCE — sensitivity-test 1-3
+    right_bars: 2      # UNSPECIFIED IN SOURCE — sensitivity-test 1-3
+  # Core rule from the video: only a candle CLOSE beyond the swing level counts as
+  # BOS/CHoCH. A wick through the level does NOT count. Keep this a config toggle
+  # only so a "wick counts" variant can be run as an explicitly labeled comparison
+  # experiment — the close-only behavior is the validated default, never silently
+  # changed.
+  close_only_break: true
+
+liquidity:
+  previous_day_low_claim:
+    # The video's claim to falsify: "75% probability the next day trades back down
+    # to the previous day's low, after a bearish close below it."
+    interpretations:
+      - "close_below_prior_low"                 # close(t) < low(t-1), any candle color
+      - "red_candle_close_below_prior_low"       # close(t) < open(t) AND close(t) < low(t-1)
+    train_test_split_fraction: 0.7               # chronological, never random
+    confidence_method: "wilson"
+
+order_blocks:
+  # UNSPECIFIED IN SOURCE — how "balanced" a candle must be to qualify as the last
+  # candle before an expansion move, expressed as a fraction of ATR. Sensitivity-test.
+  balance_candle_body_atr_fraction: 0.5
+  expansion_move_atr_multiple: 2.0              # UNSPECIFIED IN SOURCE — sensitivity-test 1.5-3.0
+  require_associated_fvg: true                   # explicit rule stated in the video
+
+fair_value_gaps:
+  min_gap_size_atr_fraction: 0.1                 # UNSPECIFIED IN SOURCE — sensitivity-test 0.05-0.3
+  mitigation_rule: "close_crossing"              # alternative: "wick_crossing" — must be
+                                                  # an explicit, exposed setting per research
+
+ltf_confirmation:
+  # How long (in the zone/location timeframe's own bars, 15min in the
+  # current pipeline) an order-block+FVG zone stays active while waiting for
+  # entry-timeframe confirmation, before it's considered stale/expired.
+  # UNSPECIFIED IN SOURCE. Empirically tuned against real EURUSD 15m data:
+  # with structure-confirmed order blocks (~1 every 44 bars), timeout=15
+  # keeps the active fraction around 30% rather than blanketing the series
+  # (60 gave 77% active, too permissive to act as a meaningful filter).
+  timeout_bars: 15
+
+risk:
+  stop_buffer_atr_fraction: 0.1                  # UNSPECIFIED IN SOURCE — wide, structure-based
+                                                  # stop beyond the swing extreme; sensitivity-test
+  risk_per_trade_pct: 1.0                        # for R-multiple / equity-curve metrics only
+  staged_exit_split: [0.5, 0.5]                  # partial at target 1, remainder to target 2
+  # Explicitly NOT in the source material — do not add a breakeven-after-partial
+  # rule to the default config. Only test it as a separately labeled experiment.
+  breakeven_after_partial: false
+
+backtest:
+  engine: "backtrader"
+  baselines: ["random_entry_same_stop_target", "buy_and_hold"]

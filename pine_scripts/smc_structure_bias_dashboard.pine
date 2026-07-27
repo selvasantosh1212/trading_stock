@@ -1,0 +1,121 @@
+//@version=5
+indicator("SMC Structure + Bias Dashboard (validated)", overlay=true, max_labels_count=500, max_lines_count=500)
+
+// Ports the Python-validated structure/bias/filter logic from this project's
+// smc_validator/ package to Pine, for visual verification on a real
+// TradingView chart before any alerts are wired up (Phase A of the plan —
+// see projectplan.md). Close-only BOS/CHoCH, per-timeframe swing detection,
+// and the Friday/low-volatility filters all mirror the exact rules
+// validated in reports/phase1_summary.md and
+// reports/forex_trade_pattern_analysis.md. Meant to be added to a chart set
+// to the 5-minute timeframe (the "entry/confirmation" timeframe); 4H/1H
+// bias and 15m ATR are pulled via request.security().
+//
+// NOT YET VALIDATED IN TRADINGVIEW ITSELF — this was written against
+// documented Pine v5 semantics but never compiled/run here (no Pine
+// interpreter in the dev environment). Expect to fix minor syntax issues on
+// first paste into the Pine Editor.
+
+// ============ INPUTS ============
+grpStruct = "Market Structure"
+extLeft  = input.int(5, "Swing Left Bars", group = grpStruct)
+extRight = input.int(5, "Swing Right Bars", group = grpStruct)
+
+grpVol = "Volatility Filter"
+atrLen          = input.int(14, "ATR Length", group = grpVol)
+// ta.percentrank has a hard cap of 5000 bars — 60 days of 15m bars (5760)
+// exceeds it, so this uses ~50 days instead (4800 = 50 * 96 15m-bars/day),
+// the closest safe approximation to the validated 60-day window
+volLookbackBars = input.int(4800, "Trailing Window (bars, ~50 days on 15m, max 5000)", group = grpVol)
+
+grpFilt = "Trade Filters (from reports/forex_trade_pattern_analysis.md)"
+flagFriday = input.bool(true, "Flag Friday as unfavorable", group = grpFilt)
+flagLowVol = input.bool(true, "Flag Low Volatility as unfavorable", group = grpFilt)
+
+// ============ STRUCTURE STATE MACHINE (close-only BOS/CHoCH) ============
+// Same rule validated in smc_validator/structure/bos_choch.py: a swing
+// level only counts as broken when a candle CLOSES beyond it — a wick
+// through the level does not count. Reusable so the identical logic runs
+// on the chart's own timeframe AND via request.security() for 4H/1H bias.
+f_structure(extL, extR) =>
+    var float swingHigh  = na
+    var float swingLow   = na
+    var string trend     = na
+    var bool highBroken   = false
+    var bool lowBroken    = false
+
+    ph = ta.pivothigh(extL, extR)
+    pl = ta.pivotlow(extL, extR)
+
+    if not na(ph)
+        swingHigh := ph
+        highBroken := false
+    if not na(pl)
+        swingLow := pl
+        lowBroken := false
+
+    var string evt = na
+    evt := na
+    if barstate.isconfirmed
+        if not na(swingHigh) and not highBroken and close > swingHigh
+            evt := trend == "bearish" ? "CHoCH" : "BOS"
+            trend := "bullish"
+            highBroken := true
+        else if not na(swingLow) and not lowBroken and close < swingLow
+            evt := trend == "bullish" ? "CHoCH" : "BOS"
+            trend := "bearish"
+            lowBroken := true
+
+    [trend, evt, swingHigh, swingLow]
+
+// ---- current chart timeframe structure (for plotting) ----
+[trendNow, eventNow, swHigh, swLow] = f_structure(extLeft, extRight)
+
+// ---- HTF bias: 4H + 1H must agree (per the validated checklist) ----
+[trend4H, _e4, _sh4, _sl4] = request.security(syminfo.tickerid, "240", f_structure(extLeft, extRight), lookahead = barmerge.lookahead_off)
+[trend1H, _e1, _sh1, _sl1] = request.security(syminfo.tickerid, "60", f_structure(extLeft, extRight), lookahead = barmerge.lookahead_off)
+
+htfBias = (trend4H == "bullish" and trend1H == "bullish") ? "bullish" : (trend4H == "bearish" and trend1H == "bearish") ? "bearish" : "none"
+
+// ============ FILTERS (validated in reports/forex_trade_pattern_analysis.md) ============
+isFriday = dayofweek == dayofweek.friday
+
+atr15 = request.security(syminfo.tickerid, "15", ta.atr(atrLen), lookahead = barmerge.lookahead_off)
+volPercentile = ta.percentrank(atr15, volLookbackBars)
+volRegime = volPercentile < 33.33 ? "low" : volPercentile < 66.67 ? "medium" : "high"
+
+takeableToday = htfBias != "none" and (not flagFriday or not isFriday) and (not flagLowVol or volRegime != "low")
+
+// ============ PLOTTING ============
+plot(swHigh, "Swing High", color = color.new(color.red, 0), style = plot.style_circles, linewidth = 2)
+plot(swLow, "Swing Low", color = color.new(color.green, 0), style = plot.style_circles, linewidth = 2)
+
+plotshape(eventNow == "BOS" and trendNow == "bullish", title = "Bullish BOS", style = shape.labelup, location = location.belowbar, color = color.new(color.lime, 0), text = "BOS", textcolor = color.white, size = size.tiny)
+plotshape(eventNow == "CHoCH" and trendNow == "bullish", title = "Bullish CHoCH", style = shape.labelup, location = location.belowbar, color = color.new(color.blue, 0), text = "CHoCH", textcolor = color.white, size = size.tiny)
+plotshape(eventNow == "BOS" and trendNow == "bearish", title = "Bearish BOS", style = shape.labeldown, location = location.abovebar, color = color.new(color.orange, 0), text = "BOS", textcolor = color.white, size = size.tiny)
+plotshape(eventNow == "CHoCH" and trendNow == "bearish", title = "Bearish CHoCH", style = shape.labeldown, location = location.abovebar, color = color.new(color.purple, 0), text = "CHoCH", textcolor = color.white, size = size.tiny)
+
+// ============ DASHBOARD TABLE ============
+var table dash = table.new(position.top_right, 2, 7, bgcolor = color.new(color.black, 70), border_width = 1)
+
+if barstate.islast
+    table.cell(dash, 0, 0, "SMC Dashboard", text_color = color.white, bgcolor = color.new(color.gray, 40))
+    table.cell(dash, 1, 0, "", bgcolor = color.new(color.gray, 40))
+
+    table.cell(dash, 0, 1, "4H Trend")
+    table.cell(dash, 1, 1, na(trend4H) ? "—" : trend4H, text_color = trend4H == "bullish" ? color.lime : trend4H == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 2, "1H Trend")
+    table.cell(dash, 1, 2, na(trend1H) ? "—" : trend1H, text_color = trend1H == "bullish" ? color.lime : trend1H == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 3, "Combined Bias")
+    table.cell(dash, 1, 3, htfBias, text_color = htfBias == "bullish" ? color.lime : htfBias == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 4, "Day Filter")
+    table.cell(dash, 1, 4, isFriday ? "Friday (skip)" : "OK", text_color = isFriday ? color.red : color.lime)
+
+    table.cell(dash, 0, 5, "Volatility")
+    table.cell(dash, 1, 5, volRegime, text_color = volRegime == "low" ? color.red : color.lime)
+
+    table.cell(dash, 0, 6, "Take Trade?")
+    table.cell(dash, 1, 6, takeableToday ? "YES (bias set)" : "NO", text_color = takeableToday ? color.lime : color.red)

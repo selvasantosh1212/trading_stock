@@ -1,0 +1,603 @@
+//@version=5
+indicator("SMC Zone + Entry Dashboard (Phase 2+3, alerts wired)", overlay=true, max_labels_count=500, max_lines_count=500, max_boxes_count=500)
+
+// Phase 2 of the plan in projectplan.md — builds on
+// pine_scripts/smc_structure_bias_dashboard.pine (Stage 1: structure + bias,
+// already pasted into TradingView and verified live). This script adds the
+// pieces Stage 1 explicitly deferred: liquidity targets (session high/low,
+// previous day's high/low), the order block + fair value gap "zone", the
+// 5-minute confirmation trigger, and the stop-loss/two-stage target levels —
+// ported from smc_validator/liquidity/, smc_validator/patterns/, and
+// smc_validator/signal/, wired together the same way
+// scripts/run_backtest.py does it. Meant to replace/supersede Stage 1 on
+// the chart (it includes everything Stage 1 showed, plus the new layer).
+//
+// Stage 3 (alerts) is now included too: an alert() call fires whenever a
+// full checklist signal confirms, carrying entry/stop/target1/target2 in
+// the message so it's actionable without opening the chart. See the
+// alert() call below for how to wire it up in TradingView's Create Alert
+// dialog.
+//
+// Compiled and running in TradingView (2026-07-27): the structure/bias
+// layer (Stage 1) and the order-block zone detection/box drawing (Stage 2)
+// have both been visually confirmed against a live EURUSD 5-minute chart —
+// two real bugs were caught and fixed in the process (label.new doesn't
+// take a `location` argument, that's yloc). The actual entry-signal path
+// (a full checklist fire producing the LONG/SHORT SETUP label + lines) has
+// NOT yet been observed firing live — 4H/1H bias agreement is rare enough,
+// and available intraday chart history short enough, that a full scroll of
+// the entire available 5-minute dataset didn't clearly turn one up either
+// (see the DIAG plotchar below). The alert() wiring is therefore untested
+// in practice. Treat the first several real alerts with extra scrutiny
+// until one has been checked end-to-end against the chart.
+//
+// A line-by-line comparison against scripts/run_backtest.py (done as part
+// of validating this port) turned up two real bugs in that "validated"
+// Python script, NEITHER of which this Pine script ever had:
+// 1) Stop-loss placement was cross-wired to the OPPOSITE-direction order
+//    block's extreme (a bearish trade's stop referenced the most recent
+//    BULLISH order block's high — an unrelated, possibly-stale zone —
+//    instead of the bearish zone that actually produced the trade). This
+//    Pine script always used the same-direction zone's own low/high, the
+//    only version SMC theory would endorse.
+// 2) The order-block zone's "active" window was started at the candidate
+//    candle itself, using detect_order_blocks() flags that are only
+//    actually knowable `lookahead-1` bars later (that function looks
+//    forward to confirm the expansion move/FVG/BOS-CHoCH) — a look-ahead
+//    bias. This Pine script's f_zone15 was already causal: it waits for the
+//    lookahead window to close, then looks back with idx = lookahead - 1
+//    (see the comment above f_zone15 below).
+// Both were Python-only fixes; no Pine change was needed for either. After
+// both fixes, the backtest numbers are: 75 trades, 80.0% win rate, +0.44R
+// expectancy, profit factor 3.80, max drawdown -2.49R — see
+// reports/phase1_summary.md Section 4 for the full before/after (numbers
+// moved around non-monotonically across the two fixes: 153/75.8%/+0.67R
+// after fix 1 alone turned out to be inflated by the still-present bug 2,
+// and the current 75/80.0%/+0.44R reflects both fixes together). A third,
+// separate bug WAS in this Pine script and has been fixed here: the ATR
+// used for the stop buffer was frozen at the order-block candle's own
+// reading rather than using the current, live ATR at signal time like
+// run_backtest.py's atr_5m_on_15m_scale does — see the `atr15Live` output
+// of f_zone15 below.
+//
+// Known, deliberate deviations from a byte-for-byte Python port (documented,
+// not silent):
+// - Order-block/FVG detection uses a plain SMA of true range for ATR
+//   (matching smc_validator/patterns/order_blocks.py's `atr()`), NOT Pine's
+//   built-in ta.atr() (which is Wilder/RMA-smoothed) — the two disagree
+//   meaningfully and this layer's thresholds are ATR-multiple based, so
+//   using the wrong smoothing would silently change what qualifies as an
+//   order block. Stage 1's volatility-regime filter still uses ta.atr(); it
+//   is only a percentile rank, far less sensitive to smoothing choice, so
+//   it was left as-is rather than touched here.
+// - Previous-day high/low uses an explicit UTC calendar-day tracker (not
+//   TradingView's own daily bar, which follows exchange/instrument
+//   timezone) — matches smc_validator/liquidity/daily_weekly.py exactly,
+//   which buckets on naive UTC days.
+// - Python's order-block detector is a vectorized, offline "look at the next
+//   N bars" window (smc_validator/patterns/order_blocks.py). Pine can't see
+//   the future without repainting, so this reproduces the identical
+//   historical comparison causally: it waits for those N bars to actually
+//   close, then looks back — same values once bars are confirmed, no
+//   forward leak. The zone box therefore appears anchored to a candle
+//   `obLookaheadBars` bars in the past at the moment it's confirmed, which
+//   is expected, correct behavior, not a bug.
+// - Zone "active" is still a fixed bar-count timeout from the order-block
+//   bar (matches the documented Phase 1 scope simplification in
+//   run_backtest.py — no true price-mitigation tracker for order blocks
+//   yet, only for FVGs in the Python code, which isn't ported here either).
+
+// ============ INPUTS ============
+grpStruct = "Market Structure"
+extLeft  = input.int(5, "Swing Left Bars", group = grpStruct)
+extRight = input.int(5, "Swing Right Bars", group = grpStruct)
+
+grpVol = "Volatility Filter"
+atrLen          = input.int(14, "ATR Length", group = grpVol)
+volLookbackBars = input.int(4800, "Trailing Window (bars, ~50 days on 15m, max 5000)", group = grpVol)
+
+grpFilt = "Trade Filters (from reports/forex_trade_pattern_analysis.md)"
+flagFriday = input.bool(true, "Flag Friday as unfavorable", group = grpFilt)
+flagLowVol = input.bool(true, "Flag Low Volatility as unfavorable", group = grpFilt)
+
+grpZone = "Order Block + FVG Zone (15m)"
+obLookaheadBars      = input.int(5, "Expansion Lookahead (15m bars)", minval = 2, group = grpZone)
+balanceBodyAtrFrac   = input.float(0.5, "Balance Candle Body (x ATR)", group = grpZone)
+expansionAtrMultiple = input.float(2.0, "Expansion Move (x ATR)", group = grpZone)
+minGapAtrFrac        = input.float(0.1, "Min FVG Size (x ATR)", group = grpZone)
+requireAssociatedFvg = input.bool(true, "Require Associated FVG", group = grpZone)
+zoneTimeoutBars      = input.int(15, "Zone Timeout (15m bars)", group = grpZone)
+
+grpRisk = "Risk / Targets"
+stopBufferAtrFrac = input.float(0.1, "Stop Buffer (x ATR, beyond OB extreme)", group = grpRisk)
+
+grpHistory = "Signal History"
+// Default behavior (Stage 3) deletes the previous zone box / signal lines
+// the moment a new one appears, so only the single latest instance is ever
+// on the chart. That makes it impossible to scroll back and practice
+// reading past setups. With this on, old zone boxes are left frozen in
+// place instead of deleted, and signal lines are drawn as a fixed-length
+// segment (signalLineBars long) rather than an infinite ray, so multiple
+// past signals don't all overlap into one unreadable smear on the right
+// edge of the chart. Relies on the script's existing max_boxes_count /
+// max_lines_count / max_labels_count = 500 caps to silently evict the
+// oldest once history gets long, same as the session boxes already do.
+showHistoricalSignals = input.bool(true, "Keep past zones/signals on chart (for practice)", group = grpHistory)
+signalLineBars = input.int(300, "Past Signal Line Length (bars)", minval = 1, group = grpHistory)
+
+grpSwingLines = "Swing High/Low Lines"
+// External (extLeft/extRight above, default 5/5) matches config/strategy_config.yaml's
+// `structure.external` tier — "real trend bias," the range this strategy actually
+// trades between. Internal (2/2 default) matches `structure.internal` — "noise to
+// ignore" per that config's own comment. smc_validator/structure/internal_external.py
+// defines this two-tier split in Python; it was never ported to Pine until now (the
+// BOS/CHoCH/bias logic above only ever used the external tier, just without a
+// dedicated line/label to make that visually explicit on the chart).
+showSwingLines    = input.bool(true, "Show External Swing High/Low (solid)", group = grpSwingLines)
+showInternalLines = input.bool(true, "Show Internal High/Low (dashed)", group = grpSwingLines)
+internalLeft      = input.int(2, "Internal Left Bars", group = grpSwingLines)
+internalRight     = input.int(2, "Internal Right Bars", group = grpSwingLines)
+
+grpSessions = "Session Highlight Boxes"
+// Session windows match config/strategy_config.yaml's `sessions:` block
+// exactly (Asia 09:00-18:00 Asia/Tokyo, London 08:00-16:30 Europe/London,
+// New York 08:00-17:00 America/New_York) — each box spans that session's
+// own time window (left/right) and its own developing high/low (top/bottom,
+// growing live through the session, frozen once it ends). Old boxes are
+// NOT deleted as new ones start (unlike the OB zone box) — each session
+// gets its own persistent box so days can be compared side by side; Pine's
+// own max_boxes_count=500 cap will silently evict the oldest ones once
+// there's more history than that fits, which is fine for this purpose.
+showSessionBoxes = input.bool(true, "Show Session Boxes", group = grpSessions)
+asiaBoxColor     = input.color(color.new(color.purple, 85), "Asia Session", group = grpSessions)
+londonBoxColor   = input.color(color.new(color.yellow, 85), "London Session", group = grpSessions)
+nyBoxColor       = input.color(color.new(color.blue, 85), "New York Session", group = grpSessions)
+
+// ============ STRUCTURE STATE MACHINE (close-only BOS/CHoCH) ============
+// Unchanged from Stage 1 — same close-only rule validated in
+// smc_validator/structure/bos_choch.py. Reused here on the chart timeframe
+// (bias confirmation), on 4H/1H (bias), and on 15m (tying order blocks to a
+// genuine structural break, not just any big candle).
+f_structure(extL, extR) =>
+    var float swingHigh  = na
+    var float swingLow   = na
+    var string trend     = na
+    var bool highBroken   = false
+    var bool lowBroken    = false
+
+    ph = ta.pivothigh(extL, extR)
+    pl = ta.pivotlow(extL, extR)
+
+    if not na(ph)
+        swingHigh := ph
+        highBroken := false
+    if not na(pl)
+        swingLow := pl
+        lowBroken := false
+
+    var string evt = na
+    evt := na
+    if barstate.isconfirmed
+        if not na(swingHigh) and not highBroken and close > swingHigh
+            evt := trend == "bearish" ? "CHoCH" : "BOS"
+            trend := "bullish"
+            highBroken := true
+        else if not na(swingLow) and not lowBroken and close < swingLow
+            evt := trend == "bullish" ? "CHoCH" : "BOS"
+            trend := "bearish"
+            lowBroken := true
+
+    [trend, evt, swingHigh, swingLow]
+
+// ---- current chart timeframe (5m) structure — the entry/confirmation tf ----
+[trendNow, eventNow, _swHigh, _swLow] = f_structure(extLeft, extRight)
+
+// ---- HTF bias: 4H + 1H must agree ----
+[trend4H, _e4, _sh4, _sl4] = request.security(syminfo.tickerid, "240", f_structure(extLeft, extRight), lookahead = barmerge.lookahead_off)
+[trend1H, _e1, _sh1, _sl1] = request.security(syminfo.tickerid, "60", f_structure(extLeft, extRight), lookahead = barmerge.lookahead_off)
+
+htfBias = (trend4H == "bullish" and trend1H == "bullish") ? "bullish" : (trend4H == "bearish" and trend1H == "bearish") ? "bearish" : "none"
+
+// ============ FILTERS ============
+isFriday = dayofweek == dayofweek.friday
+
+atr15Rank = request.security(syminfo.tickerid, "15", ta.atr(atrLen), lookahead = barmerge.lookahead_off)
+volPercentile = ta.percentrank(atr15Rank, volLookbackBars)
+volRegime = volPercentile < 33.33 ? "low" : volPercentile < 66.67 ? "medium" : "high"
+
+// NOTE: biasReady is an INFORMATIONAL dashboard indicator only (drives the
+// "Setup Ready?" cell below) — it deliberately does NOT gate signalFires /
+// validSignal / the alert() call further down. run_backtest.py's validated
+// checklist (smc_validator/signal/checklist.py's assemble_signals, fed only
+// htf_bias/confirmation/zone_direction) never applies a Friday or
+// low-volatility filter either, and the published backtest numbers
+// (reports/backtest_summary.md) reflect that unfiltered behavior. Wiring
+// flagFriday/flagLowVol into the actual signal path here would make this
+// script fire on a DIFFERENT, never-backtested rule set. If you want the
+// forex_trade_pattern_analysis.md Friday/low-vol recommendation enforced
+// live, validate it in the Python backtest first, then port the same gate
+// into signalFires here — don't let this dashboard toggle silently diverge
+// from what was actually tested.
+biasReady = htfBias != "none" and (not flagFriday or not isFriday) and (not flagLowVol or volRegime != "low")
+
+// ============ LIQUIDITY TARGETS ============
+// Ports smc_validator/liquidity/sessions.py (Asia session, freeze-and-hold
+// running high/low) and daily_weekly.py (previous COMPLETED UTC calendar
+// day's high/low) — both computed directly on this chart's own bars, same
+// as run_backtest.py does on its 5-minute frame (no request.security needed
+// here, unlike structure/bias above).
+inAsiaSession = not na(time(timeframe.period, "0900-1800", "Asia/Tokyo"))
+var float sessHigh = na
+var float sessLow  = na
+asiaSessionStart = inAsiaSession and not inAsiaSession[1]
+if asiaSessionStart
+    sessHigh := high
+    sessLow  := low
+else if inAsiaSession
+    sessHigh := math.max(sessHigh, high)
+    sessLow  := math.min(sessLow, low)
+
+// London/New York session tracking — same freeze-and-hold pattern as Asia
+// above, added only for the session highlight boxes below (not used by any
+// target/stop calculation, unlike sessHigh/sessLow which feed target1).
+inLondonSession = not na(time(timeframe.period, "0800-1630", "Europe/London"))
+var float londonHigh = na
+var float londonLow  = na
+londonSessionStart = inLondonSession and not inLondonSession[1]
+if londonSessionStart
+    londonHigh := high
+    londonLow  := low
+else if inLondonSession
+    londonHigh := math.max(londonHigh, high)
+    londonLow  := math.min(londonLow, low)
+
+inNySession = not na(time(timeframe.period, "0800-1700", "America/New_York"))
+var float nyHigh = na
+var float nyLow  = na
+nySessionStart = inNySession and not inNySession[1]
+if nySessionStart
+    nyHigh := high
+    nyLow  := low
+else if inNySession
+    nyHigh := math.max(nyHigh, high)
+    nyLow  := math.min(nyLow, low)
+
+utcDayKey = year(time, "Etc/UTC") * 10000 + month(time, "Etc/UTC") * 100 + dayofmonth(time, "Etc/UTC")
+var int   lastUtcDay  = na
+var float todayHigh   = na
+var float todayLow    = na
+var float prevDayHigh = na
+var float prevDayLow  = na
+newUtcDay = utcDayKey != lastUtcDay
+if newUtcDay
+    if not na(lastUtcDay)
+        prevDayHigh := todayHigh
+        prevDayLow  := todayLow
+    todayHigh := high
+    todayLow  := low
+    lastUtcDay := utcDayKey
+else
+    todayHigh := math.max(todayHigh, high)
+    todayLow  := math.min(todayLow, low)
+
+// ============ ORDER BLOCK + FVG ZONE (15m) ============
+// Ports smc_validator/patterns/order_blocks.py + patterns/fvg.py, gated by
+// a confirmed BOS/CHoCH on the same timeframe (the confluence rule
+// run_backtest.py applies) — see the header comment for how the Python
+// "look ahead N bars" window is reproduced causally here.
+f_zone15(extL, extR, atrLenIn, balanceFrac, expMult, lookahead, minGapFrac, requireFvg, timeoutBars) =>
+    tr15 = ta.tr(true)
+    atr15 = ta.sma(tr15, atrLenIn)
+
+    idx = lookahead - 1
+    idxNext = idx - 1
+
+    fvgBullish = (low - high[2]) > minGapFrac * atr15
+    fvgBearish = (low[2] - high) > minGapFrac * atr15
+
+    bodyC = math.abs(close[idx] - open[idx])
+    atrC = atr15[idx]
+    isBalancedC = not na(atrC) and bodyC <= balanceFrac * atrC
+
+    bodyNext = math.abs(close[idxNext] - open[idxNext])
+    atrNext = atr15[idxNext]
+    isBalancedNext = not na(atrNext) and bodyNext <= balanceFrac * atrNext
+
+    isLastBalancedC = isBalancedC and not isBalancedNext
+
+    windowMaxHigh = ta.highest(high, lookahead)
+    windowMinLow  = ta.lowest(low, lookahead)
+    closeC = close[idx]
+
+    bullishExpansion = not na(atrC) and (windowMaxHigh - closeC) >= expMult * atrC
+    bearishExpansion = not na(atrC) and (closeC - windowMinLow) >= expMult * atrC
+
+    bullishObRaw = isLastBalancedC and bullishExpansion
+    bearishObRaw = isLastBalancedC and bearishExpansion
+
+    fvgBullWindow = ta.highest(fvgBullish ? 1 : 0, lookahead) > 0
+    fvgBearWindow = ta.highest(fvgBearish ? 1 : 0, lookahead) > 0
+
+    bullishObGated = requireFvg ? (bullishObRaw and fvgBullWindow) : bullishObRaw
+    bearishObGated = requireFvg ? (bearishObRaw and fvgBearWindow) : bearishObRaw
+
+    [trend15, evt15, _swh15, _swl15] = f_structure(extL, extR)
+    isBullEvtNow = not na(evt15) and trend15 == "bullish"
+    isBearEvtNow = not na(evt15) and trend15 == "bearish"
+    bullEvtWindow = ta.highest(isBullEvtNow ? 1 : 0, lookahead) > 0
+    bearEvtWindow = ta.highest(isBearEvtNow ? 1 : 0, lookahead) > 0
+
+    bullishOb = bullishObGated and bullEvtWindow
+    bearishOb = bearishObGated and bearEvtWindow
+
+    var bool   zoneActive      = false
+    var string zoneDir         = na
+    var float  zoneObLow       = na
+    var float  zoneObHigh      = na
+    var float  zoneObTime      = na
+    var int    barsSinceStart  = na
+
+    if barstate.isconfirmed
+        zoneStartNow = bullishOb or bearishOb
+        if zoneStartNow
+            barsSinceStart := 0
+            zoneDir := bullishOb ? "bullish" : "bearish"
+            zoneObLow := low[idx]
+            zoneObHigh := high[idx]
+            zoneObTime := time[idx]
+        else if not na(barsSinceStart)
+            barsSinceStart := barsSinceStart + 1
+        zoneActive := not na(barsSinceStart) and barsSinceStart <= timeoutBars
+
+    // atr15 (unlike zoneObLow/zoneObHigh, which are meant to stay frozen at
+    // the OB candle's own price levels) is returned LIVE — matches
+    // run_backtest.py's atr_5m_on_15m_scale, which uses the CURRENT 15m ATR
+    // at signal time for the stop buffer, not the ATR from when the OB
+    // candle itself formed (which could be stale by up to timeoutBars).
+    [zoneActive, zoneDir, zoneObLow, zoneObHigh, zoneObTime, barsSinceStart, atr15]
+
+[zoneActive15, zoneDir15, zoneObLow15, zoneObHigh15, zoneObTime15, zoneBarsSince15, atr15Live] = request.security(
+     syminfo.tickerid, "15",
+     f_zone15(extLeft, extRight, atrLen, balanceBodyAtrFrac, expansionAtrMultiple, obLookaheadBars, minGapAtrFrac, requireAssociatedFvg, zoneTimeoutBars),
+     lookahead = barmerge.lookahead_off)
+
+// ============ 5-MINUTE CONFIRMATION + SIGNAL ASSEMBLY ============
+// Ports smc_validator/signal/ltf_confirmation.py + signal/checklist.py:
+// fires the bar the chart-timeframe trend flips to match HTF bias, while a
+// same-direction zone is still active.
+matchesBias = trendNow == htfBias
+justFlipped = matchesBias and not nz(matchesBias[1], false)
+zoneMatchesBias = zoneDir15 == htfBias and htfBias != "none"
+signalFires = justFlipped and zoneActive15 and zoneMatchesBias
+
+stopNow = htfBias == "bearish" ? zoneObHigh15 + stopBufferAtrFrac * atr15Live : zoneObLow15 - stopBufferAtrFrac * atr15Live
+t1Now   = htfBias == "bearish" ? sessLow[1] : sessHigh[1]
+t2Now   = htfBias == "bearish" ? prevDayLow : prevDayHigh
+
+var string lastSigDir  = na
+var float  lastEntry   = na
+var float  lastStop    = na
+var float  lastT1      = na
+var float  lastT2      = na
+
+var line entryLine = na
+var line stopLine  = na
+var line t1Line    = na
+var line t2Line    = na
+var label sigLabel = na
+
+validSignal = signalFires and not na(stopNow) and not na(t1Now) and not na(t2Now)
+if validSignal
+    lastSigDir := htfBias
+    lastEntry := close
+    lastStop := stopNow
+    lastT1 := t1Now
+    lastT2 := t2Now
+
+    if not showHistoricalSignals
+        line.delete(entryLine)
+        line.delete(stopLine)
+        line.delete(t1Line)
+        line.delete(t2Line)
+        label.delete(sigLabel)
+
+    lineEndBar = showHistoricalSignals ? bar_index + signalLineBars : bar_index + 1
+    lineExtend = showHistoricalSignals ? extend.none : extend.right
+
+    entryLine := line.new(bar_index, close, lineEndBar, close, extend = lineExtend, color = color.new(color.white, 0), style = line.style_dashed)
+    stopLine  := line.new(bar_index, stopNow, lineEndBar, stopNow, extend = lineExtend, color = color.new(color.red, 0), style = line.style_solid)
+    t1Line    := line.new(bar_index, t1Now, lineEndBar, t1Now, extend = lineExtend, color = color.new(color.yellow, 0), style = line.style_dotted)
+    t2Line    := line.new(bar_index, t2Now, lineEndBar, t2Now, extend = lineExtend, color = color.new(color.aqua, 0), style = line.style_dotted)
+
+    sigLabel := label.new(bar_index, close,
+         text = htfBias == "bullish" ? "LONG SETUP" : "SHORT SETUP",
+         style = htfBias == "bullish" ? label.style_label_up : label.style_label_down,
+         yloc = htfBias == "bullish" ? yloc.belowbar : yloc.abovebar,
+         color = htfBias == "bullish" ? color.new(color.lime, 0) : color.new(color.red, 0),
+         textcolor = color.white, size = size.small)
+
+    // Stage 3: the actual notification. alert() only fires for real-time
+    // bars once an alert is created from this indicator (historical/replay
+    // bars compute it but don't notify) — same confirmed-bar-only timing as
+    // validSignal itself, so this can't fire mid-bar/repaint. To wire it up:
+    // right-click the chart -> Add Alert -> Condition: this indicator ->
+    // "Any alert() function call" -> Once Per Bar Close -> pick a
+    // notification method (app push / email / webhook).
+    alertMsg = (htfBias == "bullish" ? "LONG" : "SHORT") + " setup — " + syminfo.ticker + " " + timeframe.period +
+         " | Entry " + str.tostring(close, format.mintick) +
+         " | Stop " + str.tostring(stopNow, format.mintick) +
+         " | T1 " + str.tostring(t1Now, format.mintick) +
+         " | T2 " + str.tostring(t2Now, format.mintick)
+    alert(alertMsg, alert.freq_once_per_bar_close)
+
+// ============ ZONE BOX ON CHART ============
+var box obBox = na
+zoneEdgeNew = not na(zoneObTime15) and (na(zoneObTime15[1]) or zoneObTime15 != zoneObTime15[1])
+if zoneEdgeNew
+    if not showHistoricalSignals
+        box.delete(obBox)
+    obBgColor = zoneDir15 == "bullish" ? color.new(color.lime, 85) : color.new(color.red, 85)
+    obBorderColor = zoneDir15 == "bullish" ? color.lime : color.red
+    obBox := box.new(left = int(zoneObTime15), top = zoneObHigh15, right = time, bottom = zoneObLow15,
+         xloc = xloc.bar_time, bgcolor = obBgColor, border_color = obBorderColor, extend = extend.none)
+if zoneActive15 and not na(obBox)
+    box.set_right(obBox, time)
+
+// ============ PLOTTING (Stage 1, retained) ============
+// HTF bias background — the dashboard table only shows the LAST bar's
+// state, so this is what makes historical 4H/1H agreement visible while
+// scrolling back: green tint = bullish bias, red tint = bearish, no tint =
+// disagreement (bias "none", no signal possible). Look for a green/red
+// stretch that overlaps an active zone box in the same direction — that's
+// where a LONG/SHORT SETUP could actually have fired.
+bgcolor(htfBias == "bullish" ? color.new(color.lime, 92) : htfBias == "bearish" ? color.new(color.red, 92) : na, title = "HTF Bias Background")
+
+// ============ SWING HIGH/LOW + INTERNAL HIGH/LOW LINES ============
+// Simple black lines, replacing the old red/green swing-high/low circle
+// plots (which showed the exact same external-tier price level, just as a
+// flat dotted line rather than a labeled ray from the actual pivot bar).
+// Each line is deleted and redrawn from scratch every time a NEW pivot of
+// that type confirms — it persists (extending right) until superseded by
+// the next one, not until price actually breaks it, so it can keep
+// extending through bars that have already closed beyond it. Simple and
+// matches how this was asked for; a break-aware version (stopping the line
+// exactly at the BOS/CHoCH bar) would need extra state and wasn't asked for.
+extPH = ta.pivothigh(extLeft, extRight)
+extPL = ta.pivotlow(extLeft, extRight)
+intPH = ta.pivothigh(internalLeft, internalRight)
+intPL = ta.pivotlow(internalLeft, internalRight)
+
+var line  swingHighLine    = na
+var line  swingLowLine     = na
+var label swingHighLabel   = na
+var label swingLowLabel    = na
+var line  internalHighLine  = na
+var line  internalLowLine   = na
+var label internalHighLabel = na
+var label internalLowLabel  = na
+
+if showSwingLines and not na(extPH)
+    line.delete(swingHighLine)
+    label.delete(swingHighLabel)
+    extPHBar = bar_index - extRight
+    swingHighLine := line.new(extPHBar, extPH, bar_index, extPH, extend = extend.right, color = color.black, style = line.style_solid, width = 1)
+    swingHighLabel := label.new(extPHBar, extPH, text = "Swing High", style = label.style_label_down, color = color.new(color.black, 100), textcolor = color.black, size = size.tiny)
+
+if showSwingLines and not na(extPL)
+    line.delete(swingLowLine)
+    label.delete(swingLowLabel)
+    extPLBar = bar_index - extRight
+    swingLowLine := line.new(extPLBar, extPL, bar_index, extPL, extend = extend.right, color = color.black, style = line.style_solid, width = 1)
+    swingLowLabel := label.new(extPLBar, extPL, text = "Swing Low", style = label.style_label_up, color = color.new(color.black, 100), textcolor = color.black, size = size.tiny)
+
+if showInternalLines and not na(intPH)
+    line.delete(internalHighLine)
+    label.delete(internalHighLabel)
+    intPHBar = bar_index - internalRight
+    internalHighLine := line.new(intPHBar, intPH, bar_index, intPH, extend = extend.right, color = color.black, style = line.style_dashed, width = 1)
+    internalHighLabel := label.new(intPHBar, intPH, text = "Internal High", style = label.style_label_down, color = color.new(color.black, 100), textcolor = color.black, size = size.tiny)
+
+if showInternalLines and not na(intPL)
+    line.delete(internalLowLine)
+    label.delete(internalLowLabel)
+    intPLBar = bar_index - internalRight
+    internalLowLine := line.new(intPLBar, intPL, bar_index, intPL, extend = extend.right, color = color.black, style = line.style_dashed, width = 1)
+    internalLowLabel := label.new(intPLBar, intPL, text = "Internal Low", style = label.style_label_up, color = color.new(color.black, 100), textcolor = color.black, size = size.tiny)
+
+// ============ SESSION HIGHLIGHT BOXES ============
+var box asiaBox   = na
+var box londonBox = na
+var box nyBox     = na
+
+if showSessionBoxes
+    if asiaSessionStart
+        asiaBox := box.new(bar_index, high, bar_index, low, border_color = color.purple, bgcolor = asiaBoxColor, extend = extend.none, text = "Asia", text_color = color.purple, text_size = size.tiny, text_valign = text.align_top)
+    if inAsiaSession and not na(asiaBox)
+        box.set_top(asiaBox, sessHigh)
+        box.set_bottom(asiaBox, sessLow)
+        box.set_right(asiaBox, bar_index)
+
+    if londonSessionStart
+        londonBox := box.new(bar_index, high, bar_index, low, border_color = color.new(color.yellow, 30), bgcolor = londonBoxColor, extend = extend.none, text = "London", text_color = color.new(color.yellow, 20), text_size = size.tiny, text_valign = text.align_top)
+    if inLondonSession and not na(londonBox)
+        box.set_top(londonBox, londonHigh)
+        box.set_bottom(londonBox, londonLow)
+        box.set_right(londonBox, bar_index)
+
+    if nySessionStart
+        nyBox := box.new(bar_index, high, bar_index, low, border_color = color.blue, bgcolor = nyBoxColor, extend = extend.none, text = "New York", text_color = color.blue, text_size = size.tiny, text_valign = text.align_top)
+    if inNySession and not na(nyBox)
+        box.set_top(nyBox, nyHigh)
+        box.set_bottom(nyBox, nyLow)
+        box.set_right(nyBox, bar_index)
+
+plotshape(eventNow == "BOS" and trendNow == "bullish", title = "Bullish BOS", style = shape.labelup, location = location.belowbar, color = color.new(color.lime, 0), text = "BOS", textcolor = color.white, size = size.tiny)
+plotshape(eventNow == "CHoCH" and trendNow == "bullish", title = "Bullish CHoCH", style = shape.labelup, location = location.belowbar, color = color.new(color.blue, 0), text = "CHoCH", textcolor = color.white, size = size.tiny)
+plotshape(eventNow == "BOS" and trendNow == "bearish", title = "Bearish BOS", style = shape.labeldown, location = location.abovebar, color = color.new(color.orange, 0), text = "BOS", textcolor = color.white, size = size.tiny)
+plotshape(eventNow == "CHoCH" and trendNow == "bearish", title = "Bearish CHoCH", style = shape.labeldown, location = location.abovebar, color = color.new(color.purple, 0), text = "CHoCH", textcolor = color.white, size = size.tiny)
+
+// TEMPORARY DIAGNOSTIC — remove once a real signal has been confirmed at
+// least once. Marks every bar where the "ingredients" for a signal are
+// present (an active zone whose direction matches HTF bias), regardless of
+// whether the precise flip-edge trigger (justFlipped) also happens on that
+// exact bar. If this never lights up anywhere across a wide scroll of
+// history, that's real evidence of a bug upstream of the flip-edge check
+// (in zone detection, bias, or their alignment) — if it lights up
+// reasonably often but SETUP labels still never appear, the bug is
+// specifically in the justFlipped edge logic instead.
+zoneMatchesBiasActive = zoneActive15 and zoneMatchesBias
+plotchar(zoneMatchesBiasActive, title = "DIAG: Zone Matches Bias", char = "▲", location = location.bottom, color = color.new(color.fuchsia, 0), size = size.small)
+
+// ============ DASHBOARD TABLE ============
+var table dash = table.new(position.top_right, 2, 15, bgcolor = color.new(color.black, 70), border_width = 1)
+
+if barstate.islast
+    table.cell(dash, 0, 0, "SMC Zone/Entry Dashboard", text_color = color.white, bgcolor = color.new(color.gray, 40))
+    table.cell(dash, 1, 0, "", bgcolor = color.new(color.gray, 40))
+
+    table.cell(dash, 0, 1, "4H Trend")
+    table.cell(dash, 1, 1, na(trend4H) ? "—" : trend4H, text_color = trend4H == "bullish" ? color.lime : trend4H == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 2, "1H Trend")
+    table.cell(dash, 1, 2, na(trend1H) ? "—" : trend1H, text_color = trend1H == "bullish" ? color.lime : trend1H == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 3, "Combined Bias")
+    table.cell(dash, 1, 3, htfBias, text_color = htfBias == "bullish" ? color.lime : htfBias == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 4, "Day Filter")
+    table.cell(dash, 1, 4, isFriday ? "Friday (skip)" : "OK", text_color = isFriday ? color.red : color.lime)
+
+    table.cell(dash, 0, 5, "Volatility")
+    table.cell(dash, 1, 5, volRegime, text_color = volRegime == "low" ? color.red : color.lime)
+
+    table.cell(dash, 0, 6, "Zone (15m)")
+    // guard against concatenating a possibly-na string (Pine evaluates both
+    // ternary branches, so `zoneDir15 + "..."` must be safe even when
+    // zoneDir15 is na) by resolving it to a real string first
+    zoneDirSafe = na(zoneDir15) ? "none" : zoneDir15
+    zoneText = zoneDirSafe == "none" ? "none" : zoneDirSafe + (zoneActive15 ? " (active)" : " (expired)")
+    table.cell(dash, 1, 6, zoneText, text_color = zoneDir15 == "bullish" ? color.lime : zoneDir15 == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 7, "Zone Bars Left")
+    table.cell(dash, 1, 7, na(zoneBarsSince15) ? "—" : str.tostring(math.max(zoneTimeoutBars - zoneBarsSince15, 0)))
+
+    table.cell(dash, 0, 8, "Filters OK? (info only, doesn't gate alerts)")
+    table.cell(dash, 1, 8, biasReady ? "YES (bias set)" : "NO", text_color = biasReady ? color.lime : color.red)
+
+    table.cell(dash, 0, 9, "Last Signal")
+    table.cell(dash, 1, 9, na(lastSigDir) ? "none yet" : lastSigDir, text_color = lastSigDir == "bullish" ? color.lime : lastSigDir == "bearish" ? color.red : color.gray)
+
+    table.cell(dash, 0, 10, "Entry")
+    table.cell(dash, 1, 10, na(lastEntry) ? "—" : str.tostring(lastEntry, format.mintick))
+
+    table.cell(dash, 0, 11, "Stop")
+    table.cell(dash, 1, 11, na(lastStop) ? "—" : str.tostring(lastStop, format.mintick))
+
+    table.cell(dash, 0, 12, "Target 1 (session)")
+    table.cell(dash, 1, 12, na(lastT1) ? "—" : str.tostring(lastT1, format.mintick))
+
+    table.cell(dash, 0, 13, "Target 2 (prev day)")
+    table.cell(dash, 1, 13, na(lastT2) ? "—" : str.tostring(lastT2, format.mintick))
+
+    table.cell(dash, 0, 14, "Stage")
+    table.cell(dash, 1, 14, "3/3 — alerts wired (untested)")
