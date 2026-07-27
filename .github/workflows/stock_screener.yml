@@ -10,6 +10,13 @@ on:
     - cron: "5 10 * * 1-5"
   workflow_dispatch: {}
 
+# Prevents two runs (e.g. the scheduled cron and a manual "Add a stock"
+# dispatch) from racing each other's final `git push` — queue instead of
+# running concurrently, since both write to the same tracked state files.
+concurrency:
+  group: stock-screener
+  cancel-in-progress: false
+
 jobs:
   screen:
     runs-on: ubuntu-latest

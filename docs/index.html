@@ -222,6 +222,12 @@ function fmtNum(n, digits) {
   return Number(n).toLocaleString('en-IN', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 }
 
+function esc(str) {
+  return String(str ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
+
 function trendTag(trend) {
   if (trend === 'bullish') return '<span class="tag good">▲ Bullish</span>';
   if (trend === 'bearish') return '<span class="tag critical">▼ Bearish</span>';
@@ -237,7 +243,7 @@ function flagTag(r) {
 function nextLevelText(r) {
   const t = r.next_target;
   if (!t) return '—';
-  if (t.next_target === null) return t.note || '—';
+  if (t.next_target === null) return esc(t.note) || '—';
   return `${fmtNum(t.next_target, 2)} (${t.next_target_pct >= 0 ? '+' : ''}${fmtNum(t.next_target_pct, 1)}%)`;
 }
 
@@ -270,7 +276,7 @@ function render(data) {
     breaksArea.innerHTML = tableHtml(
       ['Symbol', 'Break', 'Close', 'Gap %', 'Next level', 'Intraday bias'],
       flagged.map(r => [
-        r.symbol,
+        esc(r.symbol),
         flagTag(r),
         fmtNum(r.close, 2),
         r.gap_pct !== null ? (r.gap_pct >= 0 ? '+' : '') + fmtNum(r.gap_pct, 2) + '%' : '—',
@@ -288,7 +294,7 @@ function render(data) {
     eventsArea.innerHTML = '<div class="empty-state">No entry/exit events today.</div>';
   } else {
     eventsArea.innerHTML = '<ul class="event-list">' +
-      events.map(e => `<li>${e.message}</li>`).join('') + '</ul>';
+      events.map(e => `<li>${esc(e.message)}</li>`).join('') + '</ul>';
   }
 
   // open positions
@@ -299,7 +305,7 @@ function render(data) {
     positionsArea.innerHTML = tableHtml(
       ['Symbol', 'State', 'Entry price', 'Entry date', 'Stop price'],
       openPositions.map(([symbol, p]) => [
-        symbol,
+        esc(symbol),
         p.state === 'LONG' ? '<span class="tag good">LONG</span>' : '<span class="tag warning">PENDING</span>',
         fmtNum(p.entry_price, 2),
         p.entry_date || '—',
@@ -314,9 +320,9 @@ function render(data) {
   watchlistArea.innerHTML = tableHtml(
     ['Symbol', 'Trend', 'Close', 'Gap %', 'Flag', 'Next level'],
     stocks.map(r => r.error ? [
-      r.symbol, `<span class="tag critical">ERROR</span>`, '—', '—', '—', r.error
+      esc(r.symbol), `<span class="tag critical">ERROR</span>`, '—', '—', '—', esc(r.error)
     ] : [
-      r.symbol,
+      esc(r.symbol),
       trendTag(r.daily_trend),
       fmtNum(r.close, 2),
       r.gap_pct !== null ? (r.gap_pct >= 0 ? '+' : '') + fmtNum(r.gap_pct, 2) + '%' : '—',
@@ -381,10 +387,21 @@ function existingWatchlistSymbols(yamlText) {
   return syms;
 }
 
+// NSE tickers: letters/digits plus & and - (e.g. "M&M", "BAJAJ-AUTO"). Rejecting
+// anything else here — before it ever reaches config.yaml or a Yahoo URL — is
+// belt-and-suspenders on top of the output-side escaping in esc(): it stops a
+// bad symbol from breaking the YAML quoting or the Yahoo request in the first
+// place, rather than relying solely on catching it when rendered later.
+const SYMBOL_RE = /^[A-Z0-9&-]+(\.NS)?$/;
+
 async function addSymbol(raw) {
   let symbol = (raw || '').trim().toUpperCase();
   if (!symbol) return;
   if (!symbol.endsWith('.NS')) symbol += '.NS';
+  if (!SYMBOL_RE.test(symbol)) {
+    setAddStatus('Invalid symbol — only letters, digits, "&" and "-" are allowed (e.g. TATAPOWER.NS, M&M.NS).', 'error');
+    return;
+  }
 
   const token = getToken();
   if (!token) { setAddStatus('No token provided — cancelled.', 'error'); return; }

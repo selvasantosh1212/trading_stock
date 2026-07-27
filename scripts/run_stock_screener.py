@@ -4,6 +4,11 @@ in stock_hh_ll_tool/config.yaml. Writes results to docs/data.json, read by
 the static dashboard (docs/index.html) served over GitHub Pages — replaces
 the Telegram notification path, which the user dropped due to unrelated
 Telegram spam making alerts hard to notice.
+
+Run as `python -m scripts.run_stock_screener` from the repo root (as the
+GitHub Actions workflow does) — running this file directly makes Python add
+scripts/ itself to sys.path instead of the repo root, breaking the
+`smc_validator`/`stock_hh_ll_tool` package imports below.
 """
 
 import json
@@ -64,11 +69,11 @@ def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.Dat
     """
     try:
         weekly = resample_ohlc(daily, "W")
+        current = positions.get(symbol, dict(FLAT_POSITION))
+        result = evaluate_position_transition(weekly, daily, cfg, current)
     except Exception as e:
         return positions.get(symbol, dict(FLAT_POSITION)), {"type": "error", "message": f"entry/exit check ERROR for {symbol}: {e}"}
 
-    current = positions.get(symbol, dict(FLAT_POSITION))
-    result = evaluate_position_transition(weekly, daily, cfg, current)
     positions[symbol] = result["new_position"]
 
     event = result["event"]

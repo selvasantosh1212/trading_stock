@@ -27,19 +27,32 @@ def find_next_target(df: pd.DataFrame, structure: pd.DataFrame, direction: str) 
     else:
         raise ValueError(f"direction must be 'bullish' or 'bearish', got {direction!r}")
 
+    # A level counts as "unbroken" only if no BOS/CHoCH in this direction
+    # ever actually fired while it was the active swing level — otherwise
+    # this just re-labels a level price already conquered (and later
+    # retraced below/above again) as fresh resistance/support. `event_dir`
+    # at bar i reflects a break of exactly the level in `idx_col` at that
+    # bar (bos_choch.py updates the swing level, then checks/fires the
+    # event, within the same iteration), so this is a direct read, not an
+    # approximation.
     seen_idxs = []
+    broken_idxs = set()
     last_idx = None
     for i in range(n):
         cur_idx = structure[idx_col].iloc[i]
         if pd.notna(cur_idx) and cur_idx != last_idx:
             seen_idxs.append(int(cur_idx))
             last_idx = cur_idx
+        if pd.notna(cur_idx) and structure["event_direction"].iloc[i] == direction:
+            broken_idxs.add(int(cur_idx))
+
+    candidate_idxs = [idx for idx in seen_idxs if idx not in broken_idxs]
 
     if direction == "bullish":
-        candidates = [price_col[idx] for idx in seen_idxs if price_col[idx] > current_price]
+        candidates = [price_col[idx] for idx in candidate_idxs if price_col[idx] > current_price]
         target = min(candidates) if candidates else None
     else:
-        candidates = [price_col[idx] for idx in seen_idxs if price_col[idx] < current_price]
+        candidates = [price_col[idx] for idx in candidate_idxs if price_col[idx] < current_price]
         target = max(candidates) if candidates else None
 
     if target is None:
