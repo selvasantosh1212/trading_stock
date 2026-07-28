@@ -180,12 +180,13 @@
   <section>
     <h2>Open Positions</h2>
     <div id="positionsArea"></div>
+    <div class="caveat">"Next liquidity" is the nearest untaken level above price (prior swing high, previous week's/month's high) — shown as context on where price may be headed, not a forced exit. A 3-agent investigation found wiring it into the exit destroys most of the strategy's edge (see <code>entry_exit.py</code>'s config header). Optional partial-take-profit is off by default.</div>
   </section>
 
   <section>
-    <h2>Entry/Exit Events (Weekly/Daily strategy)</h2>
+    <h2>Entry/Exit Events (Weekly-gated, Daily entry/exit)</h2>
     <div id="eventsArea"></div>
-    <div class="caveat">Structure-based stop, next-day-open fill. See <code>reports/stock_entry_exit_strategy_investigation.md</code> in the repo: real edge, but its proven strength is capital protection, not reliably beating buy-and-hold.</div>
+    <div class="caveat">Weekly confirms the trend; a Daily-internal retracement-then-reversal times entry; a Daily-external trend reversal is the exit (redesigned 2026-07-27 for genuine multi-day/week holds — the original all-weekly-exit version held for a median of ~110 days, more like position trading). See <code>reports/stock_entry_exit_strategy_investigation.md</code>: real edge, but its proven strength is capital protection, not reliably beating buy-and-hold.</div>
   </section>
 
   <section>
@@ -298,19 +299,34 @@ function render(data) {
       events.map(e => `<li>${esc(e.message)}</li>`).join('') + '</ul>';
   }
 
-  // open positions
+  // open positions (LONG, PENDING_ENTRY, and ARMED — "watching for a
+  // retracement to resolve" isn't a trade yet, but it's useful to see
+  // coming before it fires)
+  const liquidityBySymbol = data.liquidity_by_symbol || {};
   const positionsArea = document.getElementById('positionsArea');
   if (openPositions.length === 0) {
-    positionsArea.innerHTML = '<div class="empty-state">No open positions.</div>';
+    positionsArea.innerHTML = '<div class="empty-state">No open positions or armed setups.</div>';
   } else {
+    const stateTag = (state) => {
+      if (state === 'LONG') return '<span class="tag good">LONG</span>';
+      if (state === 'PENDING_ENTRY') return '<span class="tag warning">PENDING ENTRY</span>';
+      return '<span class="tag muted">🔎 ARMED</span>';
+    };
+    const nextLiquidityText = (symbol) => {
+      const liq = liquidityBySymbol[symbol];
+      if (!liq || liq.t1.price === null) return '—';
+      return `${fmtNum(liq.t1.price, 2)} (${esc(liq.t1.label)})`;
+    };
     positionsArea.innerHTML = tableHtml(
-      ['Symbol', 'State', 'Entry price', 'Entry date', 'Stop price'],
+      ['Symbol', 'State', 'Entry price', 'Entry date', 'Stop price', 'Partial taken', 'Next liquidity'],
       openPositions.map(([symbol, p]) => [
         esc(symbol),
-        p.state === 'LONG' ? '<span class="tag good">LONG</span>' : '<span class="tag warning">PENDING</span>',
+        stateTag(p.state),
         fmtNum(p.entry_price, 2),
         p.entry_date || '—',
         fmtNum(p.stop_price, 2),
+        p.partial_taken ? `${fmtNum(p.partial_exit_price, 2)} (${p.partial_exit_date || '—'})` : '—',
+        nextLiquidityText(symbol),
       ]),
       [2, 4]
     );

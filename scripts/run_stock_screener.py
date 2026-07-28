@@ -57,31 +57,39 @@ def _target_note(r: dict) -> str:
 
 def _format_exit_message(symbol: str, emoji: str, verb: str, event: dict) -> str:
     pnl_pct = (event["exit_price"] / event["entry_price"] - 1) * 100
-    return f"{emoji} *{symbol}*: {verb} at {event['exit_price']:.2f} (entry was {event['entry_price']:.2f}, {pnl_pct:+.1f}%)."
+    partial_note = ""
+    if event.get("partial_exit_price") is not None:
+        remaining_pct = event.get("remaining_fraction", 1.0) * 100
+        partial_note = f" (a {100 - remaining_pct:.0f}% partial was already taken at {event['partial_exit_price']:.2f}; this closes the remaining {remaining_pct:.0f}%)"
+    return f"{emoji} {symbol}: {verb} at {event['exit_price']:.2f} (entry was {event['entry_price']:.2f}, {pnl_pct:+.1f}%){partial_note}."
 
 
-def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.DataFrame) -> tuple[dict, dict | None]:
+def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.DataFrame) -> tuple[dict, dict | None, dict | None]:
     """Returns (updated position, an event dict {"type", "message"} if
-    something happened or errored, else None). Never raises — a bad ticker
-    here shouldn't stop the rest of the watchlist any more than it does for
-    the daily check. Takes the already-fetched `daily` bars (shared with the
-    plain HH/LL check in main()) rather than re-fetching them.
+    something happened or errored else None, the next_liquidity info for
+    the dashboard else None). Never raises — a bad ticker here shouldn't
+    stop the rest of the watchlist any more than it does for the daily
+    check. Takes the already-fetched `daily` bars (shared with the plain
+    HH/LL check in main()) rather than re-fetching them.
     """
     try:
         weekly = resample_ohlc(daily, "W")
         current = positions.get(symbol, dict(FLAT_POSITION))
         result = evaluate_position_transition(weekly, daily, cfg, current)
     except Exception as e:
-        return positions.get(symbol, dict(FLAT_POSITION)), {"type": "error", "message": f"entry/exit check ERROR for {symbol}: {e}"}
+        return positions.get(symbol, dict(FLAT_POSITION)), {"type": "error", "message": f"entry/exit check ERROR for {symbol}: {e}"}, None
 
     positions[symbol] = result["new_position"]
+    next_liquidity = result.get("next_liquidity")
 
     event = result["event"]
     if event is None:
-        return result["new_position"], None
+        return result["new_position"], None, next_liquidity
 
     ecfg = cfg["entry_exit_strategy"]
-    if event["type"] == "signal_entry":
+    if event["type"] == "armed":
+        msg = f"🔎 {symbol}: retracement started — watching for a reversal back in trend to enter."
+    elif event["type"] == "signal_entry":
         risk_per_share = event["signal_price"] - event["stop_price"]
         msg = (
             f"📥 {symbol}: entry signal — retracement resolved, will enter at TOMORROW's open. "
@@ -90,6 +98,9 @@ def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.Dat
         )
     elif event["type"] == "entered":
         msg = f"✅ {symbol}: entered at {event['entry_price']:.2f} (today's open). Stop at {event['stop_price']:.2f}."
+    elif event["type"] == "partial_exit":
+        pnl_pct = (event["exit_price"] / event["entry_price"] - 1) * 100
+        msg = f"💰 {symbol}: partial exit ({event['fraction'] * 100:.0f}%) at {event['exit_price']:.2f} (entry was {event['entry_price']:.2f}, {pnl_pct:+.1f}%). Remainder still running."
     elif event["type"] == "exit_stop":
         msg = _format_exit_message(symbol, "🛑", "stopped out", event)
     elif event["type"] == "exit_trend":
@@ -97,7 +108,7 @@ def _run_entry_exit_check(symbol: str, cfg: dict, positions: dict, daily: pd.Dat
     else:
         msg = f"{symbol}: unrecognized event {event}"
 
-    return result["new_position"], {"type": event["type"], "message": msg}
+    return result["new_position"], {"type": event["type"], "message": msg}, next_liquidity
 
 
 def main() -> None:
@@ -152,6 +163,7 @@ def main() -> None:
     # — separate, stateful, spans multiple days per position
     entry_exit_events = []
     positions: dict = {}
+    liquidity_by_symbol: dict = {}
     if entry_exit_enabled:
         positions = load_positions()
         lines.append("")
@@ -160,7 +172,9 @@ def main() -> None:
             daily = daily_by_symbol[symbol]
             if daily is None:
                 continue  # already reported as a fetch error above
-            _, event = _run_entry_exit_check(symbol, cfg, positions, daily)
+            _, event, next_liquidity = _run_entry_exit_check(symbol, cfg, positions, daily)
+            if next_liquidity is not None:
+                liquidity_by_symbol[symbol] = next_liquidity
             if event:
                 print(event["message"])
                 lines.append(f"- {event['message']}")
@@ -178,6 +192,7 @@ def main() -> None:
         "flagged_count": len(flagged),
         "entry_exit_events": entry_exit_events,
         "positions": positions,
+        "liquidity_by_symbol": liquidity_by_symbol,
     }
     DASHBOARD_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     DASHBOARD_DATA_PATH.write_text(json.dumps(_json_safe(dashboard), indent=2))

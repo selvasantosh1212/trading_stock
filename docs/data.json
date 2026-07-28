@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T14:16:13Z",
+  "generated_at": "2026-07-27T17:04:19Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -778,307 +778,1135 @@
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "TCS.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
-    },
-    "INFY.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "HDFCBANK.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "ICICIBANK.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "INFY.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "BHARTIARTL.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "ITC.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "LT.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "KOTAKBANK.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "AXISBANK.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "SBIN.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "HINDUNILVR.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "BAJFINANCE.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "ASIANPAINT.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "MARUTI.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "HCLTECH.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "SUNPHARMA.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "TITAN.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "ULTRACEMCO.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "WIPRO.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "NESTLEIND.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "BAJAJFINSV.NS": {
-      "state": "LONG",
-      "entry_price": 1885.0,
-      "entry_date": "2026-07-27",
-      "stop_price": 1817.9128574916294
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "POWERGRID.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "NTPC.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "TECHM.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
-    },
-    "TATASTEEL.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "INDUSINDBK.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "JSWSTEEL.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "ADANIENT.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "ADANIPORTS.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "GRASIM.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "COALINDIA.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "CIPLA.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "DRREDDY.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "EICHERMOT.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "BRITANNIA.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "HEROMOTOCO.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "DIVISLAB.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "APOLLOHOSP.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "HINDALCO.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "SBILIFE.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "HDFCLIFE.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "BAJAJ-AUTO.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "SHRIRAMFIN.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "TRENT.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "BEL.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "M&M.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "ONGC.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
-    },
-    "TATACONSUM.NS": {
-      "state": "FLAT",
-      "entry_price": null,
-      "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "TMPV.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "TATASTEEL.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "INDUSINDBK.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "JSWSTEEL.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "ADANIENT.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "ADANIPORTS.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "GRASIM.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "COALINDIA.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "CIPLA.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "DRREDDY.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "EICHERMOT.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "BRITANNIA.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "HEROMOTOCO.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "DIVISLAB.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "APOLLOHOSP.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "HINDALCO.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "SBILIFE.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "HDFCLIFE.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "BAJAJ-AUTO.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "SHRIRAMFIN.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "LTIM.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "TRENT.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "BEL.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "M&M.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "ONGC.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    },
+    "TATACONSUM.NS": {
+      "state": "FLAT",
+      "entry_price": null,
+      "entry_date": null,
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
     },
     "TMCV.NS": {
       "state": "FLAT",
       "entry_price": null,
       "entry_date": null,
-      "stop_price": null
+      "stop_price": null,
+      "partial_taken": false,
+      "partial_exit_price": null,
+      "partial_exit_date": null,
+      "remaining_fraction": 1.0
+    }
+  },
+  "liquidity_by_symbol": {
+    "RELIANCE.NS": {
+      "t1": {
+        "price": 1345.9000244140625,
+        "label": "prior swing high",
+        "pct": 5.148439407348637
+      },
+      "t2": {
+        "price": 1371.0999755859375,
+        "label": "prior swing high",
+        "pct": 7.117185592651376
+      }
+    },
+    "TCS.NS": {
+      "t1": {
+        "price": 2457.39990234375,
+        "label": "prior swing high",
+        "pct": 7.04825744051385
+      },
+      "t2": {
+        "price": 2498.300048828125,
+        "label": "prior swing high",
+        "pct": 8.829933026175873
+      }
+    },
+    "HDFCBANK.NS": {
+      "t1": {
+        "price": 790.0,
+        "label": "previous week's high",
+        "pct": 6.821717671524641
+      },
+      "t2": {
+        "price": 843.0,
+        "label": "prior swing high",
+        "pct": 13.98823797100668
+      }
+    },
+    "ICICIBANK.NS": {
+      "t1": {
+        "price": 1480.0,
+        "label": "prior swing high",
+        "pct": 2.3725565460745557
+      },
+      "t2": {
+        "price": 1500.0,
+        "label": "prior swing high",
+        "pct": 3.7559694723728665
+      }
+    },
+    "INFY.NS": {
+      "t1": {
+        "price": 1103.800048828125,
+        "label": "previous week's high",
+        "pct": 2.2794754233946612
+      },
+      "t2": {
+        "price": 1116.800048828125,
+        "label": "prior swing high",
+        "pct": 3.4840714749311275
+      }
+    },
+    "BHARTIARTL.NS": {
+      "t1": {
+        "price": 1956.0,
+        "label": "previous week's high",
+        "pct": 2.660995637041963
+      },
+      "t2": {
+        "price": 1966.0,
+        "label": "prior swing high",
+        "pct": 3.1858473529777775
+      }
+    },
+    "ITC.NS": {
+      "t1": {
+        "price": 294.54998779296875,
+        "label": "prior swing high",
+        "pct": 3.043547841066885
+      },
+      "t2": {
+        "price": 314.25,
+        "label": "prior swing high",
+        "pct": 9.935278394291803
+      }
+    },
+    "LT.NS": {
+      "t1": {
+        "price": 3859.5,
+        "label": "previous week's high",
+        "pct": 1.4056752496058866
+      },
+      "t2": {
+        "price": 4272.2998046875,
+        "label": "prior swing high",
+        "pct": 12.251702698042566
+      }
+    },
+    "KOTAKBANK.NS": {
+      "t1": {
+        "price": 390.0,
+        "label": "previous week's high",
+        "pct": 1.3908764301073573
+      },
+      "t2": {
+        "price": 391.79998779296875,
+        "label": "prior swing high",
+        "pct": 1.858831147780693
+      }
+    },
+    "AXISBANK.NS": {
+      "t1": {
+        "price": 1284.0,
+        "label": "previous week's high",
+        "pct": 4.602851323828916
+      },
+      "t2": {
+        "price": 1348.0,
+        "label": "prior swing high",
+        "pct": 9.816700610997952
+      }
+    },
+    "SBIN.NS": {
+      "t1": {
+        "price": 1067.0,
+        "label": "previous week's high",
+        "pct": 4.5463477879689185
+      },
+      "t2": {
+        "price": 1108.0,
+        "label": "prior swing high",
+        "pct": 8.563592642052065
+      }
+    },
+    "HINDUNILVR.NS": {
+      "t1": {
+        "price": 2239.300048828125,
+        "label": "prior swing high",
+        "pct": 2.975257438901413
+      },
+      "t2": {
+        "price": 2408.0,
+        "label": "prior swing high",
+        "pct": 10.733003396592533
+      }
+    },
+    "BAJFINANCE.NS": {
+      "t1": {
+        "price": 1074.4000244140625,
+        "label": "previous week's high",
+        "pct": 2.489742857029742
+      },
+      "t2": {
+        "price": 1088.0,
+        "label": "prior swing high",
+        "pct": 3.7870790158080148
+      }
+    },
+    "ASIANPAINT.NS": {
+      "t1": {
+        "price": 2762.39990234375,
+        "label": "prior swing high",
+        "pct": 1.9260553506136757
+      },
+      "t2": {
+        "price": 2832.699951171875,
+        "label": "prior swing high",
+        "pct": 4.519961707881803
+      }
+    },
+    "MARUTI.NS": {
+      "t1": {
+        "price": 13832.0,
+        "label": "previous week's high",
+        "pct": 0.7428987618353977
+      },
+      "t2": {
+        "price": 14598.0,
+        "label": "prior swing high",
+        "pct": 6.321922796795332
+      }
+    },
+    "HCLTECH.NS": {
+      "t1": {
+        "price": 1474.9000244140625,
+        "label": "prior swing high",
+        "pct": 13.81279393685746
+      },
+      "t2": {
+        "price": 1780.0999755859375,
+        "label": "prior swing high",
+        "pct": 37.3639896635394
+      }
+    },
+    "SUNPHARMA.NS": {
+      "t1": {
+        "price": null,
+        "label": null,
+        "pct": null
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
+      }
+    },
+    "TITAN.NS": {
+      "t1": {
+        "price": null,
+        "label": null,
+        "pct": null
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
+      }
+    },
+    "ULTRACEMCO.NS": {
+      "t1": {
+        "price": 12172.0,
+        "label": "previous week's high",
+        "pct": 2.4492887804056895
+      },
+      "t2": {
+        "price": 12275.0,
+        "label": "prior swing high",
+        "pct": 3.3162191734702473
+      }
+    },
+    "WIPRO.NS": {
+      "t1": {
+        "price": 180.5,
+        "label": "prior swing high",
+        "pct": 1.1034566930897105
+      },
+      "t2": {
+        "price": 185.25,
+        "label": "prior swing high",
+        "pct": 3.7640739744868146
+      }
+    },
+    "NESTLEIND.NS": {
+      "t1": {
+        "price": 1510.0,
+        "label": "previous week's high",
+        "pct": 4.418783313247143
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
+      }
+    },
+    "BAJAJFINSV.NS": {
+      "t1": {
+        "price": 1920.5,
+        "label": "prior swing high",
+        "pct": 0.3920543648719299
+      },
+      "t2": {
+        "price": 2074.89990234375,
+        "label": "prior swing high",
+        "pct": 8.4631417848275
+      }
+    },
+    "POWERGRID.NS": {
+      "t1": {
+        "price": 290.95001220703125,
+        "label": "previous week's high",
+        "pct": 0.7270230428048086
+      },
+      "t2": {
+        "price": 292.0,
+        "label": "prior swing high",
+        "pct": 1.0905292816076662
+      }
+    },
+    "NTPC.NS": {
+      "t1": {
+        "price": 369.25,
+        "label": "prior swing high",
+        "pct": 5.259410732340131
+      },
+      "t2": {
+        "price": 389.0,
+        "label": "previous month's high",
+        "pct": 10.889399525742194
+      }
+    },
+    "TECHM.NS": {
+      "t1": {
+        "price": 1614.5999755859375,
+        "label": "previous week's high",
+        "pct": 2.514284164186509
+      },
+      "t2": {
+        "price": 1854.0,
+        "label": "prior swing high",
+        "pct": 17.714285714285705
+      }
+    },
+    "TMPV.NS": {
+      "t1": {
+        "price": 337.6499938964844,
+        "label": "previous week's high",
+        "pct": 3.0520372917080874
+      },
+      "t2": {
+        "price": 407.79998779296875,
+        "label": "prior swing high",
+        "pct": 24.46207703022465
+      }
+    },
+    "TATASTEEL.NS": {
+      "t1": {
+        "price": 188.10000610351562,
+        "label": "previous week's high",
+        "pct": 2.0895555514331754
+      },
+      "t2": {
+        "price": 193.3000030517578,
+        "label": "prior swing high",
+        "pct": 4.911806269610763
+      }
+    },
+    "INDUSINDBK.NS": {
+      "t1": {
+        "price": 1077.8499755859375,
+        "label": "previous week's high",
+        "pct": 7.072959762089925
+      },
+      "t2": {
+        "price": 1086.550048828125,
+        "label": "prior swing high",
+        "pct": 7.937219736379553
+      }
+    },
+    "JSWSTEEL.NS": {
+      "t1": {
+        "price": 1279.300048828125,
+        "label": "previous week's high",
+        "pct": 2.7880502910865967
+      },
+      "t2": {
+        "price": 1320.199951171875,
+        "label": "prior swing high",
+        "pct": 6.074238877463123
+      }
+    },
+    "ADANIENT.NS": {
+      "t1": {
+        "price": 3213.5,
+        "label": "previous week's high",
+        "pct": 5.825591011483122
+      },
+      "t2": {
+        "price": 3219.699951171875,
+        "label": "prior swing high",
+        "pct": 6.02976511977813
+      }
+    },
+    "ADANIPORTS.NS": {
+      "t1": {
+        "price": 1857.4000244140625,
+        "label": "previous week's high",
+        "pct": 4.9141436285730755
+      },
+      "t2": {
+        "price": 1859.699951171875,
+        "label": "prior swing high",
+        "pct": 5.044053633436185
+      }
+    },
+    "GRASIM.NS": {
+      "t1": {
+        "price": 3195.10009765625,
+        "label": "previous week's high",
+        "pct": 2.657119840230804
+      },
+      "t2": {
+        "price": 3246.0,
+        "label": "prior swing high",
+        "pct": 4.2925106621306774
+      }
+    },
+    "COALINDIA.NS": {
+      "t1": {
+        "price": 433.5,
+        "label": "previous week's high",
+        "pct": 1.403508771929829
+      },
+      "t2": {
+        "price": 436.5,
+        "label": "prior swing high",
+        "pct": 2.1052631578947434
+      }
+    },
+    "CIPLA.NS": {
+      "t1": {
+        "price": 1466.5999755859375,
+        "label": "prior swing high",
+        "pct": 4.058461060099328
+      },
+      "t2": {
+        "price": 1482.0,
+        "label": "prior swing high",
+        "pct": 5.15112631817356
+      }
+    },
+    "DRREDDY.NS": {
+      "t1": {
+        "price": 1231.300048828125,
+        "label": "previous week's high",
+        "pct": 6.995133523149755
+      },
+      "t2": {
+        "price": 1414.9000244140625,
+        "label": "prior swing high",
+        "pct": 22.949249598561792
+      }
+    },
+    "EICHERMOT.NS": {
+      "t1": {
+        "price": 8230.0,
+        "label": "prior swing high",
+        "pct": 5.927022330909315
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
+      }
+    },
+    "BRITANNIA.NS": {
+      "t1": {
+        "price": 5529.0,
+        "label": "previous week's high",
+        "pct": 2.6836289349057463
+      },
+      "t2": {
+        "price": 5891.5,
+        "label": "prior swing high",
+        "pct": 9.415916055344042
+      }
+    },
+    "HEROMOTOCO.NS": {
+      "t1": {
+        "price": 5198.2998046875,
+        "label": "previous week's high",
+        "pct": 1.6523916310244413
+      },
+      "t2": {
+        "price": 5458.5,
+        "label": "prior swing high",
+        "pct": 6.740588378069368
+      }
+    },
+    "DIVISLAB.NS": {
+      "t1": {
+        "price": null,
+        "label": null,
+        "pct": null
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
+      }
+    },
+    "APOLLOHOSP.NS": {
+      "t1": {
+        "price": 9000.0,
+        "label": "previous week's high",
+        "pct": 1.7696613331825706
+      },
+      "t2": {
+        "price": 9009.0,
+        "label": "prior swing high",
+        "pct": 1.8714309945157437
+      }
+    },
+    "HINDALCO.NS": {
+      "t1": {
+        "price": 964.0,
+        "label": "previous week's high",
+        "pct": 1.983602221634495
+      },
+      "t2": {
+        "price": 998.0,
+        "label": "prior swing high",
+        "pct": 5.580534250198355
+      }
+    },
+    "SBILIFE.NS": {
+      "t1": {
+        "price": 1889.5,
+        "label": "previous week's high",
+        "pct": 1.215981925119669
+      },
+      "t2": {
+        "price": 1906.9000244140625,
+        "label": "prior swing high",
+        "pct": 2.1480594888086735
+      }
+    },
+    "HDFCLIFE.NS": {
+      "t1": {
+        "price": 567.2999877929688,
+        "label": "previous week's high",
+        "pct": 2.6137311829879994
+      },
+      "t2": {
+        "price": 588.0,
+        "label": "prior swing high",
+        "pct": 6.357967977986934
+      }
+    },
+    "BAJAJ-AUTO.NS": {
+      "t1": {
+        "price": 11331.0,
+        "label": "previous week's high",
+        "pct": 1.3189073188178968
+      },
+      "t2": {
+        "price": 12030.9501953125,
+        "label": "prior swing high",
+        "pct": 7.57768315207672
+      }
+    },
+    "SHRIRAMFIN.NS": {
+      "t1": {
+        "price": 1079.0,
+        "label": "previous week's high",
+        "pct": 3.9298835240814345
+      },
+      "t2": {
+        "price": 1087.300048828125,
+        "label": "prior swing high",
+        "pct": 4.729348869726668
+      }
+    },
+    "TRENT.NS": {
+      "t1": {
+        "price": 3399.699951171875,
+        "label": "prior swing high",
+        "pct": 15.702953907915873
+      },
+      "t2": {
+        "price": 4338.39990234375,
+        "label": "prior swing high",
+        "pct": 47.649995924481004
+      }
+    },
+    "BEL.NS": {
+      "t1": {
+        "price": 410.95001220703125,
+        "label": "previous week's high",
+        "pct": 0.933321470591264
+      },
+      "t2": {
+        "price": 429.8999938964844,
+        "label": "prior swing high",
+        "pct": 5.587621353565364
+      }
+    },
+    "M&M.NS": {
+      "t1": {
+        "price": 3250.0,
+        "label": "previous week's high",
+        "pct": 0.3520009263261681
+      },
+      "t2": {
+        "price": 3399.0,
+        "label": "prior swing high",
+        "pct": 4.952754199563891
+      }
+    },
+    "ONGC.NS": {
+      "t1": {
+        "price": 254.1999969482422,
+        "label": "previous week's high",
+        "pct": 6.5560024940086725
+      },
+      "t2": {
+        "price": 271.1499938964844,
+        "label": "previous month's high",
+        "pct": 13.661132072189108
+      }
+    },
+    "TATACONSUM.NS": {
+      "t1": {
+        "price": 1130.0,
+        "label": "prior swing high",
+        "pct": 2.0408140769091476
+      },
+      "t2": {
+        "price": 1142.699951171875,
+        "label": "prior swing high",
+        "pct": 3.1876400559490703
+      }
+    },
+    "TMCV.NS": {
+      "t1": {
+        "price": 430.45001220703125,
+        "label": "prior swing high",
+        "pct": 4.706885384633952
+      },
+      "t2": {
+        "price": 449.8999938964844,
+        "label": "prior swing high",
+        "pct": 9.438089811946849
+      }
     }
   }
 }

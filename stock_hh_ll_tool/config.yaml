@@ -100,28 +100,83 @@ intraday_confirmation:
     left_bars: 3
     right_bars: 3
 
-# Entry/exit swing-trade strategy (validated via 3-agent investigation —
-# see reports/stock_entry_exit_strategy_investigation.md before changing
-# these): Weekly HTF confirms the trend, Daily LTF times the retracement
-# entry. This is a DIFFERENT, additional signal from the plain daily
-# HH/LL alert above — it tracks actual positions across days, since entry
-# and exit can be weeks apart (needs stock_hh_ll_tool/state/positions.json,
-# not stateless like the daily check).
+# Entry/exit swing-trade strategy — redesigned 2026-07-27 via a 3-agent
+# deep-dive (research+backtest+skeptical-stress-test, each independently
+# implemented, 35 NSE stocks/~10 years) after the user asked for a genuine
+# "hold days to weeks" swing tool with profit targets. See that session's
+# findings before changing these:
+#
+# 1) The ORIGINAL Weekly(trend)/Daily(entry) design with a WEEKLY exit
+#    wasn't really "swing trading" — median hold was 109 days (p90: 672
+#    days), i.e. position trading. Fix: keep Weekly as a confirmation GATE,
+#    but exit on the DAILY-EXTERNAL trend reversal instead of waiting for
+#    the weekly one — cuts median hold to ~41 days while keeping ~98% of
+#    the original capital efficiency (R per day held).
+# 2) Entry timing now literally implements "wait for a retracement, enter
+#    once it resolves": a DAILY-INTERNAL (narrow-window) bearish reversal
+#    while the bigger trend is still bullish arms the strategy; the next
+#    DAILY-INTERNAL bullish CHoCH (retracement resolving) fires the entry.
+#    2/2 bars beat 3/3 and 1/1 on risk-adjusted return in a parameter grid.
+# 3) A forced "take profit at the nearest liquidity level" exit was tested
+#    THREE independent ways and rejected every time: on daily bars the
+#    nearest untaken liquidity sits ~0.3R from entry on average — nowhere
+#    near far enough. It roughly doubles the win rate but guts expectancy
+#    (+1.9R -> +0.1-0.2R in different implementations) by scratching
+#    exactly the small number of huge trend trades this strategy's entire
+#    edge comes from (94% of total return came from the top 10% of
+#    trades in one run). It also made the strategy's proven strength —
+#    avoiding a catastrophic single-stock loss — WORSE (YESBANK: +17%
+#    without a target, -19% with one). Conclusion: "target the liquidity"
+#    is an intraday-native idea (5m nearest liquidity is many R away; at
+#    daily it's a fraction of 1R) — so liquidity levels are shown as
+#    INFORMATION on the dashboard (next_liquidity_targets in targets.py),
+#    not wired into the exit. An optional, OFF BY DEFAULT partial-exit
+#    exists below for anyone who wants that discipline anyway, gated far
+#    enough away (>=3R) that all three investigations found it near-inert
+#    rather than damaging.
+#
+# This is a DIFFERENT, additional signal from the plain daily HH/LL alert
+# above — it tracks actual positions across days (needs
+# stock_hh_ll_tool/state/positions.json, not stateless like the daily
+# check).
 entry_exit_strategy:
   enabled: true
-  htf_structure:
+  # Confirmation gate only — must be bullish for a new entry to arm/fire,
+  # but no longer the exit trigger (see daily_external_structure below).
+  weekly_structure:
     left_bars: 5
     right_bars: 5
-  ltf_structure:
-    left_bars: 3
-    right_bars: 3
-  # Stop-loss = the LTF swing low active at entry, minus a small ATR
-  # buffer (avoids getting stopped out by a bare wick at the exact level —
-  # same reasoning as the forex project's structure-based stop). The
-  # investigation found this beats both "no stop" (worst trade -34.9%) and
-  # a fixed % stop on both tail-risk AND total return.
+  # The "external"/big-trend tier on DAILY bars — same window as the plain
+  # daily_structure alert above, for consistency. Its trend reversal is now
+  # the strategy's trend-following exit (replaces the old weekly exit).
+  daily_external_structure:
+    left_bars: 5
+    right_bars: 5
+  # The "internal"/fast tier on DAILY bars — times the retracement (a
+  # bearish reversal here, while daily_external+weekly are still bullish,
+  # ARMs the strategy) and the entry (the next bullish CHoCH here fires
+  # it). Narrower than daily_external by design: this is what actually
+  # detects "a pullback happened and just reversed."
+  daily_internal_structure:
+    left_bars: 2
+    right_bars: 2
+  # Stop-loss = the daily-internal swing low active at entry, minus a
+  # small ATR buffer (avoids getting stopped out by a bare wick at the
+  # exact level — same reasoning as the forex project's structure-based
+  # stop). Never moved once set (not even by the optional partial-target
+  # below — trailing to breakeven was tested and made things worse).
   stop_atr_buffer_fraction: 0.1
   # For the risk-sizing guidance shown in each entry alert (not enforced —
   # the tool doesn't know your account size). Position size = (account
   # risk budget) / (entry_price - stop_price).
   risk_per_trade_pct: 1.0
+  # OFF BY DEFAULT — see the investigation summary above. If you turn this
+  # on anyway, min_r=3.0 is deliberately far (all three investigations
+  # found the damage scales with how close the target is; 3R was the
+  # nearly-inert setting). Sells `fraction` of the position when today's
+  # HIGH reaches entry + min_r*(entry-stop); the stop is NOT moved to
+  # breakeven (tested worse); the rest exits normally on stop/trend-exit.
+  partial_target:
+    enabled: false
+    min_r: 3.0
+    fraction: 0.25
