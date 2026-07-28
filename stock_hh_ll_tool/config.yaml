@@ -68,6 +68,65 @@ watchlist:
   - TATACONSUM.NS
   - "TMCV.NS"
 
+  # Screener.in "Momentum Stocks" screen (https://www.screener.in/screens/139059/momentum-stocks/),
+  # added 2026-07-28. Of the screen's 66 results, 45 resolved to a real NSE
+  # ticker (verified via Yahoo's search API, not guessed from memory) and 21
+  # were BSE-only (no NSE listing at all) — excluded per the user's "only
+  # add NSE not BSE" instruction. Bharat Electronics (BEL.NS) was already on
+  # this list from the Nifty 50 seed, so isn't duplicated here.
+  #
+  # Three of these are on NSE's SME platform (`-SM.NS`), not the mainboard —
+  # a materially thinner-liquidity, higher-risk segment than everything else
+  # on this watchlist: SYSTANGO-SM.NS, TEAMTECH-SM.NS, UNIHEALTH-SM.NS.
+  #
+  # Also worth knowing: several of these are nano/micro-cap (well under
+  # Rs.500 Cr), a size/liquidity class this tool's backtested track record
+  # (35 large-cap stocks, ~10 years) has never been validated on.
+  - TIPSMUSIC.NS
+  - ICICIAMC.NS
+  - GILLETTE.NS
+  - MCX.NS
+  - JSLL.NS
+  - WEBELSOLAR.NS
+  - HBLENGINE.NS
+  - "BSE.NS"
+  - ANANDRATHI.NS
+  - SBIFUNDS.NS
+  - CRIZAC.NS
+  - FRONTSP.NS
+  - SIGMA.NS
+  - CPEDU.NS
+  - EMMVEE.NS
+  - "NAM-INDIA.NS"
+  - HINDCOPPER.NS
+  - TRAVELFOOD.NS
+  - CALSOFT.NS
+  - "TEAMTECH-SM.NS"
+  - NATIONALUM.NS
+  - MANORAMA.NS
+  - THYROCARE.NS
+  - AJANTPHARM.NS
+  - FOSECOIND.NS
+  - "SYSTANGO-SM.NS"
+  - GODFRYPHLP.NS
+  - TAALTECH.NS
+  - ACUTAAS.NS
+  - ALGOQUANT.NS
+  - PIDILITIND.NS
+  - ANTHEM.NS
+  - RPEL.NS
+  - "BLS.NS"
+  - SJS.NS
+  - BORORENEW.NS
+  - NEULANDLAB.NS
+  - "UNIHEALTH-SM.NS"
+  - SANDUMA.NS
+  - KPL.NS
+  - KOVAI.NS
+  - BHARTIHEXA.NS
+  - SEAMECLTD.NS
+  - AGARWALEYE.NS
+
 # Swing-trade signal: did TODAY's daily candle produce a bullish Break of
 # Structure or Change of Character (a confirmed Higher High)? Same
 # close-only, external-structure logic validated in the forex project
