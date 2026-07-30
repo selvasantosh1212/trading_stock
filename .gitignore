@@ -1,5 +1,11 @@
 data/raw/
-data/processed/
+data/processed/*
+# banknifty_*.parquet is committed (unlike the rest of data/processed/,
+# which is regenerable from source e.g. dukascopy): Yahoo's chart API only
+# exposes a limited lookback window per interval, so once a bar ages out of
+# that window it can never be re-fetched — the accumulated history in these
+# files is irreplaceable, not a build artifact.
+!data/processed/banknifty_*.parquet
 reports/*.md
 !reports/.gitkeep
 __pycache__/
