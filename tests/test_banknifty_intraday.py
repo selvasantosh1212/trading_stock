@@ -41,3 +41,14 @@ def test_update_history_merges_new_fetch_into_existing_file(tmp_path, monkeypatc
     assert merged.loc["2024-01-01 00:10", "close"] == 101.8
     # and it's persisted, not just returned in-memory
     assert banknifty_intraday.load_history("5m").equals(merged)
+
+
+def test_update_history_first_run_has_no_existing_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(banknifty_intraday, "PROCESSED_DIR", tmp_path)
+    fetched = _bars({"2024-01-01 00:00": (100.0, 101.0, 99.0, 100.5)})
+    monkeypatch.setattr(banknifty_intraday, "fetch_latest", lambda interval, timeout=30: fetched)
+
+    merged = banknifty_intraday.update_history("5m")
+
+    assert merged.equals(fetched)
+    assert banknifty_intraday.load_history("5m").equals(fetched)
