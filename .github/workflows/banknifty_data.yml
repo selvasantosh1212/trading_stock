@@ -7,10 +7,13 @@ name: Bank Nifty Intraday Data
 # 1m/5m/15m accumulate past that window over time instead of losing bars
 # once they age out of Yahoo's range. Scheduled shortly after NSE close
 # (15:30 IST = 10:00 UTC); cron is UTC-only and doesn't know Indian market
-# holidays, so it'll also fire harmlessly on days NSE is shut.
+# holidays, so it'll also fire harmlessly on days NSE is shut. Staggered
+# 15 minutes after stock_screener.yml's "5 10" trigger (both push to main
+# independently) to cut down how often their pushes actually collide — the
+# commit step below still handles the case where they overlap anyway.
 on:
   schedule:
-    - cron: "5 10 * * 1-5"
+    - cron: "20 10 * * 1-5"
   workflow_dispatch: {}
 
 concurrency:
@@ -42,7 +45,24 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/processed/banknifty_1m.parquet data/processed/banknifty_5m.parquet data/processed/banknifty_15m.parquet data/processed/banknifty_1h.parquet
           git diff --cached --quiet || git commit -m "Daily Bank Nifty data update [skip ci]"
-          git push
+
+          # stock_screener.yml fires off the same trigger tick and also
+          # pushes to main independently — a plain `git push` can lose that
+          # race. Rebase onto whatever landed in between and retry a few
+          # times before giving up (which then correctly falls through to
+          # the failure alert below, rather than silently swallowing a
+          # push failure).
+          push_ok=false
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              push_ok=true
+              break
+            fi
+            echo "push rejected (attempt $attempt), rebasing onto origin/main and retrying..."
+            git pull --rebase origin main
+            sleep $(( (RANDOM % 10) + 3 ))
+          done
+          $push_ok || { echo "git push failed after 5 attempts"; exit 1; }
 
       # The 1m history has only a 7-day lookback window on Yahoo's side, so
       # a failure that goes unnoticed for a week means that stretch of 1m
@@ -54,7 +74,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          existing=$(gh issue list --repo "${{ github.repository }}" --search "Bank Nifty data capture is failing in:title" --state open --json number --jq '.[0].number')
+          existing=$(gh issue list --repo "${{ github.repository }}" --search "Bank Nifty data capture is failing in:title" --state open --json number --jq '.[0].number // empty')
           run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --repo "${{ github.repository }}" --body "Failed again on $(date -u +%Y-%m-%d). Run: $run_url"
