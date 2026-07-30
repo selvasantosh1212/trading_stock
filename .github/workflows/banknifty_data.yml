@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
@@ -42,3 +43,25 @@ jobs:
           git add data/processed/banknifty_1m.parquet data/processed/banknifty_5m.parquet data/processed/banknifty_15m.parquet data/processed/banknifty_1h.parquet
           git diff --cached --quiet || git commit -m "Daily Bank Nifty data update [skip ci]"
           git push
+
+      # The 1m history has only a 7-day lookback window on Yahoo's side, so
+      # a failure that goes unnoticed for a week means that stretch of 1m
+      # data is gone for good and can never be backfilled. Opens (or
+      # comments on) a tracking issue instead of relying on email
+      # notification settings nobody's confirmed are on.
+      - name: Alert on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          existing=$(gh issue list --repo "${{ github.repository }}" --search "Bank Nifty data capture is failing in:title" --state open --json number --jq '.[0].number')
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "${{ github.repository }}" --body "Failed again on $(date -u +%Y-%m-%d). Run: $run_url"
+          else
+            gh issue create --repo "${{ github.repository }}" \
+              --title "Bank Nifty data capture is failing" \
+              --body "The daily Bank Nifty capture workflow failed on $(date -u +%Y-%m-%d). Run: $run_url
+
+              Fix promptly — the 1m timeframe only has a 7-day lookback window on Yahoo's side, so a gap longer than that is unrecoverable."
+          fi
