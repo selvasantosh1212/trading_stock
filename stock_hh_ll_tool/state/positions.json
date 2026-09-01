@@ -140,7 +140,7 @@
     "remaining_fraction": 1.0
   },
   "MARUTI.NS": {
-    "state": "ARMED",
+    "state": "FLAT",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -160,9 +160,9 @@
     "remaining_fraction": 1.0
   },
   "SUNPHARMA.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 1963.0999755859375,
+    "entry_date": "2026-09-01",
     "stop_price": 1865.0550484793528,
     "partial_taken": false,
     "partial_exit_price": null,
@@ -200,9 +200,9 @@
     "remaining_fraction": 1.0
   },
   "NESTLEIND.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 1514.800048828125,
+    "entry_date": "2026-09-01",
     "stop_price": 1446.1064278738838,
     "partial_taken": false,
     "partial_exit_price": null,
@@ -210,7 +210,7 @@
     "remaining_fraction": 1.0
   },
   "BAJAJFINSV.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -690,7 +690,7 @@
     "remaining_fraction": 1.0
   },
   "TRAVELFOOD.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -860,7 +860,7 @@
     "remaining_fraction": 1.0
   },
   "SJS.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
