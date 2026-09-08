@@ -240,7 +240,7 @@
     "remaining_fraction": 1.0
   },
   "TECHM.NS": {
-    "state": "ARMED",
+    "state": "FLAT",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -880,10 +880,10 @@
     "remaining_fraction": 1.0
   },
   "NEULANDLAB.NS": {
-    "state": "ARMED",
+    "state": "PENDING_ENTRY",
     "entry_price": null,
     "entry_date": null,
-    "stop_price": null,
+    "stop_price": 22651.10714285714,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
