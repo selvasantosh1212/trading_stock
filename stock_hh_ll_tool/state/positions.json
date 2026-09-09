@@ -80,7 +80,7 @@
     "remaining_fraction": 1.0
   },
   "KOTAKBANK.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -160,10 +160,10 @@
     "remaining_fraction": 1.0
   },
   "SUNPHARMA.NS": {
-    "state": "LONG",
-    "entry_price": 1963.0999755859375,
-    "entry_date": "2026-09-01",
-    "stop_price": 1865.0550484793528,
+    "state": "FLAT",
+    "entry_price": null,
+    "entry_date": null,
+    "stop_price": null,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
@@ -600,7 +600,7 @@
     "remaining_fraction": 1.0
   },
   "ANANDRATHI.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -640,7 +640,7 @@
     "remaining_fraction": 1.0
   },
   "SIGMA.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -880,9 +880,9 @@
     "remaining_fraction": 1.0
   },
   "NEULANDLAB.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 24000.0,
+    "entry_date": "2026-09-09",
     "stop_price": 22651.10714285714,
     "partial_taken": false,
     "partial_exit_price": null,
