@@ -740,7 +740,7 @@
     "remaining_fraction": 1.0
   },
   "THYROCARE.NS": {
-    "state": "ARMED",
+    "state": "FLAT",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -800,10 +800,10 @@
     "remaining_fraction": 1.0
   },
   "ACUTAAS.NS": {
-    "state": "ARMED",
+    "state": "PENDING_ENTRY",
     "entry_price": null,
     "entry_date": null,
-    "stop_price": null,
+    "stop_price": 3108.347140066964,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
