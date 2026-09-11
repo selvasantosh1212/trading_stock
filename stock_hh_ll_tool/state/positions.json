@@ -280,7 +280,7 @@
     "remaining_fraction": 1.0
   },
   "JSWSTEEL.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -640,7 +640,7 @@
     "remaining_fraction": 1.0
   },
   "SIGMA.NS": {
-    "state": "ARMED",
+    "state": "FLAT",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -800,9 +800,9 @@
     "remaining_fraction": 1.0
   },
   "ACUTAAS.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 3488.0,
+    "entry_date": "2026-09-11",
     "stop_price": 3108.347140066964,
     "partial_taken": false,
     "partial_exit_price": null,
