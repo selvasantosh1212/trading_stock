@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T14:21:08Z",
+  "generated_at": "2026-09-14T16:20:30Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -1108,7 +1108,7 @@
     {
       "symbol": "TEAMTECH-SM.NS",
       "date": "2026-09-11",
-      "close": 129.0500030517578,
+      "close": 128.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1198,7 +1198,7 @@
     {
       "symbol": "SYSTANGO-SM.NS",
       "date": "2026-09-11",
-      "close": 229.6999969482422,
+      "close": 233.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1388,7 +1388,7 @@
     {
       "symbol": "UNIHEALTH-SM.NS",
       "date": "2026-09-11",
-      "close": 712.0,
+      "close": 717.9000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1502,18 +1502,7 @@
     }
   ],
   "flagged_count": 7,
-  "entry_exit_events": [
-    {
-      "symbol": "JSWSTEEL.NS",
-      "type": "armed",
-      "message": "\ud83d\udd0e JSWSTEEL.NS: retracement started \u2014 watching for a reversal back in trend to enter."
-    },
-    {
-      "symbol": "ACUTAAS.NS",
-      "type": "entered",
-      "message": "\u2705 ACUTAAS.NS: entered at 3488.00 (today's open). Stop at 3108.35."
-    }
-  ],
+  "entry_exit_events": [],
   "positions": {
     "RELIANCE.NS": {
       "state": "FLAT",
