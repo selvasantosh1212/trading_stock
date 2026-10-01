@@ -750,9 +750,9 @@
     "remaining_fraction": 1.0
   },
   "AJANTPHARM.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 3588.0,
+    "entry_date": "2026-10-01",
     "stop_price": 3458.0729073660714,
     "partial_taken": false,
     "partial_exit_price": null,
