@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T17:02:11Z",
+  "generated_at": "2026-10-02T16:15:50Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -1128,7 +1128,7 @@
     {
       "symbol": "TEAMTECH-SM.NS",
       "date": "2026-10-01",
-      "close": 145.9499969482422,
+      "close": 146.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1218,7 +1218,7 @@
     {
       "symbol": "SYSTANGO-SM.NS",
       "date": "2026-10-01",
-      "close": 219.3000030517578,
+      "close": 220.64999389648438,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1408,7 +1408,7 @@
     {
       "symbol": "UNIHEALTH-SM.NS",
       "date": "2026-10-01",
-      "close": 581.2000122070312,
+      "close": 583.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1522,13 +1522,7 @@
     }
   ],
   "flagged_count": 9,
-  "entry_exit_events": [
-    {
-      "symbol": "AJANTPHARM.NS",
-      "type": "entered",
-      "message": "\u2705 AJANTPHARM.NS: entered at 3588.00 (today's open). Stop at 3458.07."
-    }
-  ],
+  "entry_exit_events": [],
   "positions": {
     "RELIANCE.NS": {
       "state": "FLAT",
