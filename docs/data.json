@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T16:15:50Z",
+  "generated_at": "2026-10-05T19:15:50Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -110,10 +110,10 @@
       },
       "intraday_bias": {
         "per_timeframe_trend": {
-          "4h": "bearish",
-          "1h": "bearish"
+          "4h": "bullish",
+          "1h": "bullish"
         },
-        "bias_timeframes_agree": true
+        "bias_timeframes_agree": false
       }
     },
     {
@@ -825,9 +825,9 @@
       "intraday_bias": {
         "per_timeframe_trend": {
           "4h": "bearish",
-          "1h": "bearish"
+          "1h": "bullish"
         },
-        "bias_timeframes_agree": true
+        "bias_timeframes_agree": false
       }
     },
     {
@@ -1127,8 +1127,8 @@
     },
     {
       "symbol": "TEAMTECH-SM.NS",
-      "date": "2026-10-01",
-      "close": 146.0,
+      "date": "2026-10-05",
+      "close": 153.1999969482422,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1217,8 +1217,8 @@
     },
     {
       "symbol": "SYSTANGO-SM.NS",
-      "date": "2026-10-01",
-      "close": 220.64999389648438,
+      "date": "2026-10-05",
+      "close": 215.3000030517578,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1407,8 +1407,8 @@
     },
     {
       "symbol": "UNIHEALTH-SM.NS",
-      "date": "2026-10-01",
-      "close": 583.0,
+      "date": "2026-10-05",
+      "close": 562.1500244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
