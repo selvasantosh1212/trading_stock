@@ -800,10 +800,10 @@
     "remaining_fraction": 1.0
   },
   "ACUTAAS.NS": {
-    "state": "LONG",
-    "entry_price": 3488.0,
-    "entry_date": "2026-09-11",
-    "stop_price": 3108.347140066964,
+    "state": "FLAT",
+    "entry_price": null,
+    "entry_date": null,
+    "stop_price": null,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
