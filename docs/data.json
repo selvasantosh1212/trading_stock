@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-06T16:42:12Z",
+  "generated_at": "2026-10-07T17:25:51Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
-      "date": "2026-10-06",
-      "close": 1218.0,
+      "date": "2026-10-07",
+      "close": 1207.699951171875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -12,14 +12,14 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.14328650850412528,
+      "gap_pct": -0.49261083743842365,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "TCS.NS",
-      "date": "2026-10-06",
-      "close": 2100.0,
+      "date": "2026-10-07",
+      "close": 2080.300048828125,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -27,14 +27,14 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": true,
-      "gap_pct": -0.8229239097326254,
+      "gap_pct": -0.7047642299107143,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "HDFCBANK.NS",
-      "date": "2026-10-06",
-      "close": 711.4500122070312,
+      "date": "2026-10-07",
+      "close": 702.75,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -42,14 +42,14 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.113505647960332,
+      "gap_pct": -0.4076216690286029,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ICICIBANK.NS",
-      "date": "2026-10-06",
-      "close": 1342.800048828125,
+      "date": "2026-10-07",
+      "close": 1357.5,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -57,44 +57,44 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.14264447553021772,
+      "gap_pct": 0.014890613986013731,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "INFY.NS",
-      "date": "2026-10-06",
-      "close": 1013.8499755859375,
+      "date": "2026-10-07",
+      "close": 992.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.2449779519843214,
+      "gapped_down_today": true,
+      "gap_pct": -0.7742738842007407,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "BHARTIARTL.NS",
-      "date": "2026-10-06",
-      "close": 1810.5,
+      "date": "2026-10-07",
+      "close": 1833.9000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": false,
+      "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": -0.16293187113232266,
+      "gap_pct": 0.6904170118751726,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ITC.NS",
-      "date": "2026-10-06",
-      "close": 266.70001220703125,
+      "date": "2026-10-07",
+      "close": 265.70001220703125,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -102,69 +102,59 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.03719081658072603,
+      "gap_pct": -0.37495311369679646,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "LT.NS",
-      "date": "2026-10-06",
-      "close": 3770.0,
+      "date": "2026-10-07",
+      "close": 3701.5,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.2,
+      "gapped_down_today": true,
+      "gap_pct": -0.5305039787798408,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "KOTAKBANK.NS",
-      "date": "2026-10-06",
-      "close": 431.8999938964844,
-      "hh_broken_today": true,
+      "date": "2026-10-07",
+      "close": 440.0,
+      "hh_broken_today": false,
       "ll_broken_today": false,
-      "structure_event": "CHoCH",
-      "structure_event_direction": "bullish",
+      "structure_event": null,
+      "structure_event_direction": null,
       "daily_trend": "bullish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 1.4423076923076923,
-      "next_target": {
-        "next_target": 432.45001220703125,
-        "next_target_pct": 0.12734853399389845,
-        "note": null
-      },
-      "intraday_bias": {
-        "per_timeframe_trend": {
-          "4h": "bullish",
-          "1h": "bullish"
-        },
-        "bias_timeframes_agree": true
-      }
+      "gap_pct": 0.03472884894745444,
+      "next_target": null,
+      "intraday_bias": null
     },
     {
       "symbol": "AXISBANK.NS",
-      "date": "2026-10-06",
-      "close": 1248.0,
+      "date": "2026-10-07",
+      "close": 1242.5,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.9654761331655125,
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.625003912510016,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "SBIN.NS",
-      "date": "2026-10-06",
-      "close": 958.75,
+      "date": "2026-10-07",
+      "close": 954.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -172,89 +162,99 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.4279723993671712,
+      "gap_pct": -0.3911342894393742,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "HINDUNILVR.NS",
-      "date": "2026-10-06",
-      "close": 1895.199951171875,
+      "date": "2026-10-07",
+      "close": 1865.4000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.5167536920060614,
+      "gap_pct": -0.3799045671894933,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "BAJFINANCE.NS",
-      "date": "2026-10-06",
-      "close": 963.0999755859375,
+      "date": "2026-10-07",
+      "close": 963.8499755859375,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": false,
+      "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": 0.6281849217620662,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ASIANPAINT.NS",
-      "date": "2026-10-06",
-      "close": 2424.199951171875,
+      "date": "2026-10-07",
+      "close": 2372.10009765625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.13102695081360946,
+      "gapped_down_today": true,
+      "gap_pct": -2.161533842058677,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "MARUTI.NS",
-      "date": "2026-10-06",
-      "close": 11625.0,
+      "date": "2026-10-07",
+      "close": 11450.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.40756156781130765,
+      "gapped_down_today": true,
+      "gap_pct": -0.5505376344086022,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "HCLTECH.NS",
-      "date": "2026-10-06",
-      "close": 1204.4000244140625,
+      "date": "2026-10-07",
+      "close": 1185.0,
       "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
+      "ll_broken_today": true,
+      "structure_event": "BOS",
+      "structure_event_direction": "bearish",
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.00831812828910117,
-      "next_target": null,
-      "intraday_bias": null
+      "gapped_down_today": true,
+      "gap_pct": -0.68914386083336,
+      "next_target": {
+        "next_target": 1154.0,
+        "next_target_pct": -2.6160337552742607,
+        "note": null
+      },
+      "intraday_bias": {
+        "per_timeframe_trend": {
+          "4h": "bearish",
+          "1h": "bearish"
+        },
+        "bias_timeframes_agree": true
+      }
     },
     {
       "symbol": "SUNPHARMA.NS",
-      "date": "2026-10-06",
-      "close": 1804.0999755859375,
+      "date": "2026-10-07",
+      "close": 1781.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -262,29 +262,29 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.2640867169086695,
+      "gap_pct": -0.3880051047462895,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "TITAN.NS",
-      "date": "2026-10-06",
-      "close": 4550.0,
+      "date": "2026-10-07",
+      "close": 4377.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.4344956843613537,
+      "gapped_down_today": true,
+      "gap_pct": -2.4395604395604393,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ULTRACEMCO.NS",
-      "date": "2026-10-06",
-      "close": 10750.0,
+      "date": "2026-10-07",
+      "close": 10658.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -292,59 +292,59 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": -0.18604651162790697,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "WIPRO.NS",
-      "date": "2026-10-06",
-      "close": 161.83999633789062,
+      "date": "2026-10-07",
+      "close": 159.60000610351562,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.11101065527248381,
+      "gapped_down_today": true,
+      "gap_pct": -0.7661828116865129,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "NESTLEIND.NS",
-      "date": "2026-10-06",
-      "close": 1341.4000244140625,
+      "date": "2026-10-07",
+      "close": 1324.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.5011178877760569,
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -1.1256877375213503,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "BAJAJFINSV.NS",
-      "date": "2026-10-06",
-      "close": 1752.4000244140625,
+      "date": "2026-10-07",
+      "close": 1743.300048828125,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.022840265415454114,
+      "gapped_down_today": true,
+      "gap_pct": -0.7076023876573848,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "POWERGRID.NS",
-      "date": "2026-10-06",
-      "close": 257.20001220703125,
+      "date": "2026-10-07",
+      "close": 253.0500030517578,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -352,44 +352,54 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": -0.23328385499167648,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "NTPC.NS",
-      "date": "2026-10-06",
-      "close": 321.45001220703125,
+      "date": "2026-10-07",
+      "close": 316.75,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.5282822472090829,
+      "gap_pct": -0.4044231641557981,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "TECHM.NS",
-      "date": "2026-10-06",
-      "close": 1504.5,
+      "date": "2026-10-07",
+      "close": 1491.0999755859375,
       "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
+      "ll_broken_today": true,
+      "structure_event": "BOS",
+      "structure_event_direction": "bearish",
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.006509250885365415,
-      "next_target": null,
-      "intraday_bias": null
+      "gap_pct": -0.03323363243602526,
+      "next_target": {
+        "next_target": 1479.4000244140625,
+        "next_target_pct": -0.7846523615747114,
+        "note": null
+      },
+      "intraday_bias": {
+        "per_timeframe_trend": {
+          "4h": "bearish",
+          "1h": "bearish"
+        },
+        "bias_timeframes_agree": true
+      }
     },
     {
       "symbol": "TMPV.NS",
-      "date": "2026-10-06",
-      "close": 285.79998779296875,
+      "date": "2026-10-07",
+      "close": 283.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -397,74 +407,84 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.08661008324485014,
+      "gap_pct": -0.06997260251739064,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "TATASTEEL.NS",
-      "date": "2026-10-06",
-      "close": 178.69000244140625,
+      "date": "2026-10-07",
+      "close": 175.63999938964844,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.061749528869682116,
+      "gapped_down_today": true,
+      "gap_pct": -0.5036706827336672,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "INDUSINDBK.NS",
-      "date": "2026-10-06",
-      "close": 906.0999755859375,
+      "date": "2026-10-07",
+      "close": 874.9000244140625,
+      "hh_broken_today": false,
+      "ll_broken_today": true,
+      "structure_event": "BOS",
+      "structure_event_direction": "bearish",
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.7780584905556159,
+      "next_target": {
+        "next_target": 870.2000122070312,
+        "next_target_pct": -0.5372056321725327,
+        "note": null
+      },
+      "intraday_bias": {
+        "per_timeframe_trend": {
+          "4h": "bearish",
+          "1h": "bearish"
+        },
+        "bias_timeframes_agree": true
+      }
+    },
+    {
+      "symbol": "JSWSTEEL.NS",
+      "date": "2026-10-07",
+      "close": 1230.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.06767150941336167,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "JSWSTEEL.NS",
-      "date": "2026-10-06",
-      "close": 1259.5999755859375,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.5342811725943513,
+      "gapped_down_today": true,
+      "gap_pct": -0.8415350739433469,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ADANIENT.NS",
-      "date": "2026-10-06",
-      "close": 2849.89990234375,
+      "date": "2026-10-07",
+      "close": 2743.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.17458100558659218,
+      "gapped_down_today": true,
+      "gap_pct": -0.8035335670883452,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ADANIPORTS.NS",
-      "date": "2026-10-06",
-      "close": 1783.4000244140625,
+      "date": "2026-10-07",
+      "close": 1750.0999755859375,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -472,209 +492,18 @@
       "daily_trend": "bullish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.050734183430806094,
+      "gap_pct": -0.050466771433302166,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "GRASIM.NS",
-      "date": "2026-10-06",
-      "close": 2969.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.5383580080753702,
-      "next_target": null,
-      "intraday_bias": null
+      "error": "502 Server Error: Bad Gateway for url: https://query1.finance.yahoo.com/v8/finance/chart/GRASIM.NS?range=10y&interval=1d"
     },
     {
       "symbol": "COALINDIA.NS",
-      "date": "2026-10-06",
-      "close": 411.6499938964844,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.22347251842235824,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "CIPLA.NS",
-      "date": "2026-10-06",
-      "close": 1340.199951171875,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.037439161362785474,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "DRREDDY.NS",
-      "date": "2026-10-06",
-      "close": 1208.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bullish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.3325020781379884,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "EICHERMOT.NS",
-      "date": "2026-10-06",
-      "close": 7051.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.619525742362743,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "BRITANNIA.NS",
-      "date": "2026-10-06",
-      "close": 4883.7998046875,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.20754512251048218,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "HEROMOTOCO.NS",
-      "date": "2026-10-06",
-      "close": 5075.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.10806562530700461,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "DIVISLAB.NS",
-      "date": "2026-10-06",
-      "close": 9550.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bullish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.15224010439321445,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "APOLLOHOSP.NS",
-      "date": "2026-10-06",
-      "close": 7914.5,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.18785222291797118,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "HINDALCO.NS",
-      "date": "2026-10-06",
-      "close": 940.5,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.740617113284343,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "SBILIFE.NS",
-      "date": "2026-10-06",
-      "close": 1750.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.6259111536633518,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "HDFCLIFE.NS",
-      "date": "2026-10-06",
-      "close": 543.9500122070312,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.4613958958627589,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "BAJAJ-AUTO.NS",
-      "date": "2026-10-06",
-      "close": 10017.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.25937749401436555,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "SHRIRAMFIN.NS",
-      "date": "2026-10-06",
-      "close": 965.0499877929688,
+      "date": "2026-10-07",
+      "close": 414.5,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -683,6 +512,186 @@
       "gapped_up_today": false,
       "gapped_down_today": false,
       "gap_pct": 0.0,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "CIPLA.NS",
+      "date": "2026-10-07",
+      "close": 1327.199951171875,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.12684310056783374,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "DRREDDY.NS",
+      "date": "2026-10-07",
+      "close": 1203.800048828125,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bullish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": 0.0,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "EICHERMOT.NS",
+      "date": "2026-10-07",
+      "close": 6960.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.6665721174301518,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "BRITANNIA.NS",
+      "date": "2026-10-07",
+      "close": 4780.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.2805132802147406,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "HEROMOTOCO.NS",
+      "date": "2026-10-07",
+      "close": 5004.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": 0.0,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "DIVISLAB.NS",
+      "date": "2026-10-07",
+      "close": 9588.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bullish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.518324607329843,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "APOLLOHOSP.NS",
+      "date": "2026-10-07",
+      "close": 7917.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.8149598837576599,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "HINDALCO.NS",
+      "date": "2026-10-07",
+      "close": 910.8499755859375,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -1.1057973858652312,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "SBILIFE.NS",
+      "date": "2026-10-07",
+      "close": 1726.0999755859375,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.8571428571428572,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "HDFCLIFE.NS",
+      "date": "2026-10-07",
+      "close": 546.0499877929688,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": 0.3492900700925272,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "BAJAJ-AUTO.NS",
+      "date": "2026-10-07",
+      "close": 9884.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.4692023559948088,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "SHRIRAMFIN.NS",
+      "date": "2026-10-07",
+      "close": 948.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.6269092657888979,
       "next_target": null,
       "intraday_bias": null
     },
@@ -692,19 +701,224 @@
     },
     {
       "symbol": "TRENT.NS",
-      "date": "2026-10-06",
-      "close": 2906.0,
+      "date": "2026-10-07",
+      "close": 2890.300048828125,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bullish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.3097040605643496,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "BEL.NS",
+      "date": "2026-10-07",
+      "close": 378.29998779296875,
+      "hh_broken_today": false,
+      "ll_broken_today": true,
+      "structure_event": "BOS",
+      "structure_event_direction": "bearish",
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.23231644570569066,
+      "next_target": {
+        "next_target": 361.20001220703125,
+        "next_target_pct": -4.52021573822935,
+        "note": null
+      },
+      "intraday_bias": {
+        "per_timeframe_trend": {
+          "4h": "bearish",
+          "1h": "bullish"
+        },
+        "bias_timeframes_agree": false
+      }
+    },
+    {
+      "symbol": "M&M.NS",
+      "date": "2026-10-07",
+      "close": 2800.0,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -1.099821448117338,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "ONGC.NS",
+      "date": "2026-10-07",
+      "close": 221.8800048828125,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.12934580289033593,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "TATACONSUM.NS",
+      "date": "2026-10-07",
+      "close": 968.5,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.819672131147541,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "TMCV.NS",
+      "date": "2026-10-07",
+      "close": 427.8999938964844,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.2996744650876223,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "TIPSMUSIC.NS",
+      "date": "2026-10-07",
+      "close": 639.9000244140625,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": 0.0,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "ICICIAMC.NS",
+      "date": "2026-10-07",
+      "close": 3058.5,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.37440989744424547,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "GILLETTE.NS",
+      "date": "2026-10-07",
+      "close": 7223.5,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": 0.042510982003684285,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "MCX.NS",
+      "date": "2026-10-07",
+      "close": 3362.60009765625,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bullish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.1510574018126888,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "JSLL.NS",
+      "date": "2026-10-07",
+      "close": 417.20001220703125,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": true,
+      "gapped_down_today": false,
+      "gap_pct": 0.8045298114376771,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "WEBELSOLAR.NS",
+      "date": "2026-10-07",
+      "close": 69.12999725341797,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.8886969372861396,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "HBLENGINE.NS",
+      "date": "2026-10-07",
+      "close": 762.4500122070312,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bullish",
+      "gapped_up_today": false,
+      "gapped_down_today": false,
+      "gap_pct": -0.03925000624885654,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "BSE.NS",
+      "date": "2026-10-07",
+      "close": 3356.0,
       "hh_broken_today": true,
       "ll_broken_today": false,
       "structure_event": "CHoCH",
       "structure_event_direction": "bullish",
       "daily_trend": "bullish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 8.527131782945736,
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -1.2102874432677762,
       "next_target": {
-        "next_target": 2998.666748046875,
-        "next_target_pct": 3.1888075721567377,
+        "next_target": 3452.699951171875,
+        "next_target_pct": 2.8814049812835307,
         "note": null
       },
       "intraday_bias": {
@@ -716,204 +930,9 @@
       }
     },
     {
-      "symbol": "BEL.NS",
-      "date": "2026-10-06",
-      "close": 387.3999938964844,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.4287368767874114,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "M&M.NS",
-      "date": "2026-10-06",
-      "close": 2855.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": -0.30095525484141883,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "ONGC.NS",
-      "date": "2026-10-06",
-      "close": 224.1999969482422,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.04446692140047599,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "TATACONSUM.NS",
-      "date": "2026-10-06",
-      "close": 976.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.0,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "TMCV.NS",
-      "date": "2026-10-06",
-      "close": 433.79998779296875,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.1171508936974335,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "TIPSMUSIC.NS",
-      "date": "2026-10-06",
-      "close": 653.0999755859375,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 1.3925871935611966,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "ICICIAMC.NS",
-      "date": "2026-10-06",
-      "close": 3071.5,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.032666928523149376,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "GILLETTE.NS",
-      "date": "2026-10-06",
-      "close": 7057.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.23642355638343604,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "MCX.NS",
-      "date": "2026-10-06",
-      "close": 3310.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bullish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.418017067361313,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "JSLL.NS",
-      "date": "2026-10-06",
-      "close": 441.25,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.23338926979147046,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "WEBELSOLAR.NS",
-      "date": "2026-10-06",
-      "close": 70.88999938964844,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 1.3811379299521567,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "HBLENGINE.NS",
-      "date": "2026-10-06",
-      "close": 764.2999877929688,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bullish",
-      "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.44526250952974955,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "BSE.NS",
-      "date": "2026-10-06",
-      "close": 3305.0,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.9246415096483764,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
       "symbol": "ANANDRATHI.NS",
-      "date": "2026-10-06",
-      "close": 2142.0,
+      "date": "2026-10-07",
+      "close": 2127.199951171875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -921,14 +940,14 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.09850364241322702,
+      "gap_pct": 0.32679738562091504,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "SBIFUNDS.NS",
-      "date": "2026-10-06",
-      "close": 502.8500061035156,
+      "date": "2026-10-07",
+      "close": 501.20001220703125,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -936,44 +955,44 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.3633464539208281,
+      "gap_pct": -0.17897859909722347,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "CRIZAC.NS",
-      "date": "2026-10-06",
-      "close": 168.85000610351562,
+      "date": "2026-10-07",
+      "close": 166.91000366210938,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 1.0164000233271542,
+      "gap_pct": -0.20136901651708503,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "FRONTSP.NS",
-      "date": "2026-10-06",
-      "close": 1392.5,
+      "date": "2026-10-07",
+      "close": 1431.199951171875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bullish",
-      "gapped_up_today": false,
+      "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": 0.6750466365574507,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "SIGMA.NS",
-      "date": "2026-10-06",
-      "close": 45.2400016784668,
+      "date": "2026-10-07",
+      "close": 45.709999084472656,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -981,29 +1000,29 @@
       "daily_trend": "bearish",
       "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 2.4412494869349888,
+      "gap_pct": 1.4809861717229251,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "CPEDU.NS",
-      "date": "2026-10-06",
-      "close": 181.2899932861328,
+      "date": "2026-10-07",
+      "close": 179.72000122070312,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
-      "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gapped_down_today": true,
+      "gap_pct": -2.366370701642561,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "EMMVEE.NS",
-      "date": "2026-10-06",
-      "close": 296.5,
+      "date": "2026-10-07",
+      "close": 305.79998779296875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1011,44 +1030,29 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.25316455696202533,
+      "gap_pct": -0.16863406408094433,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "NAM-INDIA.NS",
-      "date": "2026-10-06",
-      "close": 1073.5,
+      "date": "2026-10-07",
+      "close": 1047.199951171875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 0.6503321785167295,
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.6986492780624126,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "HINDCOPPER.NS",
-      "date": "2026-10-06",
-      "close": 485.5,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 1.096834861996341,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "TRAVELFOOD.NS",
-      "date": "2026-10-06",
-      "close": 1197.9000244140625,
+      "date": "2026-10-07",
+      "close": 479.95001220703125,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1056,29 +1060,44 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.3570579302316954,
+      "gap_pct": -0.22657180298983007,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "TRAVELFOOD.NS",
+      "date": "2026-10-07",
+      "close": 1189.5999755859375,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.5509621380269855,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "CALSOFT.NS",
-      "date": "2026-10-06",
-      "close": 33.439998626708984,
+      "date": "2026-10-07",
+      "close": 35.11000061035156,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bullish",
       "gapped_up_today": false,
-      "gapped_down_today": true,
-      "gap_pct": -0.9733757504076254,
+      "gapped_down_today": false,
+      "gap_pct": -0.3289377995561307,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "TEAMTECH-SM.NS",
-      "date": "2026-10-06",
-      "close": 151.8000030517578,
+      "date": "2026-10-07",
+      "close": 146.3000030517578,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1092,23 +1111,23 @@
     },
     {
       "symbol": "NATIONALUM.NS",
-      "date": "2026-10-06",
-      "close": 337.25,
+      "date": "2026-10-07",
+      "close": 321.29998779296875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 1.4558859432444853,
+      "gap_pct": 0.0,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "MANORAMA.NS",
-      "date": "2026-10-06",
-      "close": 1985.5999755859375,
+      "date": "2026-10-07",
+      "close": 1996.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1116,39 +1135,29 @@
       "daily_trend": "bearish",
       "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 0.776388266563298,
+      "gap_pct": 0.7151527707889477,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "THYROCARE.NS",
-      "date": "2026-10-06",
-      "close": 529.7999877929688,
+      "date": "2026-10-07",
+      "close": 513.0499877929688,
       "hh_broken_today": false,
-      "ll_broken_today": true,
-      "structure_event": "BOS",
-      "structure_event_direction": "bearish",
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.009221989501795248,
-      "next_target": {
-        "next_target": 505.5,
-        "next_target_pct": -4.586634268188117,
-        "note": null
-      },
-      "intraday_bias": {
-        "per_timeframe_trend": {
-          "4h": "bearish",
-          "1h": "bearish"
-        },
-        "bias_timeframes_agree": true
-      }
+      "gap_pct": 0.4907581504342678,
+      "next_target": null,
+      "intraday_bias": null
     },
     {
       "symbol": "AJANTPHARM.NS",
-      "date": "2026-10-06",
-      "close": 3573.39990234375,
+      "date": "2026-10-07",
+      "close": 3569.800048828125,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1156,14 +1165,14 @@
       "daily_trend": "bullish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.1749884582974756,
+      "gap_pct": 0.0,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "FOSECOIND.NS",
-      "date": "2026-10-06",
-      "close": 6440.0,
+      "date": "2026-10-07",
+      "close": 6373.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1171,14 +1180,14 @@
       "daily_trend": "bullish",
       "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 1.0475359098484247,
+      "gap_pct": 0.5900621118012422,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "SYSTANGO-SM.NS",
-      "date": "2026-10-06",
-      "close": 219.1999969482422,
+      "date": "2026-10-07",
+      "close": 218.64999389648438,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1192,23 +1201,23 @@
     },
     {
       "symbol": "GODFRYPHLP.NS",
-      "date": "2026-10-06",
-      "close": 1900.0,
+      "date": "2026-10-07",
+      "close": 1862.4000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
-      "gapped_down_today": false,
-      "gap_pct": 1.279317697228145,
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -0.5263157894736842,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "TAALTECH.NS",
-      "date": "2026-10-06",
-      "close": 1093.4000244140625,
+      "date": "2026-10-07",
+      "close": 1087.9000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1216,29 +1225,29 @@
       "daily_trend": null,
       "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 1.097129404442758,
+      "gap_pct": 1.5730703116722728,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ACUTAAS.NS",
-      "date": "2026-10-06",
-      "close": 3156.699951171875,
+      "date": "2026-10-07",
+      "close": 3174.199951171875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.5701123921113379,
+      "gap_pct": 0.10454109922293721,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ALGOQUANT.NS",
-      "date": "2026-10-06",
-      "close": 70.55999755859375,
+      "date": "2026-10-07",
+      "close": 70.19999694824219,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1252,8 +1261,8 @@
     },
     {
       "symbol": "PIDILITIND.NS",
-      "date": "2026-10-06",
-      "close": 1520.5,
+      "date": "2026-10-07",
+      "close": 1488.5,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1261,14 +1270,14 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": -0.12098721629954219,
+      "gap_pct": -0.36172311739559354,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "ANTHEM.NS",
-      "date": "2026-10-06",
-      "close": 890.3499755859375,
+      "date": "2026-10-07",
+      "close": 887.0499877929688,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1276,14 +1285,14 @@
       "daily_trend": "bullish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.12912026698133552,
+      "gap_pct": 0.18532312678243434,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "RPEL.NS",
-      "date": "2026-10-06",
-      "close": 1835.5999755859375,
+      "date": "2026-10-07",
+      "close": 1820.9000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1291,29 +1300,29 @@
       "daily_trend": "bearish",
       "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 1.4189394428810866,
+      "gap_pct": 1.3238205029049555,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "BLS.NS",
-      "date": "2026-10-06",
-      "close": 223.97000122070312,
+      "date": "2026-10-07",
+      "close": 220.83999633789062,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.5330215047436269,
+      "gap_pct": 0.013394105966590495,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "SJS.NS",
-      "date": "2026-10-06",
-      "close": 1981.4000244140625,
+      "date": "2026-10-07",
+      "close": 1982.5999755859375,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1321,29 +1330,39 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": -0.10598443323217897,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "BORORENEW.NS",
-      "date": "2026-10-06",
-      "close": 449.8500061035156,
+      "date": "2026-10-07",
+      "close": 438.1000061035156,
       "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
+      "ll_broken_today": true,
+      "structure_event": "BOS",
+      "structure_event_direction": "bearish",
       "daily_trend": "bearish",
-      "gapped_up_today": true,
+      "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.5195364195953867,
-      "next_target": null,
-      "intraday_bias": null
+      "gap_pct": -0.43348053363870137,
+      "next_target": {
+        "next_target": 436.3500061035156,
+        "next_target_pct": -0.3994521743025281,
+        "note": null
+      },
+      "intraday_bias": {
+        "per_timeframe_trend": {
+          "4h": "bearish",
+          "1h": "bearish"
+        },
+        "bias_timeframes_agree": true
+      }
     },
     {
       "symbol": "NEULANDLAB.NS",
-      "date": "2026-10-06",
-      "close": 21905.0,
+      "date": "2026-10-07",
+      "close": 21655.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1351,14 +1370,14 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.29714285714285715,
+      "gap_pct": -0.41086509929239895,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "UNIHEALTH-SM.NS",
-      "date": "2026-10-06",
-      "close": 550.0,
+      "date": "2026-10-07",
+      "close": 554.3499755859375,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1372,8 +1391,8 @@
     },
     {
       "symbol": "SANDUMA.NS",
-      "date": "2026-10-06",
-      "close": 183.3800048828125,
+      "date": "2026-10-07",
+      "close": 181.19000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1381,44 +1400,54 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": -0.2726578616461053,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "KPL.NS",
-      "date": "2026-10-06",
-      "close": 3745.0,
+      "date": "2026-10-07",
+      "close": 3681.199951171875,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
       "structure_event_direction": null,
       "daily_trend": "bullish",
-      "gapped_up_today": false,
+      "gapped_up_today": true,
       "gapped_down_today": false,
-      "gap_pct": 0.0,
+      "gap_pct": 1.038715683411215,
       "next_target": null,
       "intraday_bias": null
     },
     {
       "symbol": "KOVAI.NS",
-      "date": "2026-10-06",
-      "close": 5936.0,
+      "date": "2026-10-07",
+      "close": 5919.5,
       "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bullish",
-      "gapped_up_today": false,
-      "gapped_down_today": true,
-      "gap_pct": -0.6288780815025994,
-      "next_target": null,
-      "intraday_bias": null
+      "ll_broken_today": true,
+      "structure_event": "CHoCH",
+      "structure_event_direction": "bearish",
+      "daily_trend": "bearish",
+      "gapped_up_today": true,
+      "gapped_down_today": false,
+      "gap_pct": 0.6738544474393532,
+      "next_target": {
+        "next_target": 5751.0,
+        "next_target_pct": -2.8465241996790236,
+        "note": null
+      },
+      "intraday_bias": {
+        "per_timeframe_trend": {
+          "4h": "bearish",
+          "1h": "bearish"
+        },
+        "bias_timeframes_agree": true
+      }
     },
     {
       "symbol": "BHARTIHEXA.NS",
-      "date": "2026-10-06",
-      "close": 1386.800048828125,
+      "date": "2026-10-07",
+      "close": 1477.9000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1432,23 +1461,8 @@
     },
     {
       "symbol": "SEAMECLTD.NS",
-      "date": "2026-10-06",
-      "close": 1584.9000244140625,
-      "hh_broken_today": false,
-      "ll_broken_today": false,
-      "structure_event": null,
-      "structure_event_direction": null,
-      "daily_trend": "bearish",
-      "gapped_up_today": false,
-      "gapped_down_today": true,
-      "gap_pct": -1.514672922508987,
-      "next_target": null,
-      "intraday_bias": null
-    },
-    {
-      "symbol": "AGARWALEYE.NS",
-      "date": "2026-10-06",
-      "close": 486.8500061035156,
+      "date": "2026-10-07",
+      "close": 1610.9000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1456,19 +1470,28 @@
       "daily_trend": "bearish",
       "gapped_up_today": false,
       "gapped_down_today": false,
-      "gap_pct": 0.15487867836861124,
+      "gap_pct": -0.3091693064913693,
+      "next_target": null,
+      "intraday_bias": null
+    },
+    {
+      "symbol": "AGARWALEYE.NS",
+      "date": "2026-10-07",
+      "close": 483.25,
+      "hh_broken_today": false,
+      "ll_broken_today": false,
+      "structure_event": null,
+      "structure_event_direction": null,
+      "daily_trend": "bearish",
+      "gapped_up_today": false,
+      "gapped_down_today": true,
+      "gap_pct": -1.355654928781558,
       "next_target": null,
       "intraday_bias": null
     }
   ],
-  "flagged_count": 3,
-  "entry_exit_events": [
-    {
-      "symbol": "ACUTAAS.NS",
-      "type": "exit_trend",
-      "message": "\ud83d\udce4 ACUTAAS.NS: trend reversed \u2014 exited at 3156.70 (entry was 3488.00, -9.5%)."
-    }
-  ],
+  "flagged_count": 7,
+  "entry_exit_events": [],
   "positions": {
     "RELIANCE.NS": {
       "state": "FLAT",
@@ -2434,717 +2457,705 @@
   "liquidity_by_symbol": {
     "RELIANCE.NS": {
       "t1": {
-        "price": 1219.699951171875,
-        "label": "previous week's high",
-        "pct": 0.1395690617302936
-      },
-      "t2": {
         "price": 1333.0,
         "label": "prior swing high",
-        "pct": 9.44170771756978
+        "pct": 10.3750976148125
+      },
+      "t2": {
+        "price": 1337.0,
+        "label": "prior swing high",
+        "pct": 10.706305709680652
       }
     },
     "TCS.NS": {
       "t1": {
         "price": 2323.0,
         "label": "prior swing high",
-        "pct": 10.619047619047617
+        "pct": 11.666583929015095
       },
       "t2": {
         "price": 2372.0,
         "label": "previous month's high",
-        "pct": 12.95238095238096
+        "pct": 14.022013379089016
       }
     },
     "HDFCBANK.NS": {
       "t1": {
         "price": 749.2999877929688,
         "label": "prior swing high",
-        "pct": 5.32011735701865
+        "pct": 6.623975495264145
       },
       "t2": {
         "price": 757.9000244140625,
         "label": "prior swing high",
-        "pct": 6.528921415425359
+        "pct": 7.847744491506581
       }
     },
     "ICICIBANK.NS": {
       "t1": {
         "price": 1452.0,
         "label": "previous month's high",
-        "pct": 8.13225701527005
+        "pct": 6.96132596685084
       },
       "t2": {
         "price": 1454.0,
         "label": "prior swing high",
-        "pct": 8.281199518045913
+        "pct": 7.108655616942916
       }
     },
     "INFY.NS": {
       "t1": {
         "price": 1097.699951171875,
         "label": "prior swing high",
-        "pct": 8.27045200030485
+        "pct": 10.65523701329385
       },
       "t2": {
         "price": 1156.0,
         "label": "prior swing high",
-        "pct": 14.020814502846868
+        "pct": 16.532258064516125
       }
     },
     "BHARTIARTL.NS": {
       "t1": {
         "price": 1893.300048828125,
         "label": "prior swing high",
-        "pct": 4.573324983602589
+        "pct": 3.2390001430443904
       },
       "t2": {
         "price": 2005.800048828125,
         "label": "prior swing high",
-        "pct": 10.787078090479142
+        "pct": 9.37346758959694
       }
     },
     "ITC.NS": {
       "t1": {
         "price": 271.04998779296875,
         "label": "prior swing high",
-        "pct": 1.6310368904523198
+        "pct": 2.0135398344539146
       },
       "t2": {
         "price": 273.95001220703125,
         "label": "prior swing high",
-        "pct": 2.7184100743017803
+        "pct": 3.1050055028118306
       }
     },
     "LT.NS": {
       "t1": {
         "price": 3858.199951171875,
         "label": "previous week's high",
-        "pct": 2.3395212512433705
+        "pct": 4.233417565091857
       },
       "t2": {
         "price": 3945.0,
         "label": "prior swing high",
-        "pct": 4.641909814323597
+        "pct": 6.5784141564230625
       }
     },
     "KOTAKBANK.NS": {
       "t1": {
-        "price": 435.6000061035156,
-        "label": "previous week's high",
-        "pct": 0.8566826254501114
-      },
-      "t2": {
         "price": 445.6000061035156,
         "label": "prior swing high",
-        "pct": 3.172033433812649
+        "pct": 1.2727286598899212
+      },
+      "t2": {
+        "price": 453.20001220703125,
+        "label": "prior swing high",
+        "pct": 3.0000027743252833
       }
     },
     "AXISBANK.NS": {
       "t1": {
-        "price": 1257.5999755859375,
-        "label": "prior swing high",
-        "pct": 0.7692288129757641
-      },
-      "t2": {
         "price": 1280.699951171875,
         "label": "previous month's high",
-        "pct": 2.620188395182299
+        "pct": 3.074442750251505
+      },
+      "t2": {
+        "price": 1300.0,
+        "label": "prior swing high",
+        "pct": 4.6277665995975825
       }
     },
     "SBIN.NS": {
       "t1": {
         "price": 982.5,
         "label": "previous week's high",
-        "pct": 2.4771838331160367
+        "pct": 2.9874213836478036
       },
       "t2": {
         "price": 1051.300048828125,
         "label": "previous month's high",
-        "pct": 9.653199356258146
+        "pct": 10.19916654382862
       }
     },
     "HINDUNILVR.NS": {
       "t1": {
         "price": 1933.199951171875,
         "label": "previous week's high",
-        "pct": 2.0050654801095247
+        "pct": 3.634605225177312
       },
       "t2": {
         "price": 2003.0,
         "label": "previous month's high",
-        "pct": 5.688056754194615
+        "pct": 7.376432603465788
       }
     },
     "BAJFINANCE.NS": {
       "t1": {
         "price": 1043.199951171875,
         "label": "prior swing high",
-        "pct": 8.316891041057882
+        "pct": 8.23260648398103
       },
       "t2": {
         "price": 1070.0,
         "label": "previous month's high",
-        "pct": 11.09957710766485
+        "pct": 11.013127260757827
       }
     },
     "ASIANPAINT.NS": {
       "t1": {
         "price": 2441.60009765625,
         "label": "previous week's high",
-        "pct": 0.7177686178882814
+        "pct": 2.9298932228310814
       },
       "t2": {
         "price": 2475.10009765625,
         "label": "prior swing high",
-        "pct": 2.0996678289581405
+        "pct": 4.342143912972696
       }
     },
     "MARUTI.NS": {
       "t1": {
         "price": 12116.0,
         "label": "previous week's high",
-        "pct": 4.223655913978486
+        "pct": 5.816593886462873
       },
       "t2": {
         "price": 13540.0,
         "label": "previous month's high",
-        "pct": 16.4731182795699
+        "pct": 18.253275109170296
       }
     },
     "HCLTECH.NS": {
       "t1": {
         "price": 1267.300048828125,
         "label": "previous week's high",
-        "pct": 5.222519357276112
+        "pct": 6.9451517998417645
       },
       "t2": {
         "price": 1368.0,
         "label": "prior swing high",
-        "pct": 13.583524764998934
+        "pct": 15.443037974683538
       }
     },
     "SUNPHARMA.NS": {
       "t1": {
         "price": 1865.0,
         "label": "previous week's high",
-        "pct": 3.3756457645471194
+        "pct": 4.7164514317799
       },
       "t2": {
         "price": 1891.5,
         "label": "prior swing high",
-        "pct": 4.844522232515236
+        "pct": 6.204379562043805
       }
     },
     "TITAN.NS": {
       "t1": {
         "price": 4881.0,
         "label": "previous week's high",
-        "pct": 7.27472527472528
+        "pct": 11.514736120630564
       },
       "t2": {
         "price": 5126.5,
         "label": "previous month's high",
-        "pct": 12.67032967032966
+        "pct": 17.12360063970757
       }
     },
     "ULTRACEMCO.NS": {
       "t1": {
         "price": 11155.0,
         "label": "previous week's high",
-        "pct": 3.767441860465115
+        "pct": 4.6631638206042325
       },
       "t2": {
         "price": 11198.0,
         "label": "prior swing high",
-        "pct": 4.167441860465115
+        "pct": 5.066616626008624
       }
     },
     "WIPRO.NS": {
       "t1": {
         "price": 164.4499969482422,
         "label": "previous week's high",
-        "pct": 1.6127043187163626
+        "pct": 3.038841265194492
       },
       "t2": {
         "price": 173.35000610351562,
         "label": "prior swing high",
-        "pct": 7.111968627084209
+        "pct": 8.615287891080548
       }
     },
     "NESTLEIND.NS": {
       "t1": {
         "price": 1356.800048828125,
         "label": "previous week's high",
-        "pct": 1.1480560708047927
+        "pct": 2.477345077652937
       },
       "t2": {
         "price": 1514.800048828125,
         "label": "prior swing high",
-        "pct": 12.926794487707372
+        "pct": 14.41087982085536
       }
     },
     "BAJAJFINSV.NS": {
       "t1": {
         "price": 1769.0,
         "label": "previous week's high",
-        "pct": 0.9472709058816697
+        "pct": 1.474212725982027
       },
       "t2": {
         "price": 2004.0999755859375,
         "label": "previous month's high",
-        "pct": 14.363156109635078
+        "pct": 14.960128460566867
       }
     },
     "POWERGRID.NS": {
       "t1": {
         "price": 269.8999938964844,
         "label": "previous week's high",
-        "pct": 4.937784248326693
+        "pct": 6.658759392024249
       },
       "t2": {
         "price": 270.8999938964844,
         "label": "prior swing high",
-        "pct": 5.3265867182095805
+        "pct": 7.053938205673771
       }
     },
     "NTPC.NS": {
       "t1": {
         "price": 326.6000061035156,
         "label": "previous week's high",
-        "pct": 1.6021134549428773
+        "pct": 3.1097098985053195
       },
       "t2": {
         "price": 337.5,
         "label": "prior swing high",
-        "pct": 4.992996479537126
+        "pct": 6.550907655880023
       }
     },
     "TECHM.NS": {
       "t1": {
         "price": 1576.199951171875,
         "label": "prior swing high",
-        "pct": 4.7656996458540934
+        "pct": 5.7071944859027335
       },
       "t2": {
         "price": 1633.199951171875,
         "label": "prior swing high",
-        "pct": 8.554333743560981
+        "pct": 9.529875790528287
       }
     },
     "TMPV.NS": {
       "t1": {
         "price": 291.20001220703125,
         "label": "previous week's high",
-        "pct": 1.8894417931096141
+        "pct": 2.8975308152053847
       },
       "t2": {
         "price": 320.1499938964844,
         "label": "prior swing high",
-        "pct": 12.01889698063896
+        "pct": 13.127206323846075
       }
     },
     "TATASTEEL.NS": {
       "t1": {
         "price": 189.5500030517578,
         "label": "previous week's high",
-        "pct": 6.077564755707376
+        "pct": 7.919610402212962
       },
       "t2": {
         "price": 191.8000030517578,
         "label": "prior swing high",
-        "pct": 7.336728653664015
+        "pct": 9.200639784938303
       }
     },
     "INDUSINDBK.NS": {
       "t1": {
         "price": 913.0,
         "label": "previous week's high",
-        "pct": 0.7615080675397401
+        "pct": 4.354780491800048
       },
       "t2": {
         "price": 970.7999877929688,
         "label": "prior swing high",
-        "pct": 7.140493759001854
+        "pct": 10.961248222976373
       }
     },
     "JSWSTEEL.NS": {
       "t1": {
         "price": 1278.4000244140625,
         "label": "previous week's high",
-        "pct": 1.492541218840504
+        "pct": 3.9349613344766166
       },
       "t2": {
         "price": 1304.0,
         "label": "prior swing high",
-        "pct": 3.524930555306538
+        "pct": 6.016260162601617
       }
     },
     "ADANIENT.NS": {
       "t1": {
         "price": 2972.89990234375,
         "label": "previous week's high",
-        "pct": 4.315941058099804
+        "pct": 8.381330745306226
       },
       "t2": {
         "price": 3142.0,
         "label": "prior swing high",
-        "pct": 10.249486215850157
+        "pct": 14.546117389719292
       }
     },
     "ADANIPORTS.NS": {
       "t1": {
         "price": 1822.0,
         "label": "prior swing high",
-        "pct": 2.1644036703778458
+        "pct": 4.108338118797472
       },
       "t2": {
         "price": 1824.0,
         "label": "prior swing high",
-        "pct": 2.276549009203732
-      }
-    },
-    "GRASIM.NS": {
-      "t1": {
-        "price": 3186.0,
-        "label": "previous week's high",
-        "pct": 7.308858201414625
-      },
-      "t2": {
-        "price": 3337.0,
-        "label": "previous month's high",
-        "pct": 12.3947457056248
+        "pct": 4.222617304438314
       }
     },
     "COALINDIA.NS": {
       "t1": {
         "price": 432.8999938964844,
-        "label": "previous week's high",
-        "pct": 5.162152390397856
+        "label": "prior swing high",
+        "pct": 4.439081760309871
       },
       "t2": {
         "price": 436.29998779296875,
         "label": "prior swing high",
-        "pct": 5.988095290166084
+        "pct": 5.259345667784987
       }
     },
     "CIPLA.NS": {
       "t1": {
         "price": 1405.0,
         "label": "previous week's high",
-        "pct": 4.83510305842525
+        "pct": 5.861968933876915
       },
       "t2": {
         "price": 1421.0,
         "label": "prior swing high",
-        "pct": 6.028954765852146
+        "pct": 7.067514487572324
       }
     },
     "DRREDDY.NS": {
       "t1": {
         "price": 1252.800048828125,
-        "label": "previous week's high",
-        "pct": 3.7086133135865174
+        "label": "prior swing high",
+        "pct": 4.0704434301776615
       },
       "t2": {
         "price": 1414.9000244140625,
         "label": "prior swing high",
-        "pct": 17.12748546474028
+        "pct": 17.536132831315232
       }
     },
     "EICHERMOT.NS": {
       "t1": {
         "price": 7323.0,
         "label": "previous week's high",
-        "pct": 3.857608849808547
+        "pct": 5.215517241379319
       },
       "t2": {
         "price": 8052.0,
         "label": "previous month's high",
-        "pct": 14.196567862714504
+        "pct": 15.689655172413786
       }
     },
     "BRITANNIA.NS": {
       "t1": {
         "price": 4933.0,
         "label": "previous week's high",
-        "pct": 1.0074163004240466
+        "pct": 3.2008368200836745
       },
       "t2": {
         "price": 5256.0,
         "label": "previous month's high",
-        "pct": 7.6211190097362325
+        "pct": 9.958158995815891
       }
     },
     "HEROMOTOCO.NS": {
       "t1": {
         "price": 5390.5,
         "label": "previous week's high",
-        "pct": 6.216748768472913
+        "pct": 7.723820943245396
       },
       "t2": {
         "price": 5448.5,
         "label": "prior swing high",
-        "pct": 7.359605911330047
+        "pct": 8.88289368505195
       }
     },
     "DIVISLAB.NS": {
       "t1": {
-        "price": 9655.0,
-        "label": "previous week's high",
-        "pct": 1.099476439790581
-      },
-      "t2": {
         "price": 9740.0,
         "label": "prior swing high",
-        "pct": 1.9895287958115127
+        "pct": 1.5853149770546526
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
       }
     },
     "APOLLOHOSP.NS": {
       "t1": {
         "price": 8906.0,
         "label": "previous week's high",
-        "pct": 12.527639143344494
+        "pct": 12.49210559555387
       },
       "t2": {
         "price": 9070.5,
         "label": "prior swing high",
-        "pct": 14.606102722850455
+        "pct": 14.569912845774912
       }
     },
     "HINDALCO.NS": {
       "t1": {
         "price": 972.9000244140625,
         "label": "previous week's high",
-        "pct": 3.4449786724149334
+        "pct": 6.812323707667556
       },
       "t2": {
         "price": 1003.7999877929688,
         "label": "prior swing high",
-        "pct": 6.730461222006245
+        "pct": 10.20475541509871
       }
     },
     "SBILIFE.NS": {
       "t1": {
         "price": 1791.4000244140625,
         "label": "prior swing high",
-        "pct": 2.3657156808035706
+        "pct": 3.7830977203946903
       },
       "t2": {
         "price": 1801.699951171875,
         "label": "prior swing high",
-        "pct": 2.9542829241071322
+        "pct": 4.379814417196459
       }
     },
     "HDFCLIFE.NS": {
       "t1": {
         "price": 567.4000244140625,
         "label": "prior swing high",
-        "pct": 4.3110601490539135
+        "pct": 3.9099051549083663
       },
       "t2": {
         "price": 588.0,
         "label": "prior swing high",
-        "pct": 8.09816836187569
+        "pct": 7.682449069651165
       }
     },
     "BAJAJ-AUTO.NS": {
       "t1": {
         "price": 11270.0,
         "label": "previous week's high",
-        "pct": 12.508735150244576
+        "pct": 14.022662889518411
       },
       "t2": {
         "price": 12470.0,
         "label": "prior swing high",
-        "pct": 24.48836977138864
+        "pct": 26.163496560097133
       }
     },
     "SHRIRAMFIN.NS": {
       "t1": {
         "price": 991.2999877929688,
         "label": "previous week's high",
-        "pct": 2.7200663522138013
+        "pct": 4.567509260861691
       },
       "t2": {
         "price": 1044.9000244140625,
         "label": "prior swing high",
-        "pct": 8.274186584231513
+        "pct": 10.221521562664826
       }
     },
     "TRENT.NS": {
       "t1": {
         "price": 3244.5,
         "label": "prior swing high",
-        "pct": 11.648313833448043
+        "pct": 12.25478134408522
       },
       "t2": {
         "price": 3399.699951171875,
         "label": "prior swing high",
-        "pct": 16.98898661981676
+        "pct": 17.62446437179721
       }
     },
     "BEL.NS": {
       "t1": {
         "price": 393.45001220703125,
         "label": "previous week's high",
-        "pct": 1.5616980913436551
+        "pct": 4.004764711320474
       },
       "t2": {
         "price": 416.0,
         "label": "prior swing high",
-        "pct": 7.38255202739051
+        "pct": 9.965639287216476
       }
     },
     "M&M.NS": {
       "t1": {
         "price": 3019.89990234375,
         "label": "previous week's high",
-        "pct": 5.775828453371279
+        "pct": 7.853567940848216
       },
       "t2": {
         "price": 3368.0,
         "label": "previous month's high",
-        "pct": 17.96847635726795
+        "pct": 20.285714285714285
       }
     },
     "ONGC.NS": {
       "t1": {
         "price": 235.85000610351562,
         "label": "previous week's high",
-        "pct": 5.196257499487356
+        "pct": 6.29619655366489
       },
       "t2": {
         "price": 239.0,
         "label": "prior swing high",
-        "pct": 6.6012503359554
+        "pct": 7.715880088532323
       }
     },
     "TATACONSUM.NS": {
       "t1": {
         "price": 983.5999755859375,
         "label": "previous week's high",
-        "pct": 0.7786860231493442
+        "pct": 1.5591095080988548
       },
       "t2": {
         "price": 1020.2999877929688,
         "label": "prior swing high",
-        "pct": 4.538933175509086
+        "pct": 5.348475765923455
       }
     },
     "TMCV.NS": {
       "t1": {
         "price": 441.5,
         "label": "previous week's high",
-        "pct": 1.7750143899741389
+        "pct": 3.1783141616042343
       },
       "t2": {
         "price": 456.04998779296875,
         "label": "prior swing high",
-        "pct": 5.129091891680471
+        "pct": 6.5786385365769195
       }
     },
     "TIPSMUSIC.NS": {
       "t1": {
         "price": 670.4000244140625,
         "label": "previous week's high",
-        "pct": 2.6489127966363935
+        "pct": 4.766369563421713
       },
       "t2": {
         "price": 682.5,
         "label": "prior swing high",
-        "pct": 4.501611623501578
+        "pct": 6.657286132305584
       }
     },
     "ICICIAMC.NS": {
       "t1": {
         "price": 3265.0,
-        "label": "previous week's high",
-        "pct": 6.2998534917792615
+        "label": "prior swing high",
+        "pct": 6.7516756580022985
       },
       "t2": {
         "price": 3287.0,
         "label": "prior swing high",
-        "pct": 7.016115904281306
+        "pct": 7.470982507765234
       }
     },
     "GILLETTE.NS": {
       "t1": {
         "price": 7564.0,
         "label": "prior swing high",
-        "pct": 7.184355958622635
+        "pct": 4.713781407904749
       },
       "t2": {
         "price": 8100.0,
         "label": "prior swing high",
-        "pct": 14.779651409947569
+        "pct": 12.134007060289331
       }
     },
     "MCX.NS": {
       "t1": {
-        "price": 3345.0,
-        "label": "previous week's high",
-        "pct": 1.0574018126888296
-      },
-      "t2": {
         "price": 3481.39990234375,
         "label": "prior swing high",
-        "pct": 5.178244783799091
+        "pct": 3.532974520827037
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
       }
     },
     "JSLL.NS": {
       "t1": {
         "price": 515.8499755859375,
         "label": "previous week's high",
-        "pct": 16.906510047804524
+        "pct": 23.64572399148259
       },
       "t2": {
         "price": 530.75,
         "label": "prior swing high",
-        "pct": 20.283286118980158
+        "pct": 27.217158310297627
       }
     },
     "WEBELSOLAR.NS": {
       "t1": {
         "price": 73.1500015258789,
         "label": "previous week's high",
-        "pct": 3.188040845942619
+        "pct": 5.815137324140673
       },
       "t2": {
         "price": 76.77999877929688,
         "label": "prior swing high",
-        "pct": 8.30864641043927
+        "pct": 11.06610998093258
       }
     },
     "HBLENGINE.NS": {
       "t1": {
         "price": 829.9000244140625,
         "label": "prior swing high",
-        "pct": 8.583022068405842
+        "pct": 8.846483195899824
       },
       "t2": {
         "price": 844.9000244140625,
         "label": "prior swing high",
-        "pct": 10.545602238440232
+        "pct": 10.813825285196966
       }
     },
     "BSE.NS": {
       "t1": {
-        "price": 3308.0,
-        "label": "prior swing high",
-        "pct": 0.0907715582450841
-      },
-      "t2": {
         "price": 3452.699951171875,
         "label": "prior swing high",
-        "pct": 4.468984906864604
+        "pct": 2.8814049812835307
+      },
+      "t2": {
+        "price": 3474.5,
+        "label": "prior swing high",
+        "pct": 3.530989272943974
       }
     },
     "ANANDRATHI.NS": {
       "t1": {
         "price": 2268.39990234375,
         "label": "prior swing high",
-        "pct": 5.9010225183823595
+        "pct": 6.637831629043056
       },
       "t2": {
         "price": null,
@@ -3156,120 +3167,120 @@
       "t1": {
         "price": 531.1500244140625,
         "label": "previous week's high",
-        "pct": 5.627924424191244
+        "pct": 5.975660709812547
       },
       "t2": {
         "price": 567.9500122070312,
         "label": "prior swing high",
-        "pct": 12.946207678898647
+        "pct": 13.31803638752258
       }
     },
     "CRIZAC.NS": {
       "t1": {
         "price": 184.0,
         "label": "previous week's high",
-        "pct": 8.972456824903219
+        "pct": 10.239048566847675
       },
       "t2": {
         "price": 192.88999938964844,
         "label": "prior swing high",
-        "pct": 14.237484404587342
+        "pct": 15.565271797688451
       }
     },
     "FRONTSP.NS": {
       "t1": {
         "price": 1544.0,
         "label": "previous week's high",
-        "pct": 10.879712746858171
+        "pct": 7.881501724183515
       },
       "t2": {
         "price": 1569.800048828125,
         "label": "prior swing high",
-        "pct": 12.732499018177744
+        "pct": 9.684188260540626
       }
     },
     "SIGMA.NS": {
       "t1": {
-        "price": 47.0,
-        "label": "previous week's high",
-        "pct": 3.8903586565756543
-      },
-      "t2": {
         "price": 47.900001525878906,
         "label": "prior swing high",
-        "pct": 5.879751876044259
+        "pct": 4.791079600240411
+      },
+      "t2": {
+        "price": 49.369998931884766,
+        "label": "previous month's high",
+        "pct": 8.007000482866733
       }
     },
     "CPEDU.NS": {
       "t1": {
         "price": 184.8000030517578,
-        "label": "previous week's high",
-        "pct": 1.9361298999471588
+        "label": "prior swing high",
+        "pct": 2.8266201850378536
       },
       "t2": {
         "price": 184.82000732421875,
         "label": "prior swing high",
-        "pct": 1.9471643051552467
+        "pct": 2.83775098423944
       }
     },
     "EMMVEE.NS": {
       "t1": {
         "price": 322.6000061035156,
         "label": "previous week's high",
-        "pct": 8.802700203546587
+        "pct": 5.493792995806368
       },
       "t2": {
         "price": 354.79998779296875,
         "label": "prior swing high",
-        "pct": 19.66272775479554
+        "pct": 16.023545440156695
       }
     },
     "NAM-INDIA.NS": {
       "t1": {
         "price": 1155.0,
         "label": "previous week's high",
-        "pct": 7.591988821611562
+        "pct": 10.294122789777704
       },
       "t2": {
         "price": 1175.800048828125,
         "label": "prior swing high",
-        "pct": 9.529580701269214
+        "pct": 12.28037659019554
       }
     },
     "HINDCOPPER.NS": {
       "t1": {
         "price": 521.7000122070312,
         "label": "prior swing high",
-        "pct": 7.4562332043318635
+        "pct": 8.698822572795507
       },
       "t2": {
         "price": 545.0,
         "label": "prior swing high",
-        "pct": 12.255406797116365
+        "pct": 13.553492267629895
       }
     },
     "TRAVELFOOD.NS": {
       "t1": {
         "price": 1222.0999755859375,
         "label": "previous week's high",
-        "pct": 2.020197902885257
+        "pct": 2.7320108159881284
       },
       "t2": {
         "price": 1312.4000244140625,
         "label": "previous month's high",
-        "pct": 9.558393661107578
+        "pct": 10.322801895455648
       }
     },
     "CALSOFT.NS": {
       "t1": {
         "price": 36.86000061035156,
         "label": "previous week's high",
-        "pct": 10.227279079225138
+        "pct": 4.984334860660877
       },
       "t2": {
         "price": 41.13999938964844,
         "label": "prior swing high",
-        "pct": 23.02631901662029
+        "pct": 17.17459035736684
       }
     },
     "TEAMTECH-SM.NS": {
@@ -3288,19 +3299,19 @@
       "t1": {
         "price": 354.75,
         "label": "previous week's high",
-        "pct": 5.189028910303928
+        "pct": 10.410835193864031
       },
       "t2": {
         "price": 363.95001220703125,
         "label": "prior swing high",
-        "pct": 7.916979157014459
+        "pct": 13.274206671163725
       }
     },
     "MANORAMA.NS": {
       "t1": {
         "price": 2149.5,
         "label": "prior swing high",
-        "pct": 8.254433240798997
+        "pct": 7.690380761523041
       },
       "t2": {
         "price": null,
@@ -3312,36 +3323,36 @@
       "t1": {
         "price": 564.1500244140625,
         "label": "previous week's high",
-        "pct": 6.4835857705827005
+        "pct": 9.960050255710007
       },
       "t2": {
         "price": 594.0,
         "label": "prior swing high",
-        "pct": 12.117782877737415
+        "pct": 15.778192015023883
       }
     },
     "AJANTPHARM.NS": {
       "t1": {
         "price": 3758.89990234375,
         "label": "previous week's high",
-        "pct": 5.191134635626216
+        "pct": 5.297211354392295
       },
       "t2": {
         "price": 3796.0,
         "label": "prior swing high",
-        "pct": 6.229364295618001
+        "pct": 6.336487984701855
       }
     },
     "FOSECOIND.NS": {
       "t1": {
         "price": 6640.0,
         "label": "previous week's high",
-        "pct": 3.105590062111796
+        "pct": 4.189549662639269
       },
       "t2": {
         "price": 7389.5,
         "label": "prior swing high",
-        "pct": 14.74378881987577
+        "pct": 15.95010199278204
       }
     },
     "SYSTANGO-SM.NS": {
@@ -3360,19 +3371,19 @@
       "t1": {
         "price": 1993.4000244140625,
         "label": "previous week's high",
-        "pct": 4.915790758634864
+        "pct": 7.033934615696458
       },
       "t2": {
         "price": 2019.0999755859375,
         "label": "prior swing high",
-        "pct": 6.268419767680911
+        "pct": 8.413871838364862
       }
     },
     "TAALTECH.NS": {
       "t1": {
         "price": 1234.0,
         "label": "prior swing high",
-        "pct": 12.85896949392178
+        "pct": 13.429540611015822
       },
       "t2": {
         "price": null,
@@ -3384,43 +3395,43 @@
       "t1": {
         "price": 3344.0,
         "label": "previous week's high",
-        "pct": 5.933413112595409
+        "pct": 5.349380991749975
       },
       "t2": {
         "price": 3509.89990234375,
         "label": "prior swing high",
-        "pct": 11.188898426686222
+        "pct": 10.575891762834244
       }
     },
     "ALGOQUANT.NS": {
       "t1": {
-        "price": 72.27999877929688,
-        "label": "previous week's high",
-        "pct": 2.437643537720957
-      },
-      "t2": {
         "price": 76.19999694824219,
         "label": "prior swing high",
-        "pct": 7.993196690468873
+        "pct": 8.547008918566966
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
       }
     },
     "PIDILITIND.NS": {
       "t1": {
         "price": 1598.9000244140625,
         "label": "prior swing high",
-        "pct": 5.156200224535512
+        "pct": 7.416864253548039
       },
       "t2": {
         "price": 1675.5,
         "label": "previous month's high",
-        "pct": 10.194015126603095
+        "pct": 12.562982868659734
       }
     },
     "ANTHEM.NS": {
       "t1": {
         "price": 977.5499877929688,
         "label": "prior swing high",
-        "pct": 9.7939029143731
+        "pct": 10.202356264630485
       },
       "t2": {
         "price": null,
@@ -3430,57 +3441,57 @@
     },
     "RPEL.NS": {
       "t1": {
-        "price": 1888.0,
-        "label": "previous week's high",
-        "pct": 2.8546537977227837
-      },
-      "t2": {
         "price": 1943.699951171875,
         "label": "prior swing high",
-        "pct": 5.889081337094226
+        "pct": 6.743913730097706
+      },
+      "t2": {
+        "price": null,
+        "label": null,
+        "pct": null
       }
     },
     "BLS.NS": {
       "t1": {
         "price": 242.14999389648438,
         "label": "prior swing high",
-        "pct": 8.117155233600437
+        "pct": 9.649519068995517
       },
       "t2": {
         "price": 244.07000732421875,
         "label": "prior swing high",
-        "pct": 8.974418892693038
+        "pct": 10.51893287970611
       }
     },
     "SJS.NS": {
       "t1": {
         "price": 2377.10009765625,
         "label": "prior swing high",
-        "pct": 19.970731218659576
+        "pct": 19.898119990328446
       },
       "t2": {
         "price": 2460.0,
         "label": "prior swing high",
-        "pct": 24.154636604865722
+        "pct": 24.079493104652737
       }
     },
     "BORORENEW.NS": {
       "t1": {
         "price": 470.79998779296875,
         "label": "previous week's high",
-        "pct": 4.657103791309569
+        "pct": 7.464045020288501
       },
       "t2": {
         "price": 517.9500122070312,
         "label": "prior swing high",
-        "pct": 15.138380611213108
+        "pct": 18.22643346063968
       }
     },
     "NEULANDLAB.NS": {
       "t1": {
         "price": 24225.0,
         "label": "prior swing high",
-        "pct": 10.591189226204056
+        "pct": 11.867928884784117
       },
       "t2": {
         "price": null,
@@ -3504,19 +3515,19 @@
       "t1": {
         "price": 186.39999389648438,
         "label": "previous week's high",
-        "pct": 1.6468474933249988
+        "pct": 2.8754298718898452
       },
       "t2": {
         "price": 190.08999633789062,
         "label": "prior swing high",
-        "pct": 3.659063843610477
+        "pct": 4.911967424561681
       }
     },
     "KPL.NS": {
       "t1": {
         "price": 3949.0,
         "label": "prior swing high",
-        "pct": 5.447263017356474
+        "pct": 7.274803118012474
       },
       "t2": {
         "price": null,
@@ -3528,48 +3539,48 @@
       "t1": {
         "price": 6155.0,
         "label": "previous week's high",
-        "pct": 3.6893530997304635
+        "pct": 3.978376552073648
       },
       "t2": {
         "price": 6444.0,
         "label": "prior swing high",
-        "pct": 8.557951482479776
+        "pct": 8.860545654193764
       }
     },
     "BHARTIHEXA.NS": {
       "t1": {
-        "price": 1476.199951171875,
-        "label": "previous week's high",
-        "pct": 6.446488260459371
-      },
-      "t2": {
         "price": 1567.4000244140625,
         "label": "prior swing high",
-        "pct": 13.022784051568802
+        "pct": 6.055890014311616
+      },
+      "t2": {
+        "price": 1647.199951171875,
+        "label": "prior swing high",
+        "pct": 11.455438389679596
       }
     },
     "SEAMECLTD.NS": {
       "t1": {
         "price": 1739.699951171875,
         "label": "previous week's high",
-        "pct": 9.767172968215586
+        "pct": 7.99552578097833
       },
       "t2": {
         "price": 1764.699951171875,
         "label": "prior swing high",
-        "pct": 11.34455952982174
+        "pct": 9.547453251405514
       }
     },
     "AGARWALEYE.NS": {
       "t1": {
         "price": 506.5,
         "label": "prior swing high",
-        "pct": 4.03614946084776
+        "pct": 4.811174340403523
       },
       "t2": {
         "price": 528.7999877929688,
         "label": "prior swing high",
-        "pct": 8.61661315878337
+        "pct": 9.425760536568806
       }
     }
   }
