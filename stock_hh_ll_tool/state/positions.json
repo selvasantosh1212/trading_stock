@@ -300,7 +300,7 @@
     "remaining_fraction": 1.0
   },
   "ADANIPORTS.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -750,10 +750,10 @@
     "remaining_fraction": 1.0
   },
   "AJANTPHARM.NS": {
-    "state": "LONG",
-    "entry_price": 3588.0,
-    "entry_date": "2026-10-01",
-    "stop_price": 3458.0729073660714,
+    "state": "FLAT",
+    "entry_price": null,
+    "entry_date": null,
+    "stop_price": null,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
