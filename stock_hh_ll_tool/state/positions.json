@@ -460,7 +460,7 @@
     "remaining_fraction": 1.0
   },
   "TRENT.NS": {
-    "state": "FLAT",
+    "state": "ARMED",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -550,7 +550,7 @@
     "remaining_fraction": 1.0
   },
   "MCX.NS": {
-    "state": "ARMED",
+    "state": "FLAT",
     "entry_price": null,
     "entry_date": null,
     "stop_price": null,
@@ -760,10 +760,10 @@
     "remaining_fraction": 1.0
   },
   "FOSECOIND.NS": {
-    "state": "LONG",
-    "entry_price": 6968.0,
-    "entry_date": "2026-09-17",
-    "stop_price": 5982.560714285714,
+    "state": "FLAT",
+    "entry_price": null,
+    "entry_date": null,
+    "stop_price": null,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
