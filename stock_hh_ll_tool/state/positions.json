@@ -80,9 +80,9 @@
     "remaining_fraction": 1.0
   },
   "KOTAKBANK.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 459.20001220703125,
+    "entry_date": "2026-10-30",
     "stop_price": 426.7167981828962,
     "partial_taken": false,
     "partial_exit_price": null,
@@ -300,9 +300,9 @@
     "remaining_fraction": 1.0
   },
   "ADANIPORTS.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 1871.0,
+    "entry_date": "2026-10-30",
     "stop_price": 1682.9093104771205,
     "partial_taken": false,
     "partial_exit_price": null,
@@ -460,10 +460,10 @@
     "remaining_fraction": 1.0
   },
   "TRENT.NS": {
-    "state": "ARMED",
+    "state": "PENDING_ENTRY",
     "entry_price": null,
     "entry_date": null,
-    "stop_price": null,
+    "stop_price": 2667.2849539620534,
     "partial_taken": false,
     "partial_exit_price": null,
     "partial_exit_date": null,
