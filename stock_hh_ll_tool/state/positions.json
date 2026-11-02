@@ -460,9 +460,9 @@
     "remaining_fraction": 1.0
   },
   "TRENT.NS": {
-    "state": "PENDING_ENTRY",
-    "entry_price": null,
-    "entry_date": null,
+    "state": "LONG",
+    "entry_price": 3018.0,
+    "entry_date": "2026-10-30",
     "stop_price": 2667.2849539620534,
     "partial_taken": false,
     "partial_exit_price": null,

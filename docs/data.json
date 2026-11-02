@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T16:40:53Z",
+  "generated_at": "2026-11-02T20:17:59Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -1077,8 +1077,8 @@
     },
     {
       "symbol": "TEAMTECH-SM.NS",
-      "date": "2026-10-30",
-      "close": 159.10000610351562,
+      "date": "2026-11-02",
+      "close": 169.0,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1167,8 +1167,8 @@
     },
     {
       "symbol": "SYSTANGO-SM.NS",
-      "date": "2026-10-30",
-      "close": 209.4499969482422,
+      "date": "2026-11-02",
+      "close": 208.35000610351562,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1347,8 +1347,8 @@
     },
     {
       "symbol": "UNIHEALTH-SM.NS",
-      "date": "2026-10-30",
-      "close": 550.25,
+      "date": "2026-11-02",
+      "close": 549.4000244140625,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1464,19 +1464,9 @@
   "flagged_count": 3,
   "entry_exit_events": [
     {
-      "symbol": "KOTAKBANK.NS",
-      "type": "entered",
-      "message": "\u2705 KOTAKBANK.NS: entered at 459.20 (today's open). Stop at 426.72."
-    },
-    {
-      "symbol": "ADANIPORTS.NS",
-      "type": "entered",
-      "message": "\u2705 ADANIPORTS.NS: entered at 1871.00 (today's open). Stop at 1682.91."
-    },
-    {
       "symbol": "TRENT.NS",
-      "type": "signal_entry",
-      "message": "\ud83d\udce5 TRENT.NS: entry signal \u2014 retracement resolved, will enter at TOMORROW's open. Signal price 3017.30, stop 2667.28 (risk/share 350.02). Size = (1.0% of capital) / 350.02."
+      "type": "entered",
+      "message": "\u2705 TRENT.NS: entered at 3018.00 (today's open). Stop at 2667.28."
     }
   ],
   "positions": {
@@ -1941,9 +1931,9 @@
       "remaining_fraction": 1.0
     },
     "TRENT.NS": {
-      "state": "PENDING_ENTRY",
-      "entry_price": null,
-      "entry_date": null,
+      "state": "LONG",
+      "entry_price": 3018.0,
+      "entry_date": "2026-10-30",
       "stop_price": 2667.2849539620534,
       "partial_taken": false,
       "partial_exit_price": null,
