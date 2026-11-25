@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T20:37:56Z",
+  "generated_at": "2026-11-25T19:54:35Z",
   "stocks": [
     {
       "symbol": "RELIANCE.NS",
@@ -755,9 +755,9 @@
       "intraday_bias": {
         "per_timeframe_trend": {
           "4h": "bearish",
-          "1h": "bullish"
+          "1h": "bearish"
         },
-        "bias_timeframes_agree": false
+        "bias_timeframes_agree": true
       }
     },
     {
@@ -1077,8 +1077,8 @@
     },
     {
       "symbol": "TEAMTECH-SM.NS",
-      "date": "2026-11-23",
-      "close": 152.0,
+      "date": "2026-11-25",
+      "close": 159.9499969482422,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1167,8 +1167,8 @@
     },
     {
       "symbol": "SYSTANGO-SM.NS",
-      "date": "2026-11-23",
-      "close": 185.5500030517578,
+      "date": "2026-11-25",
+      "close": 180.14999389648438,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1335,9 +1335,9 @@
       "intraday_bias": {
         "per_timeframe_trend": {
           "4h": "bearish",
-          "1h": "bearish"
+          "1h": "bullish"
         },
-        "bias_timeframes_agree": true
+        "bias_timeframes_agree": false
       }
     },
     {
@@ -1357,8 +1357,8 @@
     },
     {
       "symbol": "UNIHEALTH-SM.NS",
-      "date": "2026-11-23",
-      "close": 473.20001220703125,
+      "date": "2026-11-25",
+      "close": 510.75,
       "hh_broken_today": false,
       "ll_broken_today": false,
       "structure_event": null,
@@ -1462,13 +1462,7 @@
     }
   ],
   "flagged_count": 3,
-  "entry_exit_events": [
-    {
-      "symbol": "LT.NS",
-      "type": "armed",
-      "message": "\ud83d\udd0e LT.NS: retracement started \u2014 watching for a reversal back in trend to enter."
-    }
-  ],
+  "entry_exit_events": [],
   "positions": {
     "RELIANCE.NS": {
       "state": "FLAT",
